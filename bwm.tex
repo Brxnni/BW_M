@@ -85,25 +85,25 @@ Um zu beweisen, dass für die Gesamtdistanz keine ungerade Strecke herauskommen 
 	d \bmod 2 &= \left(i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|\right) \bmod 2
 \end{align*}
 
-Die Betragsstriche können ignoriert werden, da sie an der Parität der Differenz nichts ändern:
+Die Betragsstriche können ignoriert werden, da sie an der Parität der Differenz $i_{k+1}-i_k$ nichts ändern:
 
 \begin{align*}
-	d \bmod 2 &= \left(i_1 + i_9 + \sum_{k=1}^{8} i_{k+1} - i_k\right) \bmod 2 \\
-	&= \biggl(i_1 + i_9 + (i_2 - i_1) + (i_3 - i_2) + (i_4 - i_3) + (i_5 - i_4) \\
-	&+ (i_6 - i_5) + (i_7 - i_6) + (i_8 - i_7) + (i_9 - i_8)\biggr) \bmod 2 \\
-	&= \biggl(i_1 - i_1 + i_2 - i_2 + i_3 - i_3 + i_4 - i_4 + i_5 - i_5 + i_6 - i_6 \\
-	&+ i_7 - i_7 + i_8 - i_8 + i_9 + i_9\biggr) \bmod 2 \\
-	&= (2 i_9) \bmod 2
+	d &\equiv \left(i_1 + i_9 + \sum_{k=1}^{8} i_{k+1} - i_k\right) \pmod 2 \\
+	&\equiv \biggl(i_1 + i_9 + (i_2 - i_1) + (i_3 - i_2) + (i_4 - i_3) + (i_5 - i_4) \\
+	&+ (i_6 - i_5) + (i_7 - i_6) + (i_8 - i_7) + (i_9 - i_8)\biggr) \pmod 2 \\
+	&\equiv \biggl(i_1 - i_1 + i_2 - i_2 + i_3 - i_3 + i_4 - i_4 + i_5 - i_5 + i_6 - i_6 \\
+	&+ i_7 - i_7 + i_8 - i_8 + i_9 + i_9\biggr) \pmod 2 \\
+	&\equiv (2 i_9) \pmod 2
 \end{align*}
 
 $2 i_9$ ist immer eine gerade Zahl, also gilt:
 
 \begin{align*}
-	d \equiv (2 i_9) \equiv 0 \, (\bmod 2)
+	d \equiv (2 i_9) \equiv 0 \pmod 2
 \end{align*}
 
 \begin{itemize}
-	\item[b)] Folglich ist $d$ bei allen Sprungreihenfolgen eine gerade Zahl, die zurückgelegte Strecke kann also nie $25$ Längeneinheiten betragen.
+	\item[b)] Folglich ist $d$ für alle Sprungreihenfolgen eine gerade Zahl, die zurückgelegte Strecke kann also nie $25$ Längeneinheiten betragen.
 \end{itemize}
 
 \pagebreak
@@ -229,7 +229,7 @@ mit $ \cos\beta = \frac{b}{r} \Leftrightarrow b = r \cos\beta $ und $(1)$:
 	&= \frac{\left(\frac{-Rr}{R-r}*r \cos\beta\right)}{\left(\frac{Rr-r^2-Rr}{R-r}\right)} \\
 	&= \frac{\left(\frac{-Rr^2 \cos\beta}{R-r}\right)}{\left(-\frac{r^2}{R-r}\right)} \\
 	&= \frac{-Rr^2 \cos\beta * (R-r)}{-(R-r)r^2} \\
-	&= R \cos\beta
+	R_0 &= R \cos\beta
 \end{align*}
 
 \begin{align*}
@@ -238,27 +238,28 @@ mit $ \cos\beta = \frac{b}{r} \Leftrightarrow b = r \cos\beta $ und $(1)$:
 	&= R - R \cos\beta \tag{3}
 \end{align*}
 
-mit $(1)$ und $(3)$:
-
-\begin{align*}
-	m_{AE} &= \frac{h}{2R - x} \\
-	&= \frac{\frac{Rr}{R-r}}{2R - (R-R \cos\beta)} \\
-	&= \frac{\frac{Rr}{R-r}}{R+R \cos\beta} \\
-	&= \frac{Rr}{(R-r)(R+R \cos\beta)} \\
-	&= \frac{r}{(R-r)(1+\cos\beta)}
-\end{align*}
-
-mit $(2)$:
-
-\begin{align*}
-	m_{AE} &= \frac{\frac{R \sin\beta}{1+\sin\beta}}{(R-r)(1+\cos\beta)} \\
-	&= \frac{R \sin\beta}{(R-r)(1+\cos\beta)(1+\sin\beta)} \\
-	&= \frac{R \sin\beta}{(R-\frac{R \sin\beta}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
-	&= \frac{R \sin\beta}{(\frac{R}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
-	&= \frac{\sin\beta}{\frac{(1+\sin\beta)(1+\cos\beta)}{1+\sin\beta}} \\
-	&= \frac{(\sin\beta)(1+\sin\beta)}{(1+\sin\beta)(1+\cos\beta)} \\
-	&= \frac{\sin\beta}{1+\cos\beta}
-\end{align*}
+\begin{samepage}
+	\begin{align*}
+		m_{AE} &= \frac{h}{2R - x} \\
+	\end{align*}
+	mit $(1)$ und $(3)$: \nopagebreak	
+	\begin{align*}
+		m_{AE} &= \frac{\frac{Rr}{R-r}}{2R - (R-R \cos\beta)} \\
+		&= \frac{\frac{Rr}{R-r}}{R+R \cos\beta} \\
+		&= \frac{Rr}{(R-r)(R+R \cos\beta)} \\
+		&= \frac{r}{(R-r)(1+\cos\beta)}
+	\end{align*}
+	mit $(2)$: \nopagebreak
+	\begin{align*}
+		m_{AE} &= \frac{\frac{R \sin\beta}{1+\sin\beta}}{(R-r)(1+\cos\beta)} \\
+		&= \frac{R \sin\beta}{(R-r)(1+\cos\beta)(1+\sin\beta)} \\
+		&= \frac{R \sin\beta}{(R-\frac{R \sin\beta}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \tag{??} \\
+		&= \frac{R \sin\beta}{(\frac{R}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \tag{->??} \\
+		&= \frac{\sin\beta}{\frac{(1+\sin\beta)(1+\cos\beta)}{1+\sin\beta}} \\
+		&= \frac{(\sin\beta)(1+\sin\beta)}{(1+\sin\beta)(1+\cos\beta)} \\
+		&= \frac{\sin\beta}{1+\cos\beta}
+	\end{align*}
+\end{samepage}
 
 \pagebreak
 
@@ -445,7 +446,7 @@ So lässt sich $m_{CD}$ anders ausdrücken:
 	m_{AE} &= \frac{\sin\beta}{\cos\beta+1}
 \end{align*}
 
-Somit gilt $ m_{CD} = -\frac{1}{m_{AE}} $, und damit auch: $CD \perp AE$.
+Somit gilt $ m_{CD} = -\frac{1}{m_{AE}} $, und damit auch $CD \perp AE$.
 
 \pagebreak
 \section[]{Aufgabe 4}
