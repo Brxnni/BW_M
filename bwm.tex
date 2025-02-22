@@ -82,17 +82,24 @@ Für eine so gegebene beliebige Reihenfolge der Zahlen $1$ - $9$ lässt sich die
 Um zu beweisen, dass für die Gesamtdistanz keine ungerade Strecke herauskommen kann, wird "der modulo 2 gebildet" (formulierung verbessern):
 
 \begin{align*}
-	d \bmod 2 &= \left(i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|\right) \bmod 2 \\
-	&= \left(i_1 + i_9 + \sum_{k=1}^{8} i_{k+1} - i_k\right) \bmod 2 \\
+	d \bmod 2 &= \left(i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|\right) \bmod 2
+\end{align*}
+
+Die Betragsstriche können ignoriert werden, da sie an der Parität der Differenz nichts ändern:
+
+\begin{align*}
+	d \bmod 2 &= \left(i_1 + i_9 + \sum_{k=1}^{8} i_{k+1} - i_k\right) \bmod 2 \\
 	&= \biggl(i_1 + i_9 + (i_2 - i_1) + (i_3 - i_2) + (i_4 - i_3) + (i_5 - i_4) \\
 	&+ (i_6 - i_5) + (i_7 - i_6) + (i_8 - i_7) + (i_9 - i_8)\biggr) \bmod 2 \\
+	&= \biggl(i_1 - i_1 + i_2 - i_2 + i_3 - i_3 + i_4 - i_4 + i_5 - i_5 + i_6 - i_6 \\
+	&+ i_7 - i_7 + i_8 - i_8 + i_9 + i_9\biggr) \bmod 2 \\
 	&= (2 i_9) \bmod 2
 \end{align*}
 
 $2 i_9$ ist immer eine gerade Zahl, also gilt:
 
 \begin{align*}
-	d \bmod 2 = (2 i_9) \bmod 2 = 0
+	d \equiv (2 i_9) \equiv 0 \, (\bmod 2)
 \end{align*}
 
 \begin{itemize}
@@ -162,7 +169,7 @@ Hierfür relevante Punkte und Strecken:
 \end{align*}
 
 \begin{align*}
-	\sin\beta &= \frac{G}{H} \tag{nötig? ausschreiben?} \\
+	\sin\beta &= \frac{\text{Gegenkathete}}{\text{Hypotenuse}} \tag{nötig?} \\
 	&= \frac{r}{R-r} \\
 	r &= R \sin\beta - r \sin\beta \\
 	r + r \sin\beta &= R \sin\beta \\
@@ -170,22 +177,29 @@ Hierfür relevante Punkte und Strecken:
 	r &= \frac{R \sin\beta}{1 + \sin\beta} \tag{2}
 \end{align*}
 
-\begin{align*}
-	\sin\beta &= \frac{h}{R} \\
-	&= \frac{Rr}{R(R-r)} \\
-	&= \frac{r}{R-r} \\
-	R-r &= \frac{r}{\sin\beta} \\
-	R &= \frac{r}{\sin\beta}+r \\
-\end{align*}
-mit $(2)$:
-\begin{align*}
-	R &= \frac{R \sin\beta}{(1+ \sin\beta) \sin\beta} + \frac{R \sin\beta}{1 + \sin\beta} \\
-	&= 2 \frac{R \sin\beta}{1 + \sin\beta} \\
-	R(1 + \sin\beta) &= 2 R \sin\beta \\
-	R(1 + \sin\beta) - 2 R \sin\beta &= 0 \\
-	R + R \sin\beta - 2 R \sin\beta &= 0 \\
-	R &= R \sin\beta
-\end{align*}
+\begin{samepage}
+	
+	\begin{align*}
+		\sin\beta &= \frac{\text{Gegenkathete}}{\text{Hypotenuse}} \\
+		&= \frac{h}{R} \\
+	\end{align*}
+	mit $(1)$: \nopagebreak
+	\begin{align*}
+		\sin\beta &= \frac{Rr}{R(R-r)} \\
+		&= \frac{r}{R-r} \\
+		R-r &= \frac{r}{\sin\beta} \\
+		R &= \frac{r}{\sin\beta}+r \\
+	\end{align*}
+	mit $(2)$: \nopagebreak
+	\begin{align*}
+		R &= \frac{R \sin\beta}{(1+ \sin\beta) \sin\beta} + \frac{R \sin\beta}{1 + \sin\beta} \\
+		R &= 2 \frac{R \sin\beta}{1 + \sin\beta} \\
+		R(1 + \sin\beta) &= 2 R \sin\beta \\
+		R(1 + \sin\beta) - 2 R \sin\beta &= 0 \\
+		R + R \sin\beta - 2 R \sin\beta &= 0 \\
+		R &= R \sin\beta
+	\end{align*}
+\end{samepage}
 
 \begin{center}
 	\begin{tikzpicture}[scale=13]
