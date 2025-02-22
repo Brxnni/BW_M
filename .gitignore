@@ -2,6 +2,7 @@
 *.fls
 *.log
 *.synctex.gz
+*.synctex(busy)
 *.fdb_latexmk
 
 bwm.pdf
