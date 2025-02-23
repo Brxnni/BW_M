@@ -171,66 +171,67 @@ Hierfür relevante Punkte und Strecken:
 	r &= \frac{R \sin\beta}{1 + \sin\beta} \tag{2}
 \end{align*}
 
-\begin{center}
-	\begin{tikzpicture}[scale=13]
-		% Kreissektor mit 20°
-		\draw[black] (m) -- (0:1) arc(0:20:1) -- cycle;
+\begin{samepage}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=13]
+			% Kreissektor mit 20°
+			\draw[black] (m) -- (0:1) arc(0:20:1) -- cycle;
+			
+			% Punkte
+			\coordinate (m) at (0,0);
+			\coordinate (b) at (1,0);
+			\coordinate (b2) at (0.93969,0.34202);
+			\coordinate (p) at (0.98481,0.17365);
+			\coordinate (p_) at (0.98481,0);
+			\coordinate (kam) at (0.83896,0.14772);
+			\coordinate (kam_side) at (0.98481,0.14772);
+			
+			\filldraw[black] (m) circle (0.25pt) node[anchor=east]{$M$};
+			\filldraw[black] (p) circle (0.25pt) node[anchor=south west]{$P$};
+			
+			% Linien
+			\draw[orange, line width=1pt] (p) -- (0.98481,0) node[midway,right]{$h$};
+			\draw[red, line width=1pt] (m) -- (b2) node[midway,above left]{$R$};
+			\draw[violet] (kam) -- (p) node[midway,above]{$r$};
+			\draw[violet, line width=1pt] (kam) -- (0.83896,0) node[midway,left]{$r$};
+			\draw[blue, line width=1pt] (m) -- (p_) node[midway,below]{$R_0$};
+			\draw[teal, line width=1pt] (p_) -- (b) node[midway,below]{$x$};
+			\draw[cyan, line width=1pt] (kam) -- (kam_side) node[midway,below]{$b$};
+			\draw[black] (m) -- (p);
+			
+			% Kreis k_a
+			\draw (kam) circle(0.14812);
+			
+			% Winkel
+			\pic [draw,"$\beta$",angle eccentricity=2.6]{angle = b--m--b2};
+			\pic [draw,"$\beta$",angle eccentricity=1.5]{angle = kam_side--kam--p};
+		\end{tikzpicture}
+	\end{center}
 
-		% Punkte
-		\coordinate (m) at (0,0);
-		\coordinate (b) at (1,0);
-		\coordinate (b2) at (0.93969,0.34202);
-		\coordinate (p) at (0.98481,0.17365);
-		\coordinate (p_) at (0.98481,0);
-		\coordinate (kam) at (0.83896,0.14772);
-		\coordinate (kam_side) at (0.98481,0.14772);
+	\begin{align*}
+		\frac{R_0}{h} &= \frac{R_0-b}{r} \\
+		r R_0 &= h R_0 - hb \\
+		r R_0 - h R_0 &= -hb \\
+		R_0 (r-h) &= -hb \\
+		R_0 &= \frac{-hb}{r-h}
+	\end{align*}
+	Mit $ \cos\beta = \frac{b}{r} \Leftrightarrow b = r \cos\beta $ und $(1)$:
+	\begin{align*}
+		R_0 &= \frac{\frac{-Rr}{R-r}*r \cos\beta}{r-\frac{Rr}{R-r}} \\
+		&= \frac{\left(\frac{-Rr}{R-r}*r \cos\beta\right)}{\left(\frac{(R-r)r}{R-r}-\frac{Rr}{R-r}\right)} \\
+		&= \frac{\left(\frac{-Rr}{R-r}*r \cos\beta\right)}{\left(\frac{Rr-r^2-Rr}{R-r}\right)} \\
+		&= \frac{\left(\frac{-Rr^2 \cos\beta}{R-r}\right)}{\left(-\frac{r^2}{R-r}\right)} \\
+		&= \frac{-Rr^2 \cos\beta * (R-r)}{-(R-r)r^2} \\
+		R_0 &= R \cos\beta
+	\end{align*}
 
-		\filldraw[black] (m) circle (0.25pt) node[anchor=east]{$M$};
-		\filldraw[black] (p) circle (0.25pt) node[anchor=south west]{$P$};
-
-		% Linien
-		\draw[orange, line width=1pt] (p) -- (0.98481,0) node[midway,right]{$h$};
-		\draw[red, line width=1pt] (m) -- (b2) node[midway,above left]{$R$};
-		\draw[violet] (kam) -- (p) node[midway,above]{$r$};
-		\draw[violet, line width=1pt] (kam) -- (0.83896,0) node[midway,left]{$r$};
-		\draw[blue, line width=1pt] (m) -- (p_) node[midway,below]{$R_0$};
-		\draw[teal, line width=1pt] (p_) -- (b) node[midway,below]{$x$};
-		\draw[cyan, line width=1pt] (kam) -- (kam_side) node[midway,below]{$b$};
-		\draw[black] (m) -- (p);
-
-		% Kreis k_a
-		\draw (kam) circle(0.14812);
-
-		% Winkel
-		\pic [draw,"$\beta$",angle eccentricity=2.6]{angle = b--m--b2};
-		\pic [draw,"$\beta$",angle eccentricity=1.5]{angle = kam_side--kam--p};
-	\end{tikzpicture}
-\end{center}
-
-\begin{align*}
-	\frac{R_0}{h} &= \frac{R_0-b}{r} \\
-	r R_0 &= h R_0 - hb \\
-	r R_0 - h R_0 &= -hb \\
-	R_0 (r-h) &= -hb \\
-	R_0 &= \frac{-hb}{r-h}
-\end{align*}
-
-Mit $ \cos\beta = \frac{b}{r} \Leftrightarrow b = r \cos\beta $ und $(1)$:
-
-\begin{align*}
-	R_0 &= \frac{\frac{-Rr}{R-r}*r \cos\beta}{r-\frac{Rr}{R-r}} \\
-	&= \frac{\left(\frac{-Rr}{R-r}*r \cos\beta\right)}{\left(\frac{(R-r)r}{R-r}-\frac{Rr}{R-r}\right)} \\
-	&= \frac{\left(\frac{-Rr}{R-r}*r \cos\beta\right)}{\left(\frac{Rr-r^2-Rr}{R-r}\right)} \\
-	&= \frac{\left(\frac{-Rr^2 \cos\beta}{R-r}\right)}{\left(-\frac{r^2}{R-r}\right)} \\
-	&= \frac{-Rr^2 \cos\beta * (R-r)}{-(R-r)r^2} \\
-	R_0 &= R \cos\beta
-\end{align*}
-
-\begin{align*}
-	R_0 + x &= R \\
-	x &= R - R_0 \\
-	&= R - R \cos\beta \tag{3}
-\end{align*}
+	\begin{align*}
+		R_0 + x &= R \\
+		x &= R - R_0 \\
+		&= R - R \cos\beta \tag{3}
+	\end{align*}
+\end{samepage} \goodbreak
 
 \begin{samepage}
 	\begin{align*}
@@ -254,7 +255,7 @@ Mit $ \cos\beta = \frac{b}{r} \Leftrightarrow b = r \cos\beta $ und $(1)$:
 		&= \frac{R \sin\beta}{(\frac{R}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
 		&= \frac{\sin\beta}{(\frac{1}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
 		&= \frac{(\sin\beta)(1+\sin\beta)}{(1+\sin\beta)(1+\cos\beta)} \\
-		&= \frac{\sin\beta}{1+\cos\beta}
+		m_{AE} &= \frac{\sin\beta}{1+\cos\beta}
 	\end{align*}
 \end{samepage}
 
