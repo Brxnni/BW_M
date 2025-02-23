@@ -69,14 +69,14 @@ Für eine so gegebene beliebige Reihenfolge der Zahlen $1$ - $9$ lässt sich die
 	d &= i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|
 \end{align*}
 \begin{itemize}
-	\item[a)] Ein Beispiel für eine Sprungfolge mit der Gesamtdistanz $20$ ist: \\
-		$\displaystyle\begin{aligned}
-		6, 5, 9, 8, 7, 4, 3, 2, 1; \\
-			d &= 6 + 1 + |6-5|+|5-9|+|9-8|+|8-7| \\
-			&+ |7-4|+|4-3|+|3-2|+|2-1| \\
-			&= 20
-		\end{aligned}$
+	\item[a)] Ein Beispiel für eine Sprungfolge mit der Gesamtdistanz $20$ ist $1, 2, 3, 4, 5, 6, 8, 7, 9$ (gefunden durch Ausprobieren):
 \end{itemize}
+\begin{align*}
+	d &= 1 + 9 + |2-1|+|3-2|+|4-3|+|5-4| \\
+	&+ |6-5|+|8-6|+|7-8|+|9-7| \\
+	&= 20
+\end{align*}
+
 Um zu beweisen, dass für die Gesamtdistanz keine ungerade Strecke herauskommen kann, wird "der modulo 2 gebildet" (formulierung verbessern):
 \begin{align*}
 	d \bmod 2 &= \left(i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|\right) \bmod 2
