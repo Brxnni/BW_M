@@ -4,7 +4,9 @@
 \usepackage[
 	includehead,
 	nomarginpar,
-	margin=2.5cm
+	top=1cm,
+	inner=1.5cm,
+	outer=5cm
 ]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -69,7 +71,8 @@ Für eine so gegebene beliebige Reihenfolge der Zahlen $1$ - $9$ lässt sich die
 	d &= i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|
 \end{align*}
 \begin{itemize}
-	\item[a)] Ein Beispiel für eine Sprungfolge mit der Gesamtdistanz $20$ ist $1, 2, 3, 4, 5, 6, 8, 7, 9$ (gefunden durch Ausprobieren):
+	\item[a)] Ein Beispiel für eine Sprungfolge mit der Gesamtdistanz $20$ ist \\
+	$1, 2, 3, 4, 5, 6, 8, 7, 9$ (gefunden durch Ausprobieren):
 \end{itemize}
 \begin{align*}
 	d &= 1 + 9 + |2-1|+|3-2|+|4-3|+|5-4| \\
@@ -87,8 +90,8 @@ Die Betragsstriche können ignoriert werden, da sie an der Parität der Differen
 	d &\equiv i_1 + i_9 + \sum_{k=1}^{8} i_{k+1} - i_k \pmod 2 \\
 	&\equiv i_1 + i_9 + (i_2 - i_1) + (i_3 - i_2) + (i_4 - i_3) + (i_5 - i_4) \\
 	&+ (i_6 - i_5) + (i_7 - i_6) + (i_8 - i_7) + (i_9 - i_8) \pmod 2 \\[7pt]
-	&\equiv i_1 - i_1 + i_2 - i_2 + i_3 - i_3 + i_4 - i_4 + i_5 - i_5 + i_6 - i_6 \\
-	&+ i_7 - i_7 + i_8 - i_8 + i_9 + i_9 \pmod 2 \\[7pt]
+	% &\equiv i_1 - i_1 + i_2 - i_2 + i_3 - i_3 + i_4 - i_4 + i_5 - i_5 + i_6 - i_6 \\
+	% &+ i_7 - i_7 + i_8 - i_8 + i_9 + i_9 \pmod 2 \\[7pt]
 	&\equiv 2 i_9 \pmod 2
 \end{align*}
 
@@ -173,7 +176,6 @@ Hierfür relevante Punkte und Strecken:
 \end{align*}
 
 \begin{samepage}
-	
 	\begin{center}
 		\begin{tikzpicture}[scale=13]
 			% Kreissektor mit 20°
