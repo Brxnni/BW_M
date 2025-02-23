@@ -61,45 +61,39 @@
 \section[]{Aufgabe 1}
 \fancyhead[L]{A1}
 
-Gegeben seien die Werte $i_1$ bis $i_9$, auf welche die Positionen der Felder $1$ bis $9$ zufällig verteilt sind.
-Für eine so gegebene beliebige Reihenfolge der Zahlen $1$ - $9$ lässt sich die zurückgelegte Strecke mit der folgenden Formel berechnen:
+Gegeben seien die Werte $i_1$ bis $i_9$, auf welche die Positionen der Felder, $1$ bis $9$, zufällig verteilt sind.
+Fridolin springt von Position $0$ zu $i_1$, dann zu $i_2$ usw. bis $i_9$ und schließlich zurück zu $0$.
 
+Für eine so gegebene beliebige Reihenfolge der Zahlen $1$ - $9$ lässt sich die zurückgelegte Strecke mit der folgenden Formel berechnen:
 \begin{align*}
 	d &= i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|
 \end{align*}
-
 \begin{itemize}
 	\item[a)] Ein Beispiel für eine Sprungfolge mit der Gesamtdistanz $20$ ist: \\
 		$\displaystyle\begin{aligned}
 		6, 5, 9, 8, 7, 4, 3, 2, 1; \\
 			d &= 6 + 1 + |6-5|+|5-9|+|9-8|+|8-7| \\
 			&+ |7-4|+|4-3|+|3-2|+|2-1| \\
-			&= 6 + 1 + 1 + 4 + 1 + 1 + 3 + 1 + 1 + 1 \\
 			&= 20
 		\end{aligned}$
 \end{itemize}
-
 Um zu beweisen, dass für die Gesamtdistanz keine ungerade Strecke herauskommen kann, wird "der modulo 2 gebildet" (formulierung verbessern):
-
 \begin{align*}
 	d \bmod 2 &= \left(i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|\right) \bmod 2
 \end{align*}
-
 Die Betragsstriche können ignoriert werden, da sie an der Parität der Differenz $i_{k+1}-i_k$ nichts ändern:
-
 \begin{align*}
-	d &\equiv \left(i_1 + i_9 + \sum_{k=1}^{8} i_{k+1} - i_k\right) \pmod 2 \\
-	&\equiv \biggl(i_1 + i_9 + (i_2 - i_1) + (i_3 - i_2) + (i_4 - i_3) + (i_5 - i_4) \\
-	&+ (i_6 - i_5) + (i_7 - i_6) + (i_8 - i_7) + (i_9 - i_8)\biggr) \pmod 2 \\
-	&\equiv \biggl(i_1 - i_1 + i_2 - i_2 + i_3 - i_3 + i_4 - i_4 + i_5 - i_5 + i_6 - i_6 \\
-	&+ i_7 - i_7 + i_8 - i_8 + i_9 + i_9\biggr) \pmod 2 \\
-	&\equiv (2 i_9) \pmod 2
+	d &\equiv i_1 + i_9 + \sum_{k=1}^{8} i_{k+1} - i_k \pmod 2 \\
+	&\equiv i_1 + i_9 + (i_2 - i_1) + (i_3 - i_2) + (i_4 - i_3) + (i_5 - i_4) \\
+	&+ (i_6 - i_5) + (i_7 - i_6) + (i_8 - i_7) + (i_9 - i_8) \pmod 2 \\[7pt]
+	&\equiv i_1 - i_1 + i_2 - i_2 + i_3 - i_3 + i_4 - i_4 + i_5 - i_5 + i_6 - i_6 \\
+	&+ i_7 - i_7 + i_8 - i_8 + i_9 + i_9 \pmod 2 \\[7pt]
+	&\equiv \left(2 i_9\right) \pmod 2
 \end{align*}
 
-$2 i_9$ ist immer eine gerade Zahl, also gilt:
-
+$2 i_9$ ist immer gerade, also gilt:
 \begin{align*}
-	d \equiv (2 i_9) \equiv 0 \pmod 2
+	d \equiv 2 i_9 \equiv 0 \pmod 2
 \end{align*}
 
 \begin{itemize}
@@ -107,10 +101,11 @@ $2 i_9$ ist immer eine gerade Zahl, also gilt:
 \end{itemize}
 
 \pagebreak
-\section[]{Aufgabe 2}
 \fancyhead[L]{A2}
+\section[]{Aufgabe 2}
 
 \pagebreak
+\fancyhead[L]{A3}
 \section[]{Aufgabe 3}
 Um zu beweisen, dass $AE$ senkrecht zu $CD$ steht, werden die Steigungen beider Geraden in Abhängigkeit des Winkels $\beta$, der die Position von P auf dem Halbkreisbogen $AB$ bestimmt, berechnet.
 
@@ -164,8 +159,7 @@ Hierfür relevante Punkte und Strecken:
 
 \begin{align*}
 	m_{AE} &= \frac{\Delta y}{\Delta x} = \frac{h}{2R-x} \\
-	\frac{h}{R} = \frac{r}{R-r} \leftrightarrow h &= \frac{Rr}{R-r} \tag{1} \\
-	\Rightarrow m_{AE} &= \frac{Rr}{(2R-x)(R-r)}
+	\frac{h}{R} = \frac{r}{R-r} \leftrightarrow h &= \frac{Rr}{R-r} \tag{1}
 \end{align*}
 
 \begin{align*}
@@ -221,7 +215,7 @@ Hierfür relevante Punkte und Strecken:
 	R_0 &= \frac{-hb}{r-h}
 \end{align*}
 
-mit $ \cos\beta = \frac{b}{r} \Leftrightarrow b = r \cos\beta $ und $(1)$:
+Mit $ \cos\beta = \frac{b}{r} \Leftrightarrow b = r \cos\beta $ und $(1)$:
 
 \begin{align*}
 	R_0 &= \frac{\frac{-Rr}{R-r}*r \cos\beta}{r-\frac{Rr}{R-r}} \\
@@ -242,20 +236,23 @@ mit $ \cos\beta = \frac{b}{r} \Leftrightarrow b = r \cos\beta $ und $(1)$:
 	\begin{align*}
 		m_{AE} &= \frac{h}{2R - x} \\
 	\end{align*}
-	mit $(1)$ und $(3)$: \nopagebreak	
+	Mit $(1)$ und $(3)$: \nopagebreak
 	\begin{align*}
 		m_{AE} &= \frac{\frac{Rr}{R-r}}{2R - (R-R \cos\beta)} \\
 		&= \frac{\frac{Rr}{R-r}}{R+R \cos\beta} \\
 		&= \frac{Rr}{(R-r)(R+R \cos\beta)} \\
 		&= \frac{r}{(R-r)(1+\cos\beta)}
 	\end{align*}
-	mit $(2)$: \nopagebreak
+	Mit $(2)$: \nopagebreak
 	\begin{align*}
 		m_{AE} &= \frac{\frac{R \sin\beta}{1+\sin\beta}}{(R-r)(1+\cos\beta)} \\
 		&= \frac{R \sin\beta}{(R-r)(1+\cos\beta)(1+\sin\beta)} \\
-		&= \frac{R \sin\beta}{(R-\frac{R \sin\beta}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \tag{??} \\
-		&= \frac{R \sin\beta}{(\frac{R}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \tag{->??} \\
-		&= \frac{\sin\beta}{\frac{(1+\sin\beta)(1+\cos\beta)}{1+\sin\beta}} \\
+		&= \frac{R \sin\beta}{(R-\frac{R \sin\beta}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
+		&= \frac{R \sin\beta}{(\frac{R(1+\sin\beta)}{1+\sin\beta}-\frac{R \sin\beta}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
+		&= \frac{R \sin\beta}{(\frac{R(1+\sin\beta) - R\sin\beta}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
+		&= \frac{R \sin\beta}{(\frac{R+R\sin\beta-R\sin\beta}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
+		&= \frac{R \sin\beta}{(\frac{R}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
+		&= \frac{\sin\beta}{(\frac{1}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
 		&= \frac{(\sin\beta)(1+\sin\beta)}{(1+\sin\beta)(1+\cos\beta)} \\
 		&= \frac{\sin\beta}{1+\cos\beta}
 	\end{align*}
@@ -328,6 +325,7 @@ Hierfür relevante Punkte und Strecken:
 \end{align*}
 
 \begin{align*}
+	\sin\alpha &= \frac{\text{Gegenkathete}}{\text{Hypotenuse}} \\
 	\sin\alpha &= \frac{ \textcolor{red}{r} }{ \textcolor{violet}{R-r} } \\
 	r &= R\sin\alpha - r\sin\alpha \\
 	r(1+\sin\alpha) &= R\sin\alpha \\
@@ -339,55 +337,59 @@ Hierfür relevante Punkte und Strecken:
 	h &= \sqrt{r^2-x^2} \tag{3}
 \end{align*}
 
-\begin{align*}
-	\frac{l}{r} &= \frac{l+x}{r+h} \\
-	\text{mit (3):} \\
-	\frac{l}{r} &= \frac{l+x}{r+\sqrt{r^2-x^2}} \\
-	(r+\sqrt{r^2-x^2})l &= r(l+x) \\
-	rl + l\sqrt{r^2-x^2} &= rl+rx \\
-	l\sqrt{r^2-x^2} &= rx \\
-	l^2(r^2-x^2) &= r^2 x^2 \\
-	l^2 r^2 - l^2 x^2 &= r^2 x^2 \\
-	r^2 x^2 + l^2 x^2 &= l^2 r^2 \\
-	x^2 (r^2+l^2) &= l^2 r^2 \\
-	x^2 &= \frac{l^2 r^2}{r^2 + l^2} \\
-	x &= \frac{lr}{\sqrt{r^2+l^2}} \\
-	&= \frac{lr}{R-r} \\
-	\text{mit (1):} \\
-	&= \frac{\sqrt{R(R-2r)}r}{R-r} \\
-	\text{mit (2):} \\
-	&= \frac{\sqrt{R(R-2\frac{R\sin\alpha}{1+\sin\alpha})}\frac{R\sin\alpha}{1+\sin\alpha}}{R-\frac{R\sin\alpha}{1+\sin\alpha}} \\
-	&= \frac{\sqrt{R(R-2\frac{R\sin\alpha}{1+\sin\alpha})}\frac{R\sin\alpha}{1+\sin\alpha}}{\frac{R}{1+\sin\alpha}} \\
-	&= \frac{R\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}\frac{\sin\alpha}{1+\sin\alpha}}{\frac{1}{1+\sin\alpha}} \\
-	x &= R\sin\alpha\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}} \tag{4}
-\end{align*}
+\begin{samepage}
+	\begin{align*}
+		\frac{l}{r} &= \frac{l+x}{r+h} \\
+		\text{mit (3):} \\
+		\frac{l}{r} &= \frac{l+x}{r+\sqrt{r^2-x^2}} \\
+		(r+\sqrt{r^2-x^2})l &= r(l+x) \\
+		rl + l\sqrt{r^2-x^2} &= rl+rx \\
+		l\sqrt{r^2-x^2} &= rx \\
+		l^2(r^2-x^2) &= r^2 x^2 \\
+		l^2 r^2 - l^2 x^2 &= r^2 x^2 \\
+		r^2 x^2 + l^2 x^2 &= l^2 r^2 \\
+		x^2 (r^2+l^2) &= l^2 r^2 \\
+		x^2 &= \frac{l^2 r^2}{r^2 + l^2} \\
+		x &= \frac{lr}{\sqrt{r^2+l^2}} \\
+		&= \frac{lr}{R-r} \\
+		\text{mit (1):} \\
+		&= \frac{\sqrt{R(R-2r)}r}{R-r} \\
+		\text{mit (2):} \\
+		&= \frac{\sqrt{R(R-2\frac{R\sin\alpha}{1+\sin\alpha})}\frac{R\sin\alpha}{1+\sin\alpha}}{R-\frac{R\sin\alpha}{1+\sin\alpha}} \\
+		&= \frac{\sqrt{R(R-2\frac{R\sin\alpha}{1+\sin\alpha})}\frac{R\sin\alpha}{1+\sin\alpha}}{\frac{R}{1+\sin\alpha}} \\
+		&= \frac{R\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}\frac{\sin\alpha}{1+\sin\alpha}}{\frac{1}{1+\sin\alpha}} \\
+		x &= R\sin\alpha\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}} \tag{4}
+	\end{align*}
+\end{samepage} \goodbreak
 
-Weitergehend von $(3)$, mit $(2)$ und $(4)$:
+\begin{samepage}
+	Weitergehend von $(3)$, mit $(2)$ und $(4)$: \nopagebreak
+	\begin{align*}
+		h &= \sqrt{r^2-x^2} \\
+		&= \sqrt{\left(\frac{R\sin\alpha}{1+\sin\alpha}\right)^2 - \left(R\sin\alpha\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}\right)^2} \\
+		&= \sqrt{\frac{(R\sin\alpha)^2}{(1+\sin\alpha)^2} - \frac{(R\sin\alpha)^2(1-\sin\alpha)}{1+\sin\alpha}} \\
+		&= \sqrt{\frac{(R\sin\alpha)^2}{(1+\sin\alpha)^2} - \frac{(R\sin\alpha)^2(1-\sin\alpha)(1+\sin\alpha)}{(1+\sin\alpha)^2}} \\
+		&= \frac{\sqrt{(R\sin\alpha)^2(1-(1-\sin\alpha)(1+\sin\alpha))}}{1+\sin\alpha} \\
+		&= R\sin\alpha \, \frac{\sqrt{1-(1-\sin\alpha)(1+\sin\alpha)}}{1+\sin\alpha} \\
+		&= R\sin\alpha \, \frac{\sqrt{1-(1-\sin^2\alpha)}}{1+\sin\alpha} \\
+		h &= R\sin\alpha \, \frac{\sin\alpha}{1+\sin\alpha} \tag{$3^\prime$}
+	\end{align*}
+\end{samepage} \goodbreak
 
-\begin{align*}
-	h &= \sqrt{r^2-x^2} \\
-	&= \sqrt{\left(\frac{R\sin\alpha}{1+\sin\alpha}\right)^2 - \left(R\sin\alpha\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}\right)^2} \\
-	&= \sqrt{\frac{(R\sin\alpha)^2}{(1+\sin\alpha)^2} - \frac{(R\sin\alpha)^2(1-\sin\alpha)}{1+\sin\alpha}} \\
-	&= \sqrt{\frac{(R\sin\alpha)^2}{(1+\sin\alpha)^2} - \frac{(R\sin\alpha)^2(1-\sin\alpha)(1+\sin\alpha)}{(1+\sin\alpha)^2}} \\
-	&= \frac{\sqrt{(R\sin\alpha)^2(1-(1-\sin\alpha)(1+\sin\alpha))}}{1+\sin\alpha} \\
-	&= R\sin\alpha \, \frac{\sqrt{1-(1-\sin\alpha)(1+\sin\alpha)}}{1+\sin\alpha} \\
-	&= R\sin\alpha \, \frac{\sqrt{1-(1-\sin^2\alpha)}}{1+\sin\alpha} \\
-	h &= R\sin\alpha \, \frac{\sin\alpha}{1+\sin\alpha} \tag{$3^\prime$}
-\end{align*}
-
-Mit $(2)$, $(3^\prime)$ und $(4)$:
-
-\begin{align*}
-	m_{CD} &= \frac{h+r}{-x} \\
-	&= \frac{R\sin\alpha \frac{\sin\alpha}{1+\sin\alpha} + \frac{R\sin\alpha}{1+\sin\alpha}}{-R\sin\alpha\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}} \\
-	&= \frac{\frac{\sin\alpha+1}{1+\sin\alpha}}{-\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}} \\
-	&= -\sqrt{\frac{1+\sin\alpha}{1-\sin\alpha}} \\
-	&= -\frac{\sqrt{1+\sin\alpha}}{\sqrt{1-\sin\alpha}} \\
-	&= -\frac{\sqrt{1+\sin\alpha}\sqrt{1+\sin\alpha}}{\sqrt{1-\sin\alpha}\sqrt{1+\sin\alpha}} \\
-	&= -\frac{1+\sin\alpha}{\sqrt{1 - \sin^2\alpha}} \\
-	&= -\frac{\sin\alpha+1}{\sqrt{\cos^2\alpha}} \\
-	&= -\frac{\sin\alpha+1}{\cos\alpha}
-\end{align*}
+\begin{samepage}
+	Mit $(2)$, $(3^\prime)$ und $(4)$: \nopagebreak
+	\begin{align*}
+		m_{CD} &= \frac{h+r}{-x} \\
+		&= \frac{R\sin\alpha \frac{\sin\alpha}{1+\sin\alpha} + \frac{R\sin\alpha}{1+\sin\alpha}}{-R\sin\alpha\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}} \\
+		&= \frac{\frac{\sin\alpha+1}{1+\sin\alpha}}{-\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}} \\
+		&= -\sqrt{\frac{1+\sin\alpha}{1-\sin\alpha}} \\
+		&= -\frac{\sqrt{1+\sin\alpha}}{\sqrt{1-\sin\alpha}} \\
+		&= -\frac{\sqrt{1+\sin\alpha}\sqrt{1+\sin\alpha}}{\sqrt{1-\sin\alpha}\sqrt{1+\sin\alpha}} \\
+		&= -\frac{1+\sin\alpha}{\sqrt{1 - \sin^2\alpha}} \\
+		&= -\frac{\sin\alpha+1}{\sqrt{\cos^2\alpha}} \\
+		&= -\frac{\sin\alpha+1}{\cos\alpha}
+	\end{align*}
+\end{samepage}
 
 \pagebreak
 \fancyhead[L]{A3}
