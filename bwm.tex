@@ -81,6 +81,7 @@ Um zu beweisen, dass für die Gesamtdistanz keine ungerade Strecke herauskommen 
 \begin{align*}
 	d \bmod 2 &= \left(i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|\right) \bmod 2
 \end{align*}
+
 Die Betragsstriche können ignoriert werden, da sie an der Parität der Differenz $i_{k+1}-i_k$ nichts ändern:
 \begin{align*}
 	d &\equiv i_1 + i_9 + \sum_{k=1}^{8} i_{k+1} - i_k \pmod 2 \\
@@ -88,7 +89,7 @@ Die Betragsstriche können ignoriert werden, da sie an der Parität der Differen
 	&+ (i_6 - i_5) + (i_7 - i_6) + (i_8 - i_7) + (i_9 - i_8) \pmod 2 \\[7pt]
 	&\equiv i_1 - i_1 + i_2 - i_2 + i_3 - i_3 + i_4 - i_4 + i_5 - i_5 + i_6 - i_6 \\
 	&+ i_7 - i_7 + i_8 - i_8 + i_9 + i_9 \pmod 2 \\[7pt]
-	&\equiv \left(2 i_9\right) \pmod 2
+	&\equiv 2 i_9 \pmod 2
 \end{align*}
 
 $2 i_9$ ist immer gerade, also gilt:
@@ -164,7 +165,7 @@ Hierfür relevante Punkte und Strecken:
 
 \begin{align*}
 	\sin\beta &= \frac{\text{Gegenkathete}}{\text{Hypotenuse}} \tag{nötig?} \\
-	&= \frac{r}{R-r} \\
+	\sin\beta &= \frac{r}{R-r} \\
 	r &= R \sin\beta - r \sin\beta \\
 	r + r \sin\beta &= R \sin\beta \\
 	r(1+\sin\beta) &= R \sin\beta \\
@@ -177,7 +178,7 @@ Hierfür relevante Punkte und Strecken:
 		\begin{tikzpicture}[scale=13]
 			% Kreissektor mit 20°
 			\draw[black] (m) -- (0:1) arc(0:20:1) -- cycle;
-			
+
 			% Punkte
 			\coordinate (m) at (0,0);
 			\coordinate (b) at (1,0);
@@ -186,10 +187,10 @@ Hierfür relevante Punkte und Strecken:
 			\coordinate (p_) at (0.98481,0);
 			\coordinate (kam) at (0.83896,0.14772);
 			\coordinate (kam_side) at (0.98481,0.14772);
-			
+
 			\filldraw[black] (m) circle (0.25pt) node[anchor=east]{$M$};
 			\filldraw[black] (p) circle (0.25pt) node[anchor=south west]{$P$};
-			
+
 			% Linien
 			\draw[orange, line width=1pt] (p) -- (0.98481,0) node[midway,right]{$h$};
 			\draw[red, line width=1pt] (m) -- (b2) node[midway,above left]{$R$};
@@ -199,10 +200,10 @@ Hierfür relevante Punkte und Strecken:
 			\draw[teal, line width=1pt] (p_) -- (b) node[midway,below]{$x$};
 			\draw[cyan, line width=1pt] (kam) -- (kam_side) node[midway,below]{$b$};
 			\draw[black] (m) -- (p);
-			
+
 			% Kreis k_a
 			\draw (kam) circle(0.14812);
-			
+
 			% Winkel
 			\pic [draw,"$\beta$",angle eccentricity=2.6]{angle = b--m--b2};
 			\pic [draw,"$\beta$",angle eccentricity=1.5]{angle = kam_side--kam--p};
@@ -341,7 +342,7 @@ Hierfür relevante Punkte und Strecken:
 \begin{samepage}
 	\begin{align*}
 		\frac{l}{r} &= \frac{l+x}{r+h} \\
-		\text{mit (3):} \\
+		\text{Mit (3):} \\
 		\frac{l}{r} &= \frac{l+x}{r+\sqrt{r^2-x^2}} \\
 		(r+\sqrt{r^2-x^2})l &= r(l+x) \\
 		rl + l\sqrt{r^2-x^2} &= rl+rx \\
@@ -353,9 +354,9 @@ Hierfür relevante Punkte und Strecken:
 		x^2 &= \frac{l^2 r^2}{r^2 + l^2} \\
 		x &= \frac{lr}{\sqrt{r^2+l^2}} \\
 		&= \frac{lr}{R-r} \\
-		\text{mit (1):} \\
+		\text{Mit (1):} \\
 		&= \frac{\sqrt{R(R-2r)}r}{R-r} \\
-		\text{mit (2):} \\
+		\text{Mit (2):} \\
 		&= \frac{\sqrt{R(R-2\frac{R\sin\alpha}{1+\sin\alpha})}\frac{R\sin\alpha}{1+\sin\alpha}}{R-\frac{R\sin\alpha}{1+\sin\alpha}} \\
 		&= \frac{\sqrt{R(R-2\frac{R\sin\alpha}{1+\sin\alpha})}\frac{R\sin\alpha}{1+\sin\alpha}}{\frac{R}{1+\sin\alpha}} \\
 		&= \frac{R\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}\frac{\sin\alpha}{1+\sin\alpha}}{\frac{1}{1+\sin\alpha}} \\
