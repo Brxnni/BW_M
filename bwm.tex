@@ -46,7 +46,11 @@
 % Maths
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{siunitx} % just for the degree sign °
+% For °
+\usepackage{siunitx}
+% For floor function shortcut
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 
 % Fancy Headers
 \usepackage{fancyhdr}
@@ -90,8 +94,8 @@ Die Betragsstriche können ignoriert werden, da sie an der Parität der Differen
 	d &\equiv i_1 + i_9 + \sum_{k=1}^{8} i_{k+1} - i_k \pmod 2 \\
 	&\equiv i_1 + i_9 + (i_2 - i_1) + (i_3 - i_2) + (i_4 - i_3) + (i_5 - i_4) \\
 	&+ (i_6 - i_5) + (i_7 - i_6) + (i_8 - i_7) + (i_9 - i_8) \pmod 2 \\[7pt]
-	% &\equiv i_1 - i_1 + i_2 - i_2 + i_3 - i_3 + i_4 - i_4 + i_5 - i_5 + i_6 - i_6 \\
-	% &+ i_7 - i_7 + i_8 - i_8 + i_9 + i_9 \pmod 2 \\[7pt]
+	&\equiv i_1 - i_1 + i_2 - i_2 + i_3 - i_3 + i_4 - i_4 + i_5 - i_5 + i_6 - i_6 \\
+	&+ i_7 - i_7 + i_8 - i_8 + i_9 + i_9 \pmod 2 \\[7pt]
 	&\equiv 2 i_9 \pmod 2
 \end{align*}
 
@@ -106,6 +110,29 @@ $2 i_9$ ist immer gerade, also gilt:
 
 \pagebreak
 \section[]{Aufgabe 2}
+Gesucht ist die letzte Nichtnull-Ziffer $LZ(n!)$ einer Zahl $n \in \mathbb{N}$. \\
+<intelligenten paragraph über: erst beispiel, dann allgemein>
+
+\begin{equation*}
+	\begin{split}
+		20! &= 20\cdot19\cdot18\cdot17\cdot16\cdot15\cdot14\cdot13\cdot12\cdot11\cdot10\cdot9\cdot8\cdot7\cdot6\cdot5\cdot4\cdot3\cdot2\cdot1 \\
+		&= 20\cdot15\cdot10\cdot5 \quad\cdot\quad 19\cdot18\cdot17\cdot16\cdot14\cdot13\cdot12\cdot11\cdot9\cdot8\cdot7\cdot6\cdot4\cdot3\cdot2\cdot1 \\
+		&= 5\cdot4 \cdot 5\cdot3 \cdot 5\cdot2 \cdot 5\cdot1 \,\cdot\, 19\cdot18\cdot17\cdot16\cdot14\cdot13\cdot12\cdot11\cdot9\cdot8\cdot7\cdot6\cdot4\cdot3\cdot2\cdot1 \\
+		&= 5^4 \cdot 4! \,\cdot\, 19\cdot9\cdot2\cdot17\cdot8\cdot2\cdot7\cdot2\cdot13\cdot6\cdot2\cdot11\cdot9\cdot4\cdot2\cdot7\cdot3\cdot2\cdot2\cdot2\cdot3\cdot2\cdot1\cdot1 \\
+		&= 5^4 \cdot 4! \cdot 2^8 \cdot (19\cdot9\cdot7\cdot8)(7\cdot13\cdot6\cdot11)(9\cdot4\cdot7\cdot3)(2\cdot3\cdot1\cdot1) \\
+		&= 5^4 \cdot 2^4 \cdot 2^4 \cdot 4! \cdot (19\cdot9\cdot7\cdot8)(7\cdot13\cdot6\cdot11)(9\cdot4\cdot7\cdot3)(2\cdot3\cdot1\cdot1) \\
+		&= 10^4 \cdot 2^4 \cdot 4! \cdot (19\cdot9\cdot7\cdot8)(7\cdot13\cdot6\cdot11)(9\cdot4\cdot7\cdot3)(2\cdot3\cdot1\cdot1) \\
+		% n! &= 2^{\floor*{\frac{n}{5}}} \cdot \floor*{\frac{n}{5}}! \cdot 6^{\floor*{\frac{n}{5}}} \\
+		% &= 12^{\floor*{\frac{n}{5}}} \cdot \floor*{\frac{n}{5}}!
+	\end{split}
+\end{equation*}
+
+Für $LZ(n!)$ spielt der Faktor $10^4$ keine Rolle, da nur die letzte Nichtnull-Ziffer von Interesse ist, er kann also weggelassen werden:
+\begin{equation*}
+	\begin{split}
+		LZ(20!) &= 2^4 \cdot 4! \cdot (19\cdot9\cdot7\cdot8)(7\cdot13\cdot6\cdot11)(9\cdot4\cdot7\cdot3)(2\cdot3\cdot1\cdot1)
+	\end{split}
+\end{equation*}
 
 \pagebreak
 \section[]{Aufgabe 3}
