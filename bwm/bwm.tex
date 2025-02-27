@@ -52,6 +52,8 @@
 \usepackage{mathtools}
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 
+\usepackage{multicol}
+
 % Fancy Headers
 \usepackage{fancyhdr}
 \setlength{\headheight}{15pt}
@@ -68,8 +70,7 @@
 \section[]{Aufgabe 1}
 
 Gegeben seien die Werte $i_1$ bis $i_9$, auf welche die Positionen der Felder, $1$ bis $9$, zufällig verteilt sind.
-Fridolin springt von Position $0$ zu $i_1$, dann zu $i_2$ usw. bis $i_9$ und schließlich zurück zu $0$.
-
+Fridolin springt von Position $0$ zu $i_1$, dann zu $i_2$ usw. bis $i_9$ und schließlich zurück zu $0$. \\[10pt]
 Für eine so gegebene beliebige Reihenfolge der Zahlen $1$ - $9$ lässt sich die zurückgelegte Strecke mit der folgenden Formel berechnen:
 \begin{align*}
 	d &= i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|
@@ -84,7 +85,7 @@ Für eine so gegebene beliebige Reihenfolge der Zahlen $1$ - $9$ lässt sich die
 	&= 20
 \end{align*}
 
-Um zu beweisen, dass für die Gesamtdistanz keine ungerade Strecke herauskommen kann, wird "der modulo 2 gebildet" (formulierung verbessern):
+Um zu beweisen, dass für die Gesamtdistanz keine ungerade Strecke herauskommen kann, wird "die Parität gebildet" (formulierung verbessern):
 \begin{align*}
 	d \bmod 2 &= \left(i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|\right) \bmod 2
 \end{align*}
@@ -104,29 +105,30 @@ $2 i_9$ ist immer gerade, also gilt:
 	d \equiv 2 i_9 \equiv 0 \pmod 2
 \end{align*}
 
+Folglich ist $d$ für alle Sprungreihenfolgen eine gerade Zahl.
 \begin{itemize}
-	\item[b)] Folglich ist $d$ für alle Sprungreihenfolgen eine gerade Zahl, die zurückgelegte Strecke kann also nie $25$ Längeneinheiten betragen.
+	\item[b)] Die zurückgelegte Strecke kann also nie $25$ Längeneinheiten betragen.
 \end{itemize}
 
 \pagebreak
 \section[]{Aufgabe 2}
 Gesucht ist die letzte Nichtnull-Ziffer $LZ(n!)$ einer Zahl $n \in \mathbb{N}$. \\
 <intelligenten paragraph über: erst beispiel, dann allgemein>
-
 \begin{equation*}
 	\begin{split}
 		20! &= 20\cdot19\cdot18\cdot17\cdot16\cdot15\cdot14\cdot13\cdot12\cdot11\cdot10\cdot9\cdot8\cdot7\cdot6\cdot5\cdot4\cdot3\cdot2\cdot1 \\
 		&= 20\cdot15\cdot10\cdot5 \;\cdot\; 19\cdot18\cdot17\cdot16\cdot14\cdot13\cdot12\cdot11\cdot9\cdot8\cdot7\cdot6\cdot4\cdot3\cdot2\cdot1 \\
 		&= (5\cdot4)(5\cdot3)(5\cdot2)(5) \cdot 19\cdot18\cdot17\cdot16\cdot14\cdot13\cdot12\cdot11\cdot9\cdot8\cdot7\cdot6\cdot4\cdot3\cdot2\cdot1 \\
 		&= 5^4 \cdot 4! \;\cdot\; 19\cdot18\cdot17\cdot16\cdot14\cdot13\cdot12\cdot11\cdot9\cdot8\cdot7\cdot6\cdot4\cdot3\cdot2\cdot1 \\
+		&= 5^4 \cdot 4! \,\cdot\, 19(9\cdot2)17(8\cdot2)\,\cdot\,(7\cdot2)13(6\cdot2)11\,\cdot\,9(4\cdot2)7(3\cdot2)\,\cdot\,(2\cdot2)3(1\cdot2)1 \\
+		&= 5^4 \cdot 4! \cdot 2^8 \cdot (19\cdot9\cdot7\cdot8)(7\cdot13\cdot6\cdot11)(9\cdot4\cdot7\cdot3)(2\cdot3\cdot1\cdot1)
 	\end{split}
 \end{equation*}
-...:
+<noch ein intelligenter satz>:
 \begin{equation*}
 	\begin{split}	
-		LZ(20!) &= LZ(5^4 \cdot 4! \,\cdot\, 19(9\cdot2)17(8\cdot2)\,\cdot\,(7\cdot2)13(6\cdot2)11\,\cdot\,9(4\cdot2)7(3\cdot2)\,\cdot\,(2\cdot2)3(1\cdot2)1) \\
-		&= LZ(5^4 \cdot 4! \cdot 2^8 \cdot (19\cdot9\cdot7\cdot8)(7\cdot13\cdot6\cdot11)(9\cdot4\cdot7\cdot3)(2\cdot3\cdot1\cdot1)) \\
-		&= LZ(10^4 \cdot 2^4 \cdot 4! \cdot (19\cdot9\cdot7\cdot8)(7\cdot13\cdot6\cdot11)(9\cdot4\cdot7\cdot3)(2\cdot3\cdot1\cdot1)) \\
+		LZ(20!) &= LZ\left(5^4 \cdot 4! \cdot 2^8 \cdot (19\cdot9\cdot7\cdot8)(7\cdot13\cdot6\cdot11)(9\cdot4\cdot7\cdot3)(2\cdot3\cdot1\cdot1)\right) \\
+		&= LZ\left(10^4 \cdot 2^4 \cdot 4! \cdot (19\cdot9\cdot7\cdot8)(7\cdot13\cdot6\cdot11)(9\cdot4\cdot7\cdot3)(2\cdot3\cdot1\cdot1)\right) \\
 		% n! &= 2^{\floor*{\frac{n}{5}}} \cdot \floor*{\frac{n}{5}}! \cdot 6^{\floor*{\frac{n}{5}}} \\
 		% &= 12^{\floor*{\frac{n}{5}}} \cdot \floor*{\frac{n}{5}}!
 	\end{split}
@@ -134,9 +136,48 @@ Gesucht ist die letzte Nichtnull-Ziffer $LZ(n!)$ einer Zahl $n \in \mathbb{N}$. 
 Für $LZ(n!)$ spielt der Faktor $10^4$ keine Rolle, da nur die letzte Nichtnull-Ziffer von Interesse ist, er kann also weggelassen werden:
 \begin{equation*}
 	\begin{split}
-		LZ(20!) &= LZ(2^4 \cdot 4! \cdot (19\cdot9\cdot7\cdot8)(7\cdot13\cdot6\cdot11)(9\cdot4\cdot7\cdot3)(2\cdot3\cdot1\cdot1))
+		LZ(20!) &= LZ\left(2^4 \cdot 4! \cdot (19\cdot9\cdot7\cdot8)(7\cdot13\cdot6\cdot11)(9\cdot4\cdot7\cdot3)(2\cdot3\cdot1\cdot1)\right)
 	\end{split}
 \end{equation*}
+Die letzte Stelle der 4er-Gruppen an Faktoren am Ende kann auch bestimmt werden, hierfür gibt es zwei Fälle zu betrachten: \\
+\begin{multicols}{2}
+	\noindent
+	\begin{equation*}
+		\begin{split}
+			&LZ\left(\dots9 \cdot \frac{\dots8}{2} \cdot \dots7 \cdot \frac{\dots6}{2}\right) \\
+			&= LZ\left(9\cdot\frac{8}{2}\cdot7\cdot\frac{6}{2}\right) \\
+			&= LZ(756) \\
+			&= 6
+		\end{split}
+	\end{equation*}
+	\begin{equation*}
+		\begin{split}
+			&LZ\left(\frac{\dots4}{2} \cdot \dots3 \cdot \frac{\dots2}{2} \cdot \dots1\right) \\
+			&= LZ\left(\frac{4}{2} \cdot 3 \cdot \frac{2}{2} \cdot 1\right) \\
+			&= 6
+		\end{split}
+	\end{equation*}
+\end{multicols}
+$\dots$ steht hierbei für beliebig viele Ziffern, die für die Bestimmung der letzten Nichtnull-Ziffer irrelevant sind. \\[10pt]
+In beiden Fällen endet eine Gruppe an 4 Faktoren immer auf die Ziffer $6$, also kann der Term von oben weiter vereinfacht werden:
+\begin{equation*}
+	\begin{split}
+		LZ(20!) &= LZ\left(2^4 \cdot 4! \cdot 6^4\right) \\
+		&= LZ\left(12^4 \cdot 4!\right) \\
+		&= LZ\left(10^4 \cdot 2^4 \cdot 4!\right) \\
+		&= LZ\left(2^4 \cdot 4!\right)
+	\end{split}
+\end{equation*}
+
+Allgemeiner gilt:
+\begin{equation*}
+	\begin{split}
+		LZ(n!) &= LZ\left(2^m \cdot m!\right)
+	\end{split}
+\end{equation*}
+für $m = \lfloor\frac{n}{5}\rfloor$.
+
+<nur noch absatz über sich wiederholende folge der zweierpotenzen (alle gerade) -> gerade * gerade = gerade, folglich für immer 2, 4, 6 und 8 :)
 
 \pagebreak
 \section[]{Aufgabe 3}
