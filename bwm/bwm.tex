@@ -41,7 +41,7 @@
 
 % Cool geometry graphics
 \usepackage{tikz}
-\usetikzlibrary{angles,quotes}
+\usetikzlibrary{angles,quotes,positioning,patterns,patterns.meta,decorations.pathreplacing}
 
 % Maths
 \usepackage[fleqn]{amsmath}
@@ -78,7 +78,7 @@ Gegeben seien die Werte $i_1$ bis $i_9$, auf welche die Positionen der Felder, $
 Fridolin springt von Position $0$ zu $i_1$, dann zu $i_2$ usw. bis $i_9$ und schließlich zurück zu $0$. \\[10pt]
 Für eine so gegebene beliebige Reihenfolge der Zahlen $1$ - $9$ lässt sich die zurückgelegte Strecke mit der folgenden Formel berechnen:
 \begin{align*}
-	d &= i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k| &&
+	d &= i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|
 \end{align*}
 \begin{itemize}
 	\item[a)] Ein Beispiel für eine Sprungfolge mit der Gesamtdistanz $20$ ist \\
@@ -90,7 +90,7 @@ Für eine so gegebene beliebige Reihenfolge der Zahlen $1$ - $9$ lässt sich die
 	&= 20
 \end{align*}
 
-Um zu beweisen, dass für die Gesamtdistanz keine ungerade Strecke herauskommen kann, wird "die Parität gebildet" (formulierung verbessern):
+Um zu beweisen, dass für die Gesamtdistanz keine ungerade Strecke herauskommen kann, wird die Parität gebildet:
 \begin{align*}
 	d \bmod 2 &= \left(i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|\right) \bmod 2
 \end{align*}
@@ -178,7 +178,7 @@ Hierbei spielt es keine Rolle, ob die Ziffern $\dots$ vor den Paaren $8$ und $6$
 			\frac{08}{2} \cdot \frac{06}{2} &= 1\underline{2} \\
 			\frac{18}{2} \cdot \frac{16}{2} &= 7\underline{2} \\
 			\frac{28}{2} \cdot \frac{26}{2} &= 18\underline{2} \\
-			\dots
+			\vdots
 		\end{split}
 	\end{equation*}
 	\begin{equation*}
@@ -186,7 +186,7 @@ Hierbei spielt es keine Rolle, ob die Ziffern $\dots$ vor den Paaren $8$ und $6$
 			\frac{04}{2} \cdot \frac{02}{2} &= \underline{2} \\
 			\frac{14}{2} \cdot \frac{12}{2} &= 4\underline{2} \\
 			\frac{24}{2} \cdot \frac{22}{2} &= 13\underline{2} \\
-			\dots
+			\vdots
 		\end{split}
 	\end{equation*}
 \end{multicols}
@@ -236,7 +236,7 @@ $\frac{n!}{(m\cdot5)!}$ kann nur folgende Werte annehmen:
 	\end{split}
 \end{equation*}
 
-In diesen beiden Faktoren lässt sich für immer größer werdende $n$ und damit auch $m$ jeweils ein sich unendlich oft wiederholendes iteratives Muster erkennen. Folglich kommt in dem Gesamtprodukt jede der möglichen Ziffern $2$, $4$, $6$ und $8$ unendlich oft vor. \qed
+In diesen beiden Faktoren lässt sich für immer größer werdende $n$ und damit auch $m$ jeweils ein sich unendlich oft wiederholendes iteratives Muster erkennen. Folglich kommt in dem Gesamtprodukt jede der möglichen Ziffern $2$, $4$, $6$ und $8$ unendlich oft als letzte Nichtnull-Ziffer vor. \qed
 % Wir beweisen nun, dass in der Folge $m!$ aller $m \in \mathbb{N}$ die Ziffern $2$, $4$, $6$ und $8$ unendlich oft als letzte Ziffer vorkommen:
 % Da $m$ ebenfalls eine natürliche Zahl ist, ist der Faktor $m!$ auch gerade.
 
@@ -298,7 +298,7 @@ Hierfür relevante Punkte und Strecken:
 \end{align*}
 
 \begin{align*}
-	\sin\beta &= \frac{\text{Gegenkathete}}{\text{Hypotenuse}} \tag{nötig?} \\
+	\sin\beta &= \frac{\text{Gegenkathete}}{\text{Hypotenuse}} \\ 
 	\sin\beta &= \frac{r}{R-r} \\
 	r &= R \sin\beta - r \sin\beta \\
 	r + r \sin\beta &= R \sin\beta \\
@@ -339,7 +339,7 @@ Hierfür relevante Punkte und Strecken:
 
 			% Winkel
 			\pic [draw,"$\beta$",angle eccentricity=2.6]{angle = b--m--b2};
-			\pic [draw,"$\beta$",angle eccentricity=1.5]{angle = kam_side--kam--p};
+			\pic [draw,"\tiny$\beta$\normalsize",angle eccentricity=2]{angle = kam_side--kam--p};
 		\end{tikzpicture}
 	\end{center}
 
@@ -429,7 +429,7 @@ Hierfür relevante Punkte und Strecken:
 		\filldraw[blue] (kbm) circle (0.35pt);
 
 		% Linien
-		\draw[black] (m) -- (p);
+		\draw[black] (m) -- (p) node[midway,right]{$R$};
 		\draw[black] (c) -- (d);
 
 		\draw[violet, line width=1pt] (m) -- (kbm) node[midway,above right]{$R-r$};
@@ -520,13 +520,12 @@ Hierfür relevante Punkte und Strecken:
 		&= -\frac{\sqrt{1+\sin\alpha}}{\sqrt{1-\sin\alpha}} \\
 		&= -\frac{\sqrt{1+\sin\alpha}\sqrt{1+\sin\alpha}}{\sqrt{1-\sin\alpha}\sqrt{1+\sin\alpha}} \\
 		&= -\frac{1+\sin\alpha}{\sqrt{1 - \sin^2\alpha}} \\
-		&= -\frac{\sin\alpha+1}{\sqrt{\cos^2\alpha}} \\
+		&= -\frac{\sin\alpha+1}{\sqrt{\cos^2\alpha}} \\[15pt]
 		&= -\frac{\sin\alpha+1}{\cos\alpha}
 	\end{align*}
 \end{samepage}
 
 \pagebreak
-\fancyhead[L]{A3}
 Für die Winkel $\alpha$ und $\beta$ gilt:
 
 \begin{center}
@@ -566,16 +565,13 @@ Für die Winkel $\alpha$ und $\beta$ gilt:
 		\pic [draw,"$\beta$",angle eccentricity=1.7]{angle = e--m--p};
 	\end{tikzpicture}
 \end{center}
-
 \begin{align*}
 	2\beta + 2\alpha &= \ang{180} \\
 	\alpha &= \ang{90} - \beta \\
 	\sin\alpha &= \sin(\ang{90} - \beta) = \cos\beta \\
 	\cos\alpha &= \cos(\ang{90} - \beta) = \sin\beta \\
 \end{align*}
-
 So lässt sich $m_{CD}$ anders ausdrücken:
-
 \begin{align*}
 	m_{CD} &= -\frac{\sin\alpha+1}{\cos\alpha} \\
 	&= -\frac{\cos\beta+1}{\sin\beta} \\
@@ -586,6 +582,393 @@ Somit gilt $ m_{CD} = -\frac{1}{m_{AE}} $, und damit auch $CD \perp AE$.
 
 \pagebreak
 \section[]{Aufgabe 4}
-\fancyhead[L]{A4}
+In allen folgenden Diagrammen steht eine gestrichelte Linie für eine Symmetrieachse, blau und rot markierte Felder sind ausgemalt, wobei der Anfänger die Farbe blau hat. \\[10pt]
+Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, der zuerst in dieses Feld malen muss: \\
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 
+	\draw (1,1) \Square;
+	\draw (2,1) \Square;
+	\draw (2,2) \Square;
+	\draw [dashed] (3,0) -- (0,3);
+	
+	\node at (3.5,1.5) {$\rightarrow$};
+	\draw (5,1) \RSquare;
+	\draw (6,1) \Square;
+	\draw (6,2) \Square;
+	\node at (7.5,1.5) {$\rightarrow$};
+	\draw (9,1) \RSquare;
+	\draw (10,1) \ESquare;
+	\draw (10,2) \ESquare;
+	\node[anchor=west] at (11.5,1.5) {$\rightarrow$ Anfänger verliert};
+
+	\node at (3.5,4.5) {$\rightarrow$};
+	\draw (5,4) \RSquare;
+	\draw (6,4) \RSquare;
+	\draw (6,5) \Square;
+	\node at (7.5,4.5) {$\rightarrow$};
+	\draw (9,4) \RSquare;
+	\draw (10,4) \RSquare;
+	\draw (10,5) \ESquare;
+	\node[anchor=west] at (11.5,4.5) {$\rightarrow$ Anfänger verliert};
+\end{tikzpicture}
+\\ Basierend darauf gilt dies auch für eine Ecke, die in beide Dimensionen beliebig viele Felder größer ist. Derjenige, der nicht anfängt, kopiert exakt die Menge an ausgemalten Feldern des Anfängers ($P$) auf der anderen Kante und zwingt den anfangenden Spieler in eine weitere kleinere $p\times p$-Ecke (dargestellt durch Orange):\\
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
+	\newcommand\Circle{+(0, 0) circle (0.35)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RCircle{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(0, 0) circle (0.35)}
+	\newcommand\ECircle{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(0, 0) circle (0.35)}
+	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+
+	\draw (1,1) \RSquare;
+	\draw (2,1) \RSquare;
+	\node[anchor=center] at (3,1) {$...$};
+	\draw (4,1) \RSquare;
+	\draw (5,1) \Corner;
+	\draw (5,2) \ESquare;
+	\node[anchor=center] at (5,3) {$...$};
+	\draw (5,4) \ESquare;
+	\draw (5,5) \ESquare;
+	\draw [dashed] (6,0) -- (3,3);
+
+	\draw [decorate,decoration={brace,amplitude=5pt}] (0.55,0) -- (4.45,0) node[midway,yshift=1em]{P};
+	\draw [decorate,decoration={brace,amplitude=5pt}] (4.55,0) -- (5.45,0) node[midway,yshift=1em]{p};
+	
+	\draw [decorate,decoration={brace,amplitude=5pt}] (6,0.55) -- (6,1.45) node[midway,xshift=1em]{p};
+	\draw [decorate,decoration={brace,amplitude=5pt}] (6,1.55) -- (6,5.45) node[midway,xshift=1em]{P};
+
+\end{tikzpicture} \\
+Fährt Renate diese Strategie, kann sie Erhard irgendwann in eine $2\times2$-Ecke zwingen, in der er verliert, er hat also dann sicher verloren, wenn er in einer $p\times p$-Ecke beginnen muss. \\[10pt]
+Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spieler, der zuerst innerhalb dieser Form dran ist:
+
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+
+	\draw (1,1) \Square;
+	\draw (2,1) \Square;
+	\draw (3,1) \Square;
+	\draw (4,1) \Square;
+	\draw (5,1) \Square;
+	\draw (6,1) \Square;
+	\draw (6,2) \Square;
+	\draw (6,3) \Square;
+
+	\draw (6,4) \Square;
+	\draw (1,4) \RSquare;
+
+	\draw (1,3) \Square;
+	\draw (1,2) \Square;
+
+	\draw [dashed] (3.5,0) -- (3.5,5);
+\end{tikzpicture} $\rightarrow$ \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+
+	\draw (1,1) \Square;
+	\draw (2,1) \Square;
+	\draw (3,1) \Square;
+	\draw (4,1) \Square;
+	\draw (5,1) \Square;
+	\draw (6,1) \Square;
+	\draw (6,2) \Square;
+	\draw (6,3) \Square;
+
+	\draw (6,4) \ESquare;
+	\draw (1,4) \RRSquare;
+
+	\draw (1,3) \Square;
+	\draw (1,2) \Square;
+
+	\draw [dashed] (3.5,0) -- (3.5,5);
+\end{tikzpicture} $\rightarrow$ \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+
+	\draw (1,1) \Square;
+	\draw (2,1) \Square;
+	\draw (3,1) \Square;
+	\draw (4,1) \Square;
+	\draw (5,1) \Square;
+	\draw (6,1) \Square;
+	\draw (6,2) \Square;
+	\draw (6,3) \Square;
+
+	\draw (6,4) \EESquare;
+	\draw (1,4) \RRSquare;
+
+	\draw (1,3) \RSquare;
+	\draw (1,2) \Square;
+
+	\draw [dashed] (3.5,0) -- (3.5,5);
+\end{tikzpicture} $\rightarrow$ \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+
+	\draw (1,1) \Square;
+	\draw (2,1) \Square;
+	\draw (3,1) \Square;
+	\draw (4,1) \Square;
+	\draw (5,1) \Square;
+	\draw (6,1) \Square;
+	\draw (6,2) \Square;
+	\draw (6,3) \ESquare;
+
+	\draw (6,4) \EESquare;
+	\draw (1,4) \RRSquare;
+
+	\draw (1,3) \RRSquare;
+	\draw (1,2) \Square;
+
+	\draw [dashed] (3.5,0) -- (3.5,5);
+\end{tikzpicture} $\rightarrow$ \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+
+	\draw (1,1) \Square;
+	\draw (2,1) \Square;
+	\draw (3,1) \Square;
+	\draw (4,1) \Square;
+	\draw (5,1) \Square;
+	\draw (6,1) \Square;
+	\draw (6,2) \Square;
+	\draw (6,3) \ESquare;
+
+	\draw (6,4) \EESquare;
+	\draw (1,4) \RRSquare;
+
+	\draw (1,3) \RRSquare;
+	\draw (1,2) \RSquare;
+
+	\draw [dashed] (3.5,0) -- (3.5,5);
+\end{tikzpicture} $\rightarrow$ \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+
+	\draw (1,1) \ESquare;
+	\draw (2,1) \ESquare;
+	\draw (3,1) \ESquare;
+	\draw (4,1) \ESquare;
+	\draw (5,1) \Corner;
+	\draw (6,1) \Corner;
+	\draw (6,2) \Corner;
+	\draw (6,3) \EESquare;
+
+	\draw (6,4) \EESquare;
+	\draw (1,4) \RRSquare;
+
+	\draw (1,4) \Square;
+	\draw (1,3) \RRSquare;
+	\draw (1,2) \RRSquare;
+
+	\draw [dashed] (3.5,0) -- (3.5,5);
+\end{tikzpicture}
+\\ Erhard findet sich nun in einer $p\times p$-Ecke und verliert. \\[10pt]
+Renate hat nun für zwei verschiedene Größen von Feldern Strategien.
+\begin{itemize}
+	\item[Fall 1:] $n=m$
+\end{itemize}
+Hierfür beginnt Renate mit dem Ausmalen eines einzelnen Feldes E in einer Ecke. Erhard kann in seinem nächsten Zug nur bis zu $n-1$ Felder auf genau einer Kante ausmalen. Renate wird solange mit jedem ihrer Züge das Spielfeld symmetrisch zur Spiegelachse, die die Strecke zwischen E und der Ecke diagonal gegenüber von E ist (eingezeichnet als gestrichelte Linie), halten, bis sich Erhard als Anfänger in einer $p\times p$-Ecke findet und verliert. \\
+Ab dem zweiten Diagramm macht pro Bild immer erst rot/Erhard einen Zug, dann blau/Renate: \\[10pt]\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
+	\newcommand\Circle{+(0, 0) circle (0.35)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RCircle{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(0, 0) circle (0.35)}
+	\newcommand\ECircle{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(0, 0) circle (0.35)}
+	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+
+	\draw (1,1) \Corner; 
+	\draw (2,1) \Corner;
+	\draw (3,1) \Corner;
+	\draw (4,1) \Corner;
+	\draw (5,1) \Corner;
+	\draw (6,1) \Corner;
+	\draw (6,2) \Corner;
+	\draw (6,3) \Corner;
+	\draw (6,4) \Corner;
+	\draw (6,5) \Corner;
+	\draw (6,6) \Corner;
+
+	\draw (5,6) \Square;
+	\draw (4,6) \Square;
+	\draw (3,6) \Square;
+	\draw (2,6) \Square;
+	\draw (1,6) \RSquare;
+
+	\draw (1,5) \Square;
+	\draw (1,4) \Square;
+	\draw (1,3) \Square;
+	\draw (1,2) \Square;
+
+	\draw [dashed] (7,0) -- (0,7);
+\end{tikzpicture} $\rightarrow$ \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
+	\newcommand\Circle{+(0, 0) circle (0.35)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+
+	\draw (1,1) \Corner;
+	\draw (2,1) \Corner;
+	\draw (3,1) \Corner;
+	\draw (4,1) \Corner;
+	\draw (5,1) \Corner;
+	\draw (6,1) \Corner;
+	\draw (6,2) \Corner;
+	\draw (6,3) \Corner;
+	\draw (6,4) \Corner;
+	\draw (6,5) \Corner;
+	\draw (6,6) \Corner;
+
+	\draw (5,6) \Square;
+	\draw (4,6) \Square;
+	\draw (3,6) \Square;
+	\draw (2,6) \ESquare;
+	\draw (1,6) \RRSquare;
+
+	\draw (1,5) \RSquare;
+	\draw (1,4) \Square;
+	\draw (1,3) \Square;
+	\draw (1,2) \Square;
+
+	\draw [dashed] (7,0) -- (0,7);
+\end{tikzpicture} $\rightarrow$ \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
+	\newcommand\Circle{+(0, 0) circle (0.35)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+
+	\draw (1,1) \Corner;
+	\draw (2,1) \Corner;
+	\draw (3,1) \Corner;
+	\draw (4,1) \Corner;
+	\draw (5,1) \Corner;
+	\draw (6,1) \Corner;
+	\draw (6,2) \Corner;
+	\draw (6,3) \Corner;
+	\draw (6,4) \Corner;
+	\draw (6,5) \Corner;
+	\draw (6,6) \Corner;
+
+	\draw (5,6) \Square;
+	\draw (4,6) \RSquare;
+	\draw (3,6) \RSquare;
+	\draw (2,6) \EESquare;
+	\draw (1,6) \RRSquare;
+
+	\draw (1,5) \RRSquare;
+	\draw (1,4) \ESquare;
+	\draw (1,3) \ESquare;
+	\draw (1,2) \Square;
+
+	\draw [dashed] (7,0) -- (0,7);
+\end{tikzpicture}
+\\ Egal wieviele Felder Erhard in seinem nächsten Zug ausmalt, wird er in eine $p\times p$-Ecke (gezeichnet in Orange) gezwungen und verliert: \\
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
+	\newcommand\Circle{+(0, 0) circle (0.35)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+
+	\draw (1,1) \Corner;
+	\draw (2,1) \Corner;
+	\draw (3,1) \Corner;
+	\draw (4,1) \Corner;
+	\draw (5,1) \Corner;
+	\draw (6,1) \Corner;
+	\draw (6,2) \Corner;
+	\draw (6,3) \Corner;
+	\draw (6,4) \Corner;
+	\draw (6,5) \Corner;
+	\draw (6,6) \Corner;
+
+	\draw (5,6) \ESquare;
+	\draw (4,6) \RRSquare;
+	\draw (3,6) \RRSquare;
+	\draw (2,6) \EESquare;
+	\draw (1,6) \RRSquare;
+
+	\draw (1,5) \RRSquare;
+	\draw (1,4) \EESquare;
+	\draw (1,3) \EESquare;
+	\draw (1,2) \RSquare;
+
+	\draw [dashed] (7,0) -- (0,7);
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
+	\newcommand\Circle{+(0, 0) circle (0.35)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+
+	\draw (1,1) \RSquare;
+	\draw (2,1) \Corner;
+	\draw (3,1) \Corner;
+	\draw (4,1) \Corner;
+	\draw (5,1) \Corner;
+	\draw (6,1) \Corner;
+	\draw (6,2) \Corner;
+	\draw (6,3) \Corner;
+	\draw (6,4) \Corner;
+	\draw (6,5) \Corner;
+	\draw (6,6) \ESquare;
+
+	\draw (5,6) \ESquare;
+	\draw (4,6) \RRSquare;
+	\draw (3,6) \RRSquare;
+	\draw (2,6) \EESquare;
+	\draw (1,6) \RRSquare;
+
+	\draw (1,5) \RRSquare;
+	\draw (1,4) \EESquare;
+	\draw (1,3) \EESquare;
+	\draw (1,2) \RSquare;
+
+	\draw [dashed] (7,0) -- (0,7);
+\end{tikzpicture}
+
+\begin{itemize}
+	\item[Fall 2:] $n\neq m$
+\end{itemize}
+Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. So bleibt als Spielfeld noch eine "Hufeisenform" übrig. In diesem Hufeisen ist eine Seite um mindestens 2 Felder länger als die andere. Nach dem Beweis oben verliert der Anfänger (nach Renates Strategie also Erhard) in diesem Hufeisen auch (wie bereits oben gezeigt), Renate hat also hier auch eine sichere Gewinnstrategie.
 \end{document}
