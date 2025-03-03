@@ -256,23 +256,30 @@ Um zu beweisen, dass $AE$ senkrecht zu $CD$ steht, werden die Steigungen beider 
 \subsection[]{Herleitung von $m_{AE}$}
 Hierfür relevante Punkte und Strecken:
 
+% Was häufig benutzt wird
+\newcommand{\Koordinaten}{
+	\coordinate (m) at (0,0);
+	\coordinate (a) at (-1,0);
+	\coordinate (b) at (1,0);
+	\coordinate (c) at (-0.5,0.866);
+	\coordinate (p) at (0.5,0.866);
+	\coordinate (e) at (0.866,0.5);
+}
+\newcommand{\Halbkreis}{
+	\begin{scope}
+		\clip (a) rectangle (1,1);
+		\draw[black] (m) circle(1);
+		\draw[black] (a) -- (b);
+	\end{scope}
+}
+
 \begin{center}
 	\begin{tikzpicture}[scale=4]
 		% Koordinaten
-		\coordinate (m) at (0,0);
-		\coordinate (a) at (-1,0);
-		\coordinate (b) at (1,0);
-		\coordinate (p) at (0.5,0.866);
-		\coordinate (e) at (0.866,0.5);
+		\Koordinaten
 		\coordinate (kam) at (0.57732,0.33335);
 
-		% Halbkreis
-		\begin{scope}
-			\clip (a) rectangle (1,1);
-			\draw[black] (m) circle(1);
-			\draw[black] (a) -- (b);
-		\end{scope}
-
+		\Halbkreis
 		% Kreis k_a
 		\draw (kam) circle(0.33334);
 
@@ -317,37 +324,35 @@ Hierfür relevante Punkte und Strecken:
 \begin{samepage}
 	\begin{center}
 		\begin{tikzpicture}[scale=13]
-			% Kreissektor mit 20°
-			\draw[black] (m) -- (0:1) arc(0:20:1) -- cycle;
-
 			% Punkte
-			\coordinate (m) at (0,0);
-			\coordinate (b) at (1,0);
+			\Koordinaten
 			\coordinate (b2) at (0.93969,0.34202);
-			\coordinate (p) at (0.98481,0.17365);
-			\coordinate (p_) at (0.98481,0);
+			\coordinate (p2) at (0.98481,0.17365);
+			\coordinate (p2_) at (0.98481,0);
 			\coordinate (kam) at (0.83896,0.14772);
 			\coordinate (kam_side) at (0.98481,0.14772);
 
 			\filldraw[black] (m) circle (0.25pt) node[anchor=east]{$M$};
-			\filldraw[black] (p) circle (0.25pt) node[anchor=south west]{$P$};
+			\filldraw[black] (p2) circle (0.25pt) node[anchor=south west]{$P$};
 
-			% Linien
-			\draw[orange, line width=1pt] (p) -- (0.98481,0) node[midway,right]{$h$};
-			\draw[magenta, line width=1pt] (m) -- (b2) node[midway,above left]{$R$};
-			\draw[violet] (kam) -- (p) node[midway,above]{$r$};
-			\draw[violet, line width=1pt] (kam) -- (0.83896,0) node[midway,left]{$r$};
-			\draw[blue, line width=1pt] (m) -- (p_) node[midway,below]{$R_0$};
-			\draw[teal, line width=1pt] (p_) -- (b) node[midway,below]{$x$};
-			\draw[cyan, line width=1pt] (kam) -- (kam_side) node[midway,below]{$b$};
-			\draw[black] (m) -- (p);
-
+			% Kreissektor mit 20°
+			\draw[black] (m) -- (0:1) arc(0:20:1) -- cycle;
 			% Kreis k_a
 			\draw (kam) circle(0.14812);
 
+			% Linien
+			\draw[orange, line width=1pt] (p2) -- (0.98481,0) node[midway,right]{$h$};
+			\draw[magenta, line width=1pt] (m) -- (b2) node[midway,above left]{$R$};
+			\draw[violet] (kam) -- (p2) node[midway,above]{$r$};
+			\draw[violet, line width=1pt] (kam) -- (0.83896,0) node[midway,left]{$r$};
+			\draw[blue, line width=1pt] (m) -- (p2_) node[midway,below]{$R_0$};
+			\draw[teal, line width=1pt] (p2_) -- (b) node[midway,below]{$x$};
+			\draw[cyan, line width=1pt] (kam) -- (kam_side) node[midway,below]{$b$};
+			\draw[black] (m) -- (p2);
+
 			% Winkel
 			\pic [draw,"$\beta$",angle eccentricity=2.6]{angle = b--m--b2};
-			\pic [draw,"\tiny$\beta$\normalsize",angle eccentricity=2]{angle = kam_side--kam--p};
+			\pic [draw,"\tiny$\beta$\normalsize",angle eccentricity=2]{angle = kam_side--kam--p2};
 		\end{tikzpicture}
 	\end{center}
 
@@ -407,33 +412,22 @@ Hierfür relevante Punkte und Strecken:
 
 \begin{center}
 	\begin{tikzpicture}[scale=4]
-		% Koordinaten
-		\coordinate (m) at (0,0);
-		\coordinate (a) at (-1,0);
-		\coordinate (b) at (1,0);
-		\coordinate (p) at (0.5,0.866);
-		\coordinate (c) at (-0.5,0.866);
+		% Punkte
+		\Koordinaten
 		\coordinate (c_) at (-0.5,0);
 		\coordinate (d) at (-0.26864,0);
 		\coordinate (kbm) at (-0.26864,0.46335);
 		\coordinate (kbm_side) at (-0.5,0.46335);
 
-		% Kreis k_b
-		\draw (kbm) circle(0.46441);
-
-		% Halbkreis
-		\begin{scope}
-			\clip (a) rectangle (1,1);
-			\draw[black] (m) circle(1);
-			\draw[black] (a) -- (b);
-		\end{scope}
-
-		% Punkte
 		\filldraw[black] (m) circle (0.5pt) node[anchor=north]{$M$};
 		\filldraw[black] (d) circle (0.5pt) node[anchor=north]{$D$};
 		\filldraw[black] (p) circle (0.5pt) node[anchor=south west]{$P$};
 		\filldraw[black] (c) circle (0.5pt) node[anchor=south east]{$C$};
 		\filldraw[blue] (kbm) circle (0.35pt);
+
+		\Halbkreis
+		% Kreis k_b
+		\draw (kbm) circle(0.46441);
 
 		% Linien
 		\draw[black] (m) -- (p) node[midway,right]{$R$};
@@ -537,27 +531,16 @@ Hierfür relevante Punkte und Strecken:
 	\begin{center}
 		\begin{tikzpicture}[scale=4]
 			% Punkte
-			\coordinate (m) at (0,0);
-			\coordinate (a) at (-1,0);
-			\coordinate (b) at (1,0);
-			\coordinate (p) at (0.5,0.866);
-			\coordinate (c) at (-0.5,0.866);
-			\coordinate (e) at (0.866,0.5);
+			\Koordinaten
 
-			% Halbkreis
-			\begin{scope}
-				\clip (a) rectangle (1,1);
-				\draw[black] (m) circle(1);
-				\draw[black] (a) -- (b);
-			\end{scope}
-
-			% Punkte
 			\filldraw[black] (m) circle (0.5pt) node[anchor=north]{$M$};
 			\filldraw[black] (a) circle (0.5pt) node[anchor=north]{$A$};
 			\filldraw[black] (b) circle (0.5pt) node[anchor=north]{$B$};
 			\filldraw[black] (p) circle (0.5pt) node[anchor=south west]{$P$};
 			\filldraw[black] (c) circle (0.5pt) node[anchor=south east]{$C$};
 			\filldraw[black] (e) circle (0.5pt) node[anchor=south west]{$E$};
+
+			\Halbkreis
 
 			% Linien
 			\draw[black] (m) -- (p);
