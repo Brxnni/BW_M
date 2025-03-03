@@ -1,5 +1,5 @@
 %!TEX root = bwm.tex
-% Standard stuff
+% Standardzeug
 \documentclass[12pt,a4paper,oneside]{article}
 \usepackage[
 	includehead,
@@ -11,39 +11,39 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
-% Cool font
+% Coole font
 \usepackage{palatino}
 
-% Custom shade of red/burgundy
+% Schöner Burgundfarbton
 \usepackage{xcolor}
-\definecolor{burgundyd}{HTML}{721C33}
+\definecolor{darkburgundy}{HTML}{721C33}
 \definecolor{burgundy}{HTML}{B32A4D}
 
-% Section Headings
-% No numbers
+% Zwischenüberschriften
+% Keine Nummerierung
 \setcounter{secnumdepth}{0}
-% Colored
+% In Burgund
 \usepackage{titlesec}
 \titleformat*{\section}{\LARGE\bfseries\color{burgundy}}
-\titleformat*{\subsection}{\Large\bfseries\color{burgundyd}}
+\titleformat*{\subsection}{\Large\bfseries\color{darkburgundy}}
 
-% Colored enumeration bullets
+% Für Unteraufgaben, auch in Burgund
 \usepackage{enumitem}
 \setlist[itemize]{
 	leftmargin=*,
 	noitemsep,
 	wide=0pt,
-	font=\bf\color{burgundyd}
+	font=\bf\color{darkburgundy}
 }
 
-% No Paragraph indents
+% Keine Absatzindentierung
 \setlength{\parindent}{0pt}
 
-% Cool geometry graphics
+% Grafiken für A3 und A4
 \usepackage{tikz}
 \usetikzlibrary{angles,quotes,positioning,patterns,patterns.meta,decorations.pathreplacing}
 
-% Maths
+% Mathezeug
 \usepackage[fleqn]{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -55,22 +55,19 @@
 
 \usepackage{multicol}
 
-% Fancy Headers
+% Fancy header
 \usepackage{fancyhdr}
 \setlength{\headheight}{15pt}
-\newenvironment{Together}
-{\vbox\bgroup}
-{\egroup}
 
-% === Document starts here ===
 \begin{document}
 
-% Standard headers and footers
+% Nummerierte Seiten, auf jeder Seite müssen Namen stehen
 \pagestyle{fancy}
 \fancyhead[R]{Henry Feuerlein, Arne Stein}
 \fancyhead[L]{\thepage}
 \fancyfoot[]{}
 
+% ========= A1 =========
 \section[]{Aufgabe 1}
 \setlength{\mathindent}{2cm}
 
@@ -80,6 +77,7 @@ Für eine so gegebene beliebige Reihenfolge der Zahlen $1$ - $9$ lässt sich die
 \begin{align*}
 	d &= i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|
 \end{align*}
+
 \begin{itemize}
 	\item[a)] Ein Beispiel für eine Sprungfolge mit der Gesamtdistanz $20$ ist \\
 	$1, 2, 3, 4, 5, 6, 8, 7, 9$ (gefunden durch Ausprobieren):
@@ -116,6 +114,7 @@ Folglich ist $d$ für alle Sprungreihenfolgen eine gerade Zahl.
 \end{itemize}
 
 \pagebreak
+% ========= A2 =========
 \section[]{Aufgabe 2}
 \setlength{\mathindent}{0.5cm}
 
@@ -131,15 +130,15 @@ Wir suchen anhand des Beispiels $n=20$ eine andere Darstellungsweise für $n!$:
 		&= 5^4 \cdot 4! \cdot 2^8 \cdot (19\cdot9\cdot7\cdot8)(7\cdot13\cdot6\cdot11)(9\cdot4\cdot7\cdot3)(2\cdot3\cdot1\cdot1)
 	\end{split}
 \end{equation*}
+
 Mithilfe dieser Darstellung lässt sich die gesuchte Ziffer bestimmen:
 \begin{equation*}
-	\begin{split}	
+	\begin{split}
 		LZ(20!) &= LZ\left(5^4 \cdot 4! \cdot 2^8 \cdot (19\cdot9\cdot7\cdot8)(7\cdot13\cdot6\cdot11)(9\cdot4\cdot7\cdot3)(2\cdot3\cdot1\cdot1)\right) \\
 		&= LZ\left(10^4 \cdot 2^4 \cdot 4! \cdot (19\cdot9\cdot7\cdot8)(7\cdot13\cdot6\cdot11)(9\cdot4\cdot7\cdot3)(2\cdot3\cdot1\cdot1)\right) \\
-		% n! &= 2^{\floor*{\frac{n}{5}}} \cdot \floor*{\frac{n}{5}}! \cdot 6^{\floor*{\frac{n}{5}}} \\
-		% &= 12^{\floor*{\frac{n}{5}}} \cdot \floor*{\frac{n}{5}}!
 	\end{split}
 \end{equation*}
+
 Für $LZ(n!)$ spielt der Faktor $10^4$ keine Rolle, da nur die letzte Nichtnull-Ziffer von Interesse ist, er kann also weggelassen werden:
 \begin{equation*}
 	\begin{split}
@@ -147,7 +146,6 @@ Für $LZ(n!)$ spielt der Faktor $10^4$ keine Rolle, da nur die letzte Nichtnull-
 	\end{split}
 \end{equation*}
 
-\begin{Together}
 Die letzte Stelle der 4er-Gruppen an Faktoren am Ende kann auch bestimmt werden, hierfür gibt es zwei Fälle zu betrachten:
 \begin{multicols}{2}
 	\noindent
@@ -167,9 +165,9 @@ Die letzte Stelle der 4er-Gruppen an Faktoren am Ende kann auch bestimmt werden,
 		\end{split}
 	\end{equation*}
 \end{multicols}
-$\dots$ steht hierbei für beliebig viele Ziffern (innerhalb einer 4er-Gruppe sind diese immer gleich). \\[10pt]
-\end{Together}
-\begin{Together}	
+
+$\dots$ steht hierbei für beliebig viele Ziffern (innerhalb einer 4er-Gruppe sind diese immer gleich).
+\\[10pt]
 Hierbei spielt es keine Rolle, ob die Ziffern $\dots$ vor den Paaren $8$ und $6$ bzw. $4$ und $2$ gerade oder ungerade sind, da das Produkt des jeweiligen Paars immer auf die selbe Ziffer endet:
 \begin{multicols}{2}
 	\noindent
@@ -190,7 +188,6 @@ Hierbei spielt es keine Rolle, ob die Ziffern $\dots$ vor den Paaren $8$ und $6$
 		\end{split}
 	\end{equation*}
 \end{multicols}
-\end{Together}
 
 In beiden Fällen endet eine Gruppe an 4 Faktoren immer auf die Ziffer $6$, also kann der Term von oben weiter vereinfacht werden:
 \begin{equation*}
@@ -199,7 +196,8 @@ In beiden Fällen endet eine Gruppe an 4 Faktoren immer auf die Ziffer $6$, also
 		&= LZ\left(12^4 \cdot 4!\right)
 	\end{split}
 \end{equation*}
-Die $12$ kann zu einer $2$ umgeschrieben werden, da nur die letzte Stelle von Interesse ist: \\
+
+Die $12$ kann zu einer $2$ umgeschrieben werden, da nur die letzte Stelle von Interesse ist:
 \begin{equation*}
 	\begin{split}
 		LZ(20!) &= LZ\left(2^4 \cdot 4!\right) \\
@@ -207,17 +205,23 @@ Die $12$ kann zu einer $2$ umgeschrieben werden, da nur die letzte Stelle von In
 	\end{split}
 \end{equation*}
 
-Für ein $n$, für das $n\bmod 5 \neq 0$ gilt, wird für die Berechnung oben genannter Faktoren der Operator $\lfloor\;\rfloor$ benötigt: $\lfloor n \rfloor$ ist die größte ganze Zahl $\leq n$. \\[10pt]
+Für ein $n$, für das $n\bmod 5 \neq 0$ gilt, wird für die Berechnung oben genannter Faktoren der Operator $\lfloor\;\rfloor$ benötigt: $\lfloor n \rfloor$ ist die größte ganze Zahl $\leq n$.
+\\[10pt]
 Für solche $n$ gilt:
 \begin{equation*}
 	\begin{split}
 		LZ(n!) &= LZ\left(2^m \cdot m! \cdot \frac{n!}{(m\cdot5)!} \right) \text{ für } m = \left\lfloor\frac{n}{5}\right\rfloor
 	\end{split}
 \end{equation*}
-Der letzte Faktor stellt dabei die noch fehlenden Faktoren $\leq n$ und $> m\cdot5$ dar. Beispielsweise für $n=23$ steht der letzte Faktor für $23\cdot22\cdot21$. \\[10pt]
-Für diese Formel muss immer $n\geq5$ gelten, da sie sich sonst mit $m=0$ zu $LZ(n!)$ kürzen würde und für den Beweis nicht hilfreich wäre. \\[10pt]
-Durch den Faktor $2$ als Teil von $2^m$ kann $LZ(n!)$ also nur gerade Werte annehmen. Die Ziffern $1$, $3$, $5$, $7$ und $9$ können also aus der Folge ausgeschlossen werden ($0$ ist durch die Aufgabenstellung ja auch ausgeschlossen). Es bleiben also noch die Ziffern $2$, $4$, $6$ und $8$. \\[10pt]
+
+Der letzte Faktor stellt dabei die noch fehlenden Faktoren $\leq n$ und $> m\cdot5$ dar. Beispielsweise für $n=23$ steht der letzte Faktor für $23\cdot22\cdot21$.
+\\[10pt]
+Für diese Formel muss immer $n\geq5$ gelten, da sie sich sonst mit $m=0$ zu $LZ(n!)$ kürzen würde und für den Beweis nicht hilfreich wäre.
+\\[10pt]
+Durch den Faktor $2$ als Teil von $2^m$ kann $LZ(n!)$ also nur gerade Werte annehmen. Die Ziffern $1$, $3$, $5$, $7$ und $9$ können also aus der Folge ausgeschlossen werden ($0$ ist durch die Aufgabenstellung ja auch ausgeschlossen). Es bleiben also noch die Ziffern $2$, $4$, $6$ und $8$.
+\\[10pt]
 Nun wird der Faktor $2^m$ genauer betrachtet:
+
 \begin{table}[h!]
 	\hspace{0.5cm}\begin{tabular}{l|c|c|c|c|c|c|c|c|c|c}
 		m & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & \dots \\
@@ -225,7 +229,7 @@ Nun wird der Faktor $2^m$ genauer betrachtet:
 		$2^m$ & \underline{2} & \underline{4} & \underline{8} & 1\underline{6} & 3\underline{2} & 6\underline{4} & 12\underline{8} & 25\underline{6} & 51\underline{2} & \dots \\
 	\end{tabular}
 \end{table}
-\\
+
 $\frac{n!}{(m\cdot5)!}$ kann nur folgende Werte annehmen:
 \begin{equation*}
 	\begin{split}
@@ -241,12 +245,12 @@ $\frac{n!}{(m\cdot5)!}$ kann nur folgende Werte annehmen:
 \end{equation*}
 
 In diesen beiden Faktoren lässt sich für immer größer werdende $n$ und damit auch $m$ jeweils ein sich unendlich oft wiederholendes iteratives Muster erkennen. Folglich kommt in dem Gesamtprodukt jede der möglichen Ziffern $2$, $4$, $6$ und $8$ unendlich oft als letzte Nichtnull-Ziffer vor. \qed
-% Wir beweisen nun, dass in der Folge $m!$ aller $m \in \mathbb{N}$ die Ziffern $2$, $4$, $6$ und $8$ unendlich oft als letzte Ziffer vorkommen:
-% Da $m$ ebenfalls eine natürliche Zahl ist, ist der Faktor $m!$ auch gerade.
 
 \pagebreak
+% ========= A3 =========
 \section[]{Aufgabe 3}
 \setlength{\mathindent}{4cm}
+
 Um zu beweisen, dass $AE$ senkrecht zu $CD$ steht, werden die Steigungen beider Geraden in Abhängigkeit des Winkels $\beta$, der die Position von P auf dem Halbkreisbogen $AB$ bestimmt, berechnet.
 
 \subsection[]{Herleitung von $m_{AE}$}
@@ -302,7 +306,7 @@ Hierfür relevante Punkte und Strecken:
 \end{align*}
 
 \begin{align*}
-	\sin\beta &= \frac{\text{Gegenkathete}}{\text{Hypotenuse}} \\ 
+	\sin\beta &= \frac{\text{Gegenkathete}}{\text{Hypotenuse}} \\
 	\sin\beta &= \frac{r}{R-r} \\
 	r &= R \sin\beta - r \sin\beta \\
 	r + r \sin\beta &= R \sin\beta \\
@@ -369,8 +373,8 @@ Hierfür relevante Punkte und Strecken:
 		x &= R - R_0 \\
 		&= R - R \cos\beta \tag{3}
 	\end{align*}
-\end{samepage} \goodbreak
-
+\end{samepage}
+\goodbreak
 \begin{samepage}
 	\begin{align*}
 		m_{AE} &= \frac{h}{2R - x} \\
@@ -398,7 +402,6 @@ Hierfür relevante Punkte und Strecken:
 \end{samepage}
 
 \pagebreak
-
 \subsection[]{Herleitung von $m_{CD}$}
 Hierfür relevante Punkte und Strecken:
 
@@ -498,8 +501,8 @@ Hierfür relevante Punkte und Strecken:
 		&= \frac{R\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}\frac{\sin\alpha}{1+\sin\alpha}}{\frac{1}{1+\sin\alpha}} \\
 		x &= R\sin\alpha\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}} \tag{4}
 	\end{align*}
-\end{samepage} \goodbreak
-
+\end{samepage}
+\goodbreak
 \begin{samepage}
 	Weitergehend von $(3)$, mit $(2)$ und $(4)$: \nopagebreak
 	\begin{align*}
@@ -512,8 +515,8 @@ Hierfür relevante Punkte und Strecken:
 		&= R\sin\alpha \, \frac{\sqrt{1-(1-\sin^2\alpha)}}{1+\sin\alpha} \\
 		h &= R\sin\alpha \, \frac{\sin\alpha}{1+\sin\alpha} \tag{$3^\prime$}
 	\end{align*}
-\end{samepage} \goodbreak
-
+\end{samepage}
+\goodbreak
 \begin{samepage}
 	Mit $(2)$, $(3^\prime)$ und $(4)$: \nopagebreak
 	\begin{align*}
@@ -528,65 +531,69 @@ Hierfür relevante Punkte und Strecken:
 		&= -\frac{\sin\alpha+1}{\cos\alpha}
 	\end{align*}
 \end{samepage}
+\goodbreak
+\begin{samepage}
+	Für die Winkel $\alpha$ und $\beta$ gilt:
+	\begin{center}
+		\begin{tikzpicture}[scale=4]
+			% Punkte
+			\coordinate (m) at (0,0);
+			\coordinate (a) at (-1,0);
+			\coordinate (b) at (1,0);
+			\coordinate (p) at (0.5,0.866);
+			\coordinate (c) at (-0.5,0.866);
+			\coordinate (e) at (0.866,0.5);
+
+			% Halbkreis
+			\begin{scope}
+				\clip (a) rectangle (1,1);
+				\draw[black] (m) circle(1);
+				\draw[black] (a) -- (b);
+			\end{scope}
+
+			% Punkte
+			\filldraw[black] (m) circle (0.5pt) node[anchor=north]{$M$};
+			\filldraw[black] (a) circle (0.5pt) node[anchor=north]{$A$};
+			\filldraw[black] (b) circle (0.5pt) node[anchor=north]{$B$};
+			\filldraw[black] (p) circle (0.5pt) node[anchor=south west]{$P$};
+			\filldraw[black] (c) circle (0.5pt) node[anchor=south east]{$C$};
+			\filldraw[black] (e) circle (0.5pt) node[anchor=south west]{$E$};
+
+			% Linien
+			\draw[black] (m) -- (p);
+			\draw[black] (m) -- (c);
+			\draw[black] (m) -- (e);
+
+			% Winkel
+			\pic [draw,"$\alpha$",angle eccentricity=1.7]{angle = p--m--c};
+			\pic [draw,"$\alpha$",angle eccentricity=1.7]{angle = c--m--a};
+			\pic [draw,"$\beta$",angle eccentricity=1.7]{angle = b--m--e};
+			\pic [draw,"$\beta$",angle eccentricity=1.7]{angle = e--m--p};
+		\end{tikzpicture}
+	\end{center}
+	\begin{align*}
+		2\beta + 2\alpha &= \ang{180} \\
+		\alpha &= \ang{90} - \beta \\
+		\sin\alpha &= \sin(\ang{90} - \beta) = \cos\beta \\
+		\cos\alpha &= \cos(\ang{90} - \beta) = \sin\beta \\
+	\end{align*}
+
+	So lässt sich $m_{CD}$ anders ausdrücken:
+	\begin{align*}
+		m_{CD} &= -\frac{\sin\alpha+1}{\cos\alpha} \\
+		&= -\frac{\cos\beta+1}{\sin\beta} \\
+		m_{AE} &= \frac{\sin\beta}{\cos\beta+1}
+	\end{align*}
+
+	Somit gilt $ m_{CD} = -\frac{1}{m_{AE}} $, und damit auch $CD \perp AE$. \qed
+\end{samepage}
 
 \pagebreak
-Für die Winkel $\alpha$ und $\beta$ gilt:
-
-\begin{center}
-	\begin{tikzpicture}[scale=4]
-		% Punkte
-		\coordinate (m) at (0,0);
-		\coordinate (a) at (-1,0);
-		\coordinate (b) at (1,0);
-		\coordinate (p) at (0.5,0.866);
-		\coordinate (c) at (-0.5,0.866);
-		\coordinate (e) at (0.866,0.5);
-
-		% Halbkreis
-		\begin{scope}
-			\clip (a) rectangle (1,1);
-			\draw[black] (m) circle(1);
-			\draw[black] (a) -- (b);
-		\end{scope}
-
-		% Punkte
-		\filldraw[black] (m) circle (0.5pt) node[anchor=north]{$M$};
-		\filldraw[black] (a) circle (0.5pt) node[anchor=north]{$A$};
-		\filldraw[black] (b) circle (0.5pt) node[anchor=north]{$B$};
-		\filldraw[black] (p) circle (0.5pt) node[anchor=south west]{$P$};
-		\filldraw[black] (c) circle (0.5pt) node[anchor=south east]{$C$};
-		\filldraw[black] (e) circle (0.5pt) node[anchor=south west]{$E$};
-
-		% Linien
-		\draw[black] (m) -- (p);
-		\draw[black] (m) -- (c);
-		\draw[black] (m) -- (e);
-
-		% Winkel
-		\pic [draw,"$\alpha$",angle eccentricity=1.7]{angle = p--m--c};
-		\pic [draw,"$\alpha$",angle eccentricity=1.7]{angle = c--m--a};
-		\pic [draw,"$\beta$",angle eccentricity=1.7]{angle = b--m--e};
-		\pic [draw,"$\beta$",angle eccentricity=1.7]{angle = e--m--p};
-	\end{tikzpicture}
-\end{center}
-\begin{align*}
-	2\beta + 2\alpha &= \ang{180} \\
-	\alpha &= \ang{90} - \beta \\
-	\sin\alpha &= \sin(\ang{90} - \beta) = \cos\beta \\
-	\cos\alpha &= \cos(\ang{90} - \beta) = \sin\beta \\
-\end{align*}
-So lässt sich $m_{CD}$ anders ausdrücken:
-\begin{align*}
-	m_{CD} &= -\frac{\sin\alpha+1}{\cos\alpha} \\
-	&= -\frac{\cos\beta+1}{\sin\beta} \\
-	m_{AE} &= \frac{\sin\beta}{\cos\beta+1}
-\end{align*}
-
-Somit gilt $ m_{CD} = -\frac{1}{m_{AE}} $, und damit auch $CD \perp AE$.
-
-\pagebreak
+% ========= A4 =========
 \section[]{Aufgabe 4}
-In allen folgenden Diagrammen steht eine gestrichelte Linie für eine Symmetrieachse, magenta und türkis markierte Felder sind ausgemalt, wobei der Anfänger die Farbe magenta hat. \\[10pt]
+
+In allen folgenden Diagrammen steht eine gestrichelte Linie für eine Symmetrieachse, magenta und türkis markierte Felder sind ausgemalt, wobei der Anfänger die Farbe magenta hat.
+\\[10pt]
 Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, der zuerst in dieses Feld malen muss: \\
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
@@ -597,7 +604,7 @@ Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, 
 	\draw (2,1) \Square;
 	\draw (2,2) \Square;
 	\draw [dashed] (3,0) -- (0,3);
-	
+
 	\node at (3.5,1.5) {$\rightarrow$};
 	\draw (5,1) \RSquare;
 	\draw (6,1) \Square;
@@ -618,7 +625,9 @@ Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, 
 	\draw (10,5) \ESquare;
 	\node[anchor=west] at (11.5,4.5) {$\rightarrow$ Anfänger verliert};
 \end{tikzpicture}
-\\ Basierend darauf gilt dies auch für eine Ecke, die in beide Dimensionen beliebig viele Felder größer ist. Derjenige, der nicht anfängt, kopiert exakt die Menge an ausgemalten Feldern des Anfängers ($P$) auf der anderen Kante und zwingt den anfangenden Spieler in eine weitere kleinere $p\times p$-Ecke (dargestellt durch Orange):\\
+\\
+Basierend darauf gilt dies auch für eine Ecke, die in beide Dimensionen beliebig viele Felder größer ist. Derjenige, der nicht anfängt, kopiert exakt die Menge an ausgemalten Feldern des Anfängers ($P$) auf der anderen Kante und zwingt den anfangenden Spieler in eine weitere kleinere $p\times p$-Ecke (dargestellt durch Orange):
+\\
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
 	\newcommand\Circle{+(0, 0) circle (0.35)}
@@ -641,14 +650,16 @@ Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, 
 
 	\draw [decorate,decoration={brace,amplitude=5pt}] (0.55,0) -- (4.45,0) node[midway,yshift=1em]{P};
 	\draw [decorate,decoration={brace,amplitude=5pt}] (4.55,0) -- (5.45,0) node[midway,yshift=1em]{p};
-	
+
 	\draw [decorate,decoration={brace,amplitude=5pt}] (6,0.55) -- (6,1.45) node[midway,xshift=1em]{p};
 	\draw [decorate,decoration={brace,amplitude=5pt}] (6,1.55) -- (6,5.45) node[midway,xshift=1em]{P};
 
-\end{tikzpicture} \\
-Fährt Renate diese Strategie, kann sie Erhard irgendwann in eine $2\times2$-Ecke zwingen, in der er verliert, er hat also dann sicher verloren, wenn er in einer $p\times p$-Ecke beginnen muss. \\[10pt]
+\end{tikzpicture}
+\\
+Fährt Renate diese Strategie, kann sie Erhard irgendwann in eine $2\times2$-Ecke zwingen, in der er verliert, er hat also dann sicher verloren, wenn er in einer $p\times p$-Ecke beginnen muss.
+\\[10pt]
 Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spieler, der zuerst innerhalb dieser Form dran ist:
-
+\\
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
 	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
@@ -805,14 +816,18 @@ Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spiele
 
 	\draw [dashed] (3.5,0) -- (3.5,5);
 \end{tikzpicture}
-\\ Erhard findet sich nun in einer $p\times p$-Ecke und verliert. \\
-\pagebreak
+\\
+Erhard muss anfangen und Renate kopiert solange seine Spielzüge auf der jeweils anderen Seite der Spiegelachse, bis Erhard zum ersten mal ein Feld ausmalt, das die obere Kante berührt oder in dieser liegt. Dann kann Renate Erhard in eine $p\times p$-Ecke zwingen und Renate gewinnt (wie oben bewiesen).
+\\[10pt]
 Renate hat nun für zwei verschiedene Arten von Feldern Strategien:
 \begin{itemize}
 	\item[Fall 1:] $n=m$
 \end{itemize}
-Hierfür beginnt Renate mit dem Ausmalen eines einzelnen Feldes E in einer Ecke. Erhard kann in seinem nächsten Zug nur bis zu $n-1$ Felder auf genau einer Kante ausmalen. Renate wird solange mit jedem ihrer Züge das Spielfeld symmetrisch zur Spiegelachse, die die Strecke zwischen E und der Ecke diagonal gegenüber von E ist (eingezeichnet als gestrichelte Linie), halten, bis sich Erhard als Anfänger in einer $p\times p$-Ecke findet und verliert. \\[10pt]
-Ab dem zweiten Diagramm macht pro Bild immer erst Erhard (türkis) einen Zug, dann Renate (magenta): \\[10pt]
+
+Hierfür beginnt Renate mit dem Ausmalen eines einzelnen Feldes E in einer Ecke. Erhard kann in seinem nächsten Zug nur bis zu $n-1$ Felder auf genau einer Kante ausmalen. Renate wird solange mit jedem ihrer Züge das Spielfeld symmetrisch zur Spiegelachse, die die Strecke zwischen E und der Ecke diagonal gegenüber von E ist (eingezeichnet als gestrichelte Linie), halten, bis sich Erhard als Anfänger in einer $p\times p$-Ecke findet und verliert.
+\\[10pt]
+Ab dem zweiten Diagramm macht pro Bild immer erst Erhard (türkis) einen Zug, dann Renate (magenta):
+\\[10pt]
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
 	\newcommand\Circle{+(0, 0) circle (0.35)}
@@ -917,7 +932,9 @@ Ab dem zweiten Diagramm macht pro Bild immer erst Erhard (türkis) einen Zug, da
 
 	\draw [dashed] (7,0) -- (0,7);
 \end{tikzpicture}
-\\ Egal wieviele Felder Erhard in seinem nächsten Zug ausmalt, wird er in eine $p\times p$-Ecke (gezeichnet in Orange) gezwungen und verliert: \\
+\\
+Egal wieviele Felder Erhard in seinem nächsten Zug ausmalt, wird er in eine $p\times p$-Ecke (gezeichnet in Orange) gezwungen und verliert:
+\\
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
 	\newcommand\Circle{+(0, 0) circle (0.35)}
@@ -991,6 +1008,8 @@ Ab dem zweiten Diagramm macht pro Bild immer erst Erhard (türkis) einen Zug, da
 \begin{itemize}
 	\item[Fall 2:] $n\neq m$
 \end{itemize}
-Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. So bleibt als Spielfeld noch eine "Hufeisenform" übrig. In diesem Hufeisen ist eine Seite um mindestens 2 Felder länger als die andere. Nach dem Beweis oben verliert der Anfänger (nach Renates Strategie also Erhard) in diesem Hufeisen auch (wie bereits oben gezeigt), Renate hat also hier auch eine sichere Gewinnstrategie. \\[10pt]
-Renate hat also durch Fall 1 und 2 eine Gewinnstrategie für alle erlaubten Spielfeldgrößen, also für alle $n, m \geq 3$. $\qed$
+
+Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. So bleibt als Spielfeld noch eine "Hufeisenform" übrig. In diesem Hufeisen ist eine Seite um mindestens 2 Felder länger als die andere. Nach dem Beweis oben verliert der Anfänger (nach Renates Strategie also Erhard) in diesem Hufeisen auch (wie bereits oben gezeigt), Renate hat also hier auch eine sichere Gewinnstrategie.
+\\[10pt]
+Renate hat also durch Fall 1 und 2 eine Gewinnstrategie für alle erlaubten Spielfeldgrößen, also für alle $n, m \geq 3$. \qed
 \end{document}
