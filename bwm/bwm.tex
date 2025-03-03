@@ -155,7 +155,7 @@ Die letzte Stelle der 4er-Gruppen an Faktoren am Ende kann auch bestimmt werden,
 		\begin{split}
 			&LZ\left(\dots9 \cdot \frac{\dots8}{2} \cdot \dots7 \cdot \frac{\dots6}{2}\right) \\
 			&= LZ\left(9\cdot\frac{8}{2}\cdot7\cdot\frac{6}{2}\right) \\
-			&= LZ(756) \\
+			&= LZ\left(756\right) \\
 			&= 6
 		\end{split}
 	\end{equation*}
@@ -196,9 +196,13 @@ In beiden Fällen endet eine Gruppe an 4 Faktoren immer auf die Ziffer $6$, also
 \begin{equation*}
 	\begin{split}
 		LZ(20!) &= LZ\left(2^4 \cdot 4! \cdot 6^4\right) \\
-		&= LZ\left(12^4 \cdot 4!\right) \\
-		&= LZ\left(10^4 \cdot 2^4 \cdot 4!\right) \\
-		&= LZ\left(2^4 \cdot 4!\right) \\
+		&= LZ\left(12^4 \cdot 4!\right)
+	\end{split}
+\end{equation*}
+Die $12$ kann zu einer $2$ umgeschrieben werden, da nur die letzte Stelle von Interesse ist: \\
+\begin{equation*}
+	\begin{split}
+		LZ(20!) &= LZ\left(2^4 \cdot 4!\right) \\
 		LZ(n!) &= LZ\left(2^m \cdot m!\right) \text{ für } m = \left\lfloor\frac{n}{5}\right\rfloor
 	\end{split}
 \end{equation*}
@@ -207,12 +211,12 @@ Für ein $n$, für das $n\bmod 5 \neq 0$ gilt, wird für die Berechnung oben gen
 Für solche $n$ gilt:
 \begin{equation*}
 	\begin{split}
-		LZ(n!) &= LZ\left(2^m \cdot m! \cdot \frac{n!}{(m\cdot5)!} \right)
+		LZ(n!) &= LZ\left(2^m \cdot m! \cdot \frac{n!}{(m\cdot5)!} \right) \text{ für } m = \left\lfloor\frac{n}{5}\right\rfloor
 	\end{split}
 \end{equation*}
 Der letzte Faktor stellt dabei die noch fehlenden Faktoren $\leq n$ und $> m\cdot5$ dar. Beispielsweise für $n=23$ steht der letzte Faktor für $23\cdot22\cdot21$. \\[10pt]
+Für diese Formel muss immer $n\geq5$ gelten, da sie sich sonst mit $m=0$ zu $LZ(n!)$ kürzen würde und für den Beweis nicht hilfreich wäre. \\[10pt]
 Durch den Faktor $2$ als Teil von $2^m$ kann $LZ(n!)$ also nur gerade Werte annehmen. Die Ziffern $1$, $3$, $5$, $7$ und $9$ können also aus der Folge ausgeschlossen werden ($0$ ist durch die Aufgabenstellung ja auch ausgeschlossen). Es bleiben also noch die Ziffern $2$, $4$, $6$ und $8$. \\[10pt]
-%Böse Zungen könnten nun aber behaupten, dass durch böse Zufälle die anderen beiden Faktoren außer $2^m$ solche Werte annehmen, sodass als Gesamtprodukt nicht jede gerade Ziffer tatsächlich unendlich oft vorkommt. \\[10pt]
 Nun wird der Faktor $2^m$ genauer betrachtet:
 \begin{table}[h!]
 	\hspace{0.5cm}\begin{tabular}{l|c|c|c|c|c|c|c|c|c|c}
@@ -582,12 +586,12 @@ Somit gilt $ m_{CD} = -\frac{1}{m_{AE}} $, und damit auch $CD \perp AE$.
 
 \pagebreak
 \section[]{Aufgabe 4}
-In allen folgenden Diagrammen steht eine gestrichelte Linie für eine Symmetrieachse, blau und rot markierte Felder sind ausgemalt, wobei der Anfänger die Farbe blau hat. \\[10pt]
+In allen folgenden Diagrammen steht eine gestrichelte Linie für eine Symmetrieachse, magenta und türkis markierte Felder sind ausgemalt, wobei der Anfänger die Farbe magenta hat. \\[10pt]
 Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, der zuerst in dieses Feld malen muss: \\
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
-	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 
 	\draw (1,1) \Square;
 	\draw (2,1) \Square;
@@ -618,10 +622,10 @@ Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, 
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
 	\newcommand\Circle{+(0, 0) circle (0.35)}
-	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\RCircle{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(0, 0) circle (0.35)}
-	\newcommand\ECircle{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(0, 0) circle (0.35)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RCircle{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(0, 0) circle (0.35)}
+	\newcommand\ECircle{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(0, 0) circle (0.35)}
 	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 
 	\draw (1,1) \RSquare;
@@ -647,10 +651,10 @@ Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spiele
 
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
-	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 
 	\draw (1,1) \Square;
@@ -669,12 +673,14 @@ Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spiele
 	\draw (1,2) \Square;
 
 	\draw [dashed] (3.5,0) -- (3.5,5);
-\end{tikzpicture} $\rightarrow$ \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\node[anchor=west] at (6.5,2.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
-	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 
 	\draw (1,1) \Square;
@@ -693,12 +699,14 @@ Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spiele
 	\draw (1,2) \Square;
 
 	\draw [dashed] (3.5,0) -- (3.5,5);
-\end{tikzpicture} $\rightarrow$ \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\node[anchor=west] at (6.5,2.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
-	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 
 	\draw (1,1) \Square;
@@ -717,12 +725,14 @@ Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spiele
 	\draw (1,2) \Square;
 
 	\draw [dashed] (3.5,0) -- (3.5,5);
-\end{tikzpicture} $\rightarrow$ \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\node[anchor=west] at (6.5,2.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
-	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 
 	\draw (1,1) \Square;
@@ -741,12 +751,14 @@ Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spiele
 	\draw (1,2) \Square;
 
 	\draw [dashed] (3.5,0) -- (3.5,5);
-\end{tikzpicture} $\rightarrow$ \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\node[anchor=west] at (6.5,2.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
-	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 
 	\draw (1,1) \Square;
@@ -756,7 +768,7 @@ Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spiele
 	\draw (5,1) \Square;
 	\draw (6,1) \Square;
 	\draw (6,2) \Square;
-	\draw (6,3) \ESquare;
+	\draw (6,3) \EESquare;
 
 	\draw (6,4) \EESquare;
 	\draw (1,4) \RRSquare;
@@ -765,12 +777,14 @@ Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spiele
 	\draw (1,2) \RSquare;
 
 	\draw [dashed] (3.5,0) -- (3.5,5);
-\end{tikzpicture} $\rightarrow$ \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\node[anchor=west] at (6.5,2.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
-	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 
 	\draw (1,1) \ESquare;
@@ -791,22 +805,24 @@ Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spiele
 
 	\draw [dashed] (3.5,0) -- (3.5,5);
 \end{tikzpicture}
-\\ Erhard findet sich nun in einer $p\times p$-Ecke und verliert. \\[10pt]
-Renate hat nun für zwei verschiedene Größen von Feldern Strategien.
+\\ Erhard findet sich nun in einer $p\times p$-Ecke und verliert. \\
+\pagebreak
+Renate hat nun für zwei verschiedene Arten von Feldern Strategien:
 \begin{itemize}
 	\item[Fall 1:] $n=m$
 \end{itemize}
-Hierfür beginnt Renate mit dem Ausmalen eines einzelnen Feldes E in einer Ecke. Erhard kann in seinem nächsten Zug nur bis zu $n-1$ Felder auf genau einer Kante ausmalen. Renate wird solange mit jedem ihrer Züge das Spielfeld symmetrisch zur Spiegelachse, die die Strecke zwischen E und der Ecke diagonal gegenüber von E ist (eingezeichnet als gestrichelte Linie), halten, bis sich Erhard als Anfänger in einer $p\times p$-Ecke findet und verliert. \\
-Ab dem zweiten Diagramm macht pro Bild immer erst rot/Erhard einen Zug, dann blau/Renate: \\[10pt]\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+Hierfür beginnt Renate mit dem Ausmalen eines einzelnen Feldes E in einer Ecke. Erhard kann in seinem nächsten Zug nur bis zu $n-1$ Felder auf genau einer Kante ausmalen. Renate wird solange mit jedem ihrer Züge das Spielfeld symmetrisch zur Spiegelachse, die die Strecke zwischen E und der Ecke diagonal gegenüber von E ist (eingezeichnet als gestrichelte Linie), halten, bis sich Erhard als Anfänger in einer $p\times p$-Ecke findet und verliert. \\[10pt]
+Ab dem zweiten Diagramm macht pro Bild immer erst Erhard (türkis) einen Zug, dann Renate (magenta): \\[10pt]
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
 	\newcommand\Circle{+(0, 0) circle (0.35)}
-	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\RCircle{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(0, 0) circle (0.35)}
-	\newcommand\ECircle{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(0, 0) circle (0.35)}
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RCircle{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(0, 0) circle (0.35)}
+	\newcommand\ECircle{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(0, 0) circle (0.35)}
 	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 
-	\draw (1,1) \Corner; 
+	\draw (1,1) \Corner;
 	\draw (2,1) \Corner;
 	\draw (3,1) \Corner;
 	\draw (4,1) \Corner;
@@ -830,13 +846,15 @@ Ab dem zweiten Diagramm macht pro Bild immer erst rot/Erhard einen Zug, dann bla
 	\draw (1,2) \Square;
 
 	\draw [dashed] (7,0) -- (0,7);
-\end{tikzpicture} $\rightarrow$ \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\node[anchor=west] at (6.5,3.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
 	\newcommand\Circle{+(0, 0) circle (0.35)}
-	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 
 	\draw (1,1) \Corner;
@@ -863,13 +881,15 @@ Ab dem zweiten Diagramm macht pro Bild immer erst rot/Erhard einen Zug, dann bla
 	\draw (1,2) \Square;
 
 	\draw [dashed] (7,0) -- (0,7);
-\end{tikzpicture} $\rightarrow$ \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\node[anchor=west] at (6.5,3.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
 	\newcommand\Circle{+(0, 0) circle (0.35)}
-	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 
 	\draw (1,1) \Corner;
@@ -901,10 +921,10 @@ Ab dem zweiten Diagramm macht pro Bild immer erst rot/Erhard einen Zug, dann bla
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
 	\newcommand\Circle{+(0, 0) circle (0.35)}
-	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 
 	\draw (1,1) \Corner;
@@ -931,14 +951,15 @@ Ab dem zweiten Diagramm macht pro Bild immer erst rot/Erhard einen Zug, dann bla
 	\draw (1,2) \RSquare;
 
 	\draw [dashed] (7,0) -- (0,7);
+	\node[anchor=west] at (7,3.5) {oder};
 \end{tikzpicture}
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\newcommand\Square{+(-0.5,-0.5) rectangle +(0.5,0.5)}
 	\newcommand\Circle{+(0, 0) circle (0.35)}
-	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\RRSquare{[fill=blue] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
-	\newcommand\EESquare{[fill=red] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RSquare{[pattern={Lines[angle=45,distance=2]}, pattern color=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\RRSquare{[fill=magenta] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\ESquare{[pattern={Lines[angle=45,distance=2]}, pattern color=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
+	\newcommand\EESquare{[fill=teal] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 	\newcommand\Corner{[pattern={Lines[angle=135,distance=2]}, pattern color=orange] +(-0.5,-0.5) rectangle +(0.5,0.5) }
 
 	\draw (1,1) \RSquare;
@@ -970,5 +991,6 @@ Ab dem zweiten Diagramm macht pro Bild immer erst rot/Erhard einen Zug, dann bla
 \begin{itemize}
 	\item[Fall 2:] $n\neq m$
 \end{itemize}
-Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. So bleibt als Spielfeld noch eine "Hufeisenform" übrig. In diesem Hufeisen ist eine Seite um mindestens 2 Felder länger als die andere. Nach dem Beweis oben verliert der Anfänger (nach Renates Strategie also Erhard) in diesem Hufeisen auch (wie bereits oben gezeigt), Renate hat also hier auch eine sichere Gewinnstrategie.
+Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. So bleibt als Spielfeld noch eine "Hufeisenform" übrig. In diesem Hufeisen ist eine Seite um mindestens 2 Felder länger als die andere. Nach dem Beweis oben verliert der Anfänger (nach Renates Strategie also Erhard) in diesem Hufeisen auch (wie bereits oben gezeigt), Renate hat also hier auch eine sichere Gewinnstrategie. \\[10pt]
+Renate hat also durch Fall 1 und 2 eine Gewinnstrategie für alle erlaubten Spielfeldgrößen, also für alle $n, m \geq 3$. $\qed$
 \end{document}
