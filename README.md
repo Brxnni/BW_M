@@ -6,7 +6,7 @@ zusammen mit henry :3
 
 ## Struktur
 
-- `./bwm`: `.tex`-Datei und all die anderen aux files die im `.gitignore` stehen
+- `./bwm`: `.tex`-Dateien und all die anderen auxfiles die im `.gitignore` stehen
 - `./henry`: Lösungen, die Henry mir geschickt hat
 - `./img`: Bilder für dieses README
 - `./python`: Python files (nur eine, hätten ja auch noch mehr werden können)
