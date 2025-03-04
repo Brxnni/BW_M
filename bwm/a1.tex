@@ -1,0 +1,43 @@
+\setlength{\mathindent}{2cm}
+
+Gegeben seien die Werte $i_1$ bis $i_9$, auf welche die Positionen der Felder, $1$ bis $9$, zufällig verteilt sind.
+Fridolin springt von Position $0$ zu $i_1$, dann zu $i_2$ usw. bis $i_9$ und schließlich zurück zu $0$. \\[10pt]
+Für eine so gegebene beliebige Reihenfolge der Zahlen $1$ - $9$ lässt sich die zurückgelegte Strecke mit der folgenden Formel berechnen:
+\begin{align*}
+	d &= i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|
+\end{align*}
+
+\begin{itemize}
+	\item[a)] Ein Beispiel für eine Sprungfolge mit der Gesamtdistanz $20$ ist \\
+	$1, 2, 3, 4, 5, 6, 8, 7, 9$ (gefunden durch Ausprobieren):
+\end{itemize}
+\begin{align*}
+	d &= 1 + 9 + |2-1|+|3-2|+|4-3|+|5-4| \\
+	&+ |6-5|+|8-6|+|7-8|+|9-7| \\
+	&= 20
+\end{align*}
+
+Um zu beweisen, dass für die Gesamtdistanz keine ungerade Strecke herauskommen kann, wird die Parität gebildet:
+\begin{align*}
+	d \bmod 2 &= \left(i_1 + i_9 + \sum_{k=1}^{8} |i_{k+1} - i_k|\right) \bmod 2
+\end{align*}
+
+Die Betragsstriche können ignoriert werden, da sie an der Parität der Differenz $i_{k+1}-i_k$ nichts ändern:
+\begin{align*}
+	d &\equiv i_1 + i_9 + \sum_{k=1}^{8} i_{k+1} - i_k \pmod 2 \\
+	&\equiv i_1 + i_9 + (i_2 - i_1) + (i_3 - i_2) + (i_4 - i_3) + (i_5 - i_4) \\
+	&+ (i_6 - i_5) + (i_7 - i_6) + (i_8 - i_7) + (i_9 - i_8) \pmod 2 \\[7pt]
+	&\equiv i_1 - i_1 + i_2 - i_2 + i_3 - i_3 + i_4 - i_4 + i_5 - i_5 + i_6 - i_6 \\
+	&+ i_7 - i_7 + i_8 - i_8 + i_9 + i_9 \pmod 2 \\[7pt]
+	&\equiv 2 i_9 \pmod 2
+\end{align*}
+
+$2 i_9$ ist immer gerade, also gilt:
+\begin{align*}
+	d \equiv 2 i_9 \equiv 0 \pmod 2
+\end{align*}
+
+Folglich ist $d$ für alle Sprungreihenfolgen eine gerade Zahl.
+\begin{itemize}
+	\item[b)] Die zurückgelegte Strecke kann also nie $25$ Längeneinheiten betragen. \qed
+\end{itemize}

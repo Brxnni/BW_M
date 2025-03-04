@@ -1,0 +1,338 @@
+\setlength{\mathindent}{4cm}
+
+% Was häufig benutzt wird
+\newcommand{\Feld}{ +(-0.5,-0.5) rectangle +(0.5,0.5) }
+\newcommand{\Ecke}{ [pattern={Lines[angle=135,distance=2]}, pattern color=orange] \Feld }
+
+\newcommand{\RenateZug}{ [pattern={Lines[angle=45,distance=2]}, pattern color=magenta] \Feld }
+\newcommand{\RenateFeld}{ [fill=magenta] \Feld }
+\newcommand{\ErhardZug}{ [pattern={Lines[angle=45,distance=2]}, pattern color=teal] \Feld }
+\newcommand{\ErhardFeld}{ [fill=teal] \Feld }
+
+In allen folgenden Diagrammen steht eine gestrichelte Linie für eine Symmetrieachse, magenta und türkis markierte Felder sind ausgemalt, wobei der Anfänger die Farbe magenta hat.
+\\[10pt]
+Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, der zuerst in dieses Feld malen muss: \\
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \Feld;
+	\draw (2,1) \Feld;
+	\draw (2,2) \Feld;
+	\draw [dashed] (3,0) -- (0,3);
+
+	\node at (3.5,1.5) {$\rightarrow$};
+	\draw (5,1) \RenateZug;
+	\draw (6,1) \Feld;
+	\draw (6,2) \Feld;
+	\node at (7.5,1.5) {$\rightarrow$};
+	\draw (9,1) \RenateZug;
+	\draw (10,1) \ErhardZug;
+	\draw (10,2) \ErhardZug;
+	\node[anchor=west] at (11.5,1.5) {$\rightarrow$ Anfänger verliert};
+
+	\node at (3.5,4.5) {$\rightarrow$};
+	\draw (5,4) \RenateZug;
+	\draw (6,4) \RenateZug;
+	\draw (6,5) \Feld;
+	\node at (7.5,4.5) {$\rightarrow$};
+	\draw (9,4) \RenateZug;
+	\draw (10,4) \RenateZug;
+	\draw (10,5) \ErhardZug;
+	\node[anchor=west] at (11.5,4.5) {$\rightarrow$ Anfänger verliert};
+\end{tikzpicture}
+\\
+Basierend darauf gilt dies auch für eine Ecke, die in beide Dimensionen beliebig viele Felder größer ist. Derjenige, der nicht anfängt, kopiert exakt die Menge an ausgemalten Feldern des Anfängers ($P$) auf der anderen Kante und zwingt den anfangenden Spieler in eine weitere kleinere $p\times p$-Ecke (dargestellt durch Orange):
+\\
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \RenateZug;
+	\draw (2,1) \RenateZug;
+	\node[anchor=center] at (3,1) {$...$};
+	\draw (4,1) \RenateZug;
+	\draw (5,1) \Ecke;
+	\draw (5,2) \ErhardZug;
+	\node[anchor=center] at (5,3) {$...$};
+	\draw (5,4) \ErhardZug;
+	\draw (5,5) \ErhardZug;
+	\draw [dashed] (6,0) -- (3,3);
+
+	\draw [decorate,decoration={brace,amplitude=5pt}] (0.55,0) -- (4.45,0) node[midway,yshift=1em]{P};
+	\draw [decorate,decoration={brace,amplitude=5pt}] (4.55,0) -- (5.45,0) node[midway,yshift=1em]{p};
+
+	\draw [decorate,decoration={brace,amplitude=5pt}] (6,0.55) -- (6,1.45) node[midway,xshift=1em]{p};
+	\draw [decorate,decoration={brace,amplitude=5pt}] (6,1.55) -- (6,5.45) node[midway,xshift=1em]{P};
+
+\end{tikzpicture}
+\\
+Fährt Renate diese Strategie, kann sie Erhard irgendwann in eine $2\times2$-Ecke zwingen, in der er verliert, er hat also dann sicher verloren, wenn er in einer $p\times p$-Ecke beginnen muss.
+\\[10pt]
+Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spieler, der zuerst innerhalb dieser Form dran ist:
+\\
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \Feld;
+	\draw (2,1) \Feld;
+	\draw (3,1) \Feld;
+	\draw (4,1) \Feld;
+	\draw (5,1) \Feld;
+	\draw (6,1) \Feld;
+	\draw (6,2) \Feld;
+	\draw (6,3) \Feld;
+
+	\draw (6,4) \Feld;
+	\draw (1,4) \RenateZug;
+
+	\draw (1,3) \Feld;
+	\draw (1,2) \Feld;
+
+	\draw [dashed] (3.5,0) -- (3.5,5);
+	\node[anchor=west] at (6.5,2.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \Feld;
+	\draw (2,1) \Feld;
+	\draw (3,1) \Feld;
+	\draw (4,1) \Feld;
+	\draw (5,1) \Feld;
+	\draw (6,1) \Feld;
+	\draw (6,2) \Feld;
+	\draw (6,3) \Feld;
+
+	\draw (6,4) \ErhardZug;
+	\draw (1,4) \RenateFeld;
+
+	\draw (1,3) \Feld;
+	\draw (1,2) \Feld;
+
+	\draw [dashed] (3.5,0) -- (3.5,5);
+	\node[anchor=west] at (6.5,2.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \Feld;
+	\draw (2,1) \Feld;
+	\draw (3,1) \Feld;
+	\draw (4,1) \Feld;
+	\draw (5,1) \Feld;
+	\draw (6,1) \Feld;
+	\draw (6,2) \Feld;
+	\draw (6,3) \Feld;
+
+	\draw (6,4) \ErhardFeld;
+	\draw (1,4) \RenateFeld;
+
+	\draw (1,3) \RenateZug;
+	\draw (1,2) \Feld;
+
+	\draw [dashed] (3.5,0) -- (3.5,5);
+	\node[anchor=west] at (6.5,2.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \Feld;
+	\draw (2,1) \Feld;
+	\draw (3,1) \Feld;
+	\draw (4,1) \Feld;
+	\draw (5,1) \Feld;
+	\draw (6,1) \Feld;
+	\draw (6,2) \Feld;
+	\draw (6,3) \ErhardZug;
+
+	\draw (6,4) \ErhardFeld;
+	\draw (1,4) \RenateFeld;
+
+	\draw (1,3) \RenateFeld;
+	\draw (1,2) \Feld;
+
+	\draw [dashed] (3.5,0) -- (3.5,5);
+	\node[anchor=west] at (6.5,2.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \Feld;
+	\draw (2,1) \Feld;
+	\draw (3,1) \Feld;
+	\draw (4,1) \Feld;
+	\draw (5,1) \Feld;
+	\draw (6,1) \Feld;
+	\draw (6,2) \Feld;
+	\draw (6,3) \ErhardFeld;
+
+	\draw (6,4) \ErhardFeld;
+	\draw (1,4) \RenateFeld;
+
+	\draw (1,3) \RenateFeld;
+	\draw (1,2) \RenateZug;
+
+	\draw [dashed] (3.5,0) -- (3.5,5);
+	\node[anchor=west] at (6.5,2.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \ErhardZug;
+	\draw (2,1) \ErhardZug;
+	\draw (3,1) \ErhardZug;
+	\draw (4,1) \ErhardZug;
+	\draw (5,1) \Ecke;
+	\draw (6,1) \Ecke;
+	\draw (6,2) \Ecke;
+	\draw (6,3) \ErhardFeld;
+
+	\draw (6,4) \ErhardFeld;
+	\draw (1,4) \RenateFeld;
+
+	\draw (1,4) \Feld;
+	\draw (1,3) \RenateFeld;
+	\draw (1,2) \RenateFeld;
+
+	\draw [dashed] (3.5,0) -- (3.5,5);
+\end{tikzpicture}
+\\
+Erhard muss anfangen und Renate kopiert solange seine Spielzüge auf der jeweils anderen Seite der Spiegelachse, bis Erhard zum ersten mal ein Feld ausmalt, das die obere Kante berührt oder in dieser liegt. Dann kann Renate Erhard in eine $p\times p$-Ecke zwingen und Renate gewinnt (wie oben bewiesen).
+\\[10pt]
+Renate hat nun für zwei verschiedene Arten von Feldern Strategien:
+\begin{itemize}
+	\item[Fall 1:] $n=m$
+\end{itemize}
+
+Hierfür beginnt Renate mit dem Ausmalen eines einzelnen Feldes E in einer Ecke. Erhard kann in seinem nächsten Zug nur bis zu $n-1$ Felder auf genau einer Kante ausmalen. Renate wird solange mit jedem ihrer Züge das Spielfeld symmetrisch zur Spiegelachse, die die Strecke zwischen E und der Ecke diagonal gegenüber von E ist (eingezeichnet als gestrichelte Linie), halten, bis sich Erhard als Anfänger in einer $p\times p$-Ecke findet und verliert.
+\\[10pt]
+Ab dem zweiten Diagramm macht pro Bild immer erst Erhard (türkis) einen Zug, dann Renate (magenta):
+\\[10pt]
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \Ecke;
+	\draw (2,1) \Ecke;
+	\draw (3,1) \Ecke;
+	\draw (4,1) \Ecke;
+	\draw (5,1) \Ecke;
+	\draw (6,1) \Ecke;
+	\draw (6,2) \Ecke;
+	\draw (6,3) \Ecke;
+	\draw (6,4) \Ecke;
+	\draw (6,5) \Ecke;
+	\draw (6,6) \Ecke;
+
+	\draw (5,6) \Feld;
+	\draw (4,6) \Feld;
+	\draw (3,6) \Feld;
+	\draw (2,6) \Feld;
+	\draw (1,6) \RenateZug;
+
+	\draw (1,5) \Feld;
+	\draw (1,4) \Feld;
+	\draw (1,3) \Feld;
+	\draw (1,2) \Feld;
+
+	\draw [dashed] (7,0) -- (0,7);
+	\node[anchor=west] at (6.5,3.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \Ecke;
+	\draw (2,1) \Ecke;
+	\draw (3,1) \Ecke;
+	\draw (4,1) \Ecke;
+	\draw (5,1) \Ecke;
+	\draw (6,1) \Ecke;
+	\draw (6,2) \Ecke;
+	\draw (6,3) \Ecke;
+	\draw (6,4) \Ecke;
+	\draw (6,5) \Ecke;
+	\draw (6,6) \Ecke;
+
+	\draw (5,6) \Feld;
+	\draw (4,6) \Feld;
+	\draw (3,6) \Feld;
+	\draw (2,6) \ErhardZug;
+	\draw (1,6) \RenateFeld;
+
+	\draw (1,5) \RenateZug;
+	\draw (1,4) \Feld;
+	\draw (1,3) \Feld;
+	\draw (1,2) \Feld;
+
+	\draw [dashed] (7,0) -- (0,7);
+	\node[anchor=west] at (6.5,3.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \Ecke;
+	\draw (2,1) \Ecke;
+	\draw (3,1) \Ecke;
+	\draw (4,1) \Ecke;
+	\draw (5,1) \Ecke;
+	\draw (6,1) \Ecke;
+	\draw (6,2) \Ecke;
+	\draw (6,3) \Ecke;
+	\draw (6,4) \Ecke;
+	\draw (6,5) \Ecke;
+	\draw (6,6) \Ecke;
+
+	\draw (5,6) \Feld;
+	\draw (4,6) \RenateZug;
+	\draw (3,6) \RenateZug;
+	\draw (2,6) \ErhardFeld;
+	\draw (1,6) \RenateFeld;
+
+	\draw (1,5) \RenateFeld;
+	\draw (1,4) \ErhardZug;
+	\draw (1,3) \ErhardZug;
+	\draw (1,2) \Feld;
+
+	\draw [dashed] (7,0) -- (0,7);
+\end{tikzpicture}
+\\
+Egal wieviele Felder Erhard in seinem nächsten Zug ausmalt, wird er in eine $p\times p$-Ecke (gezeichnet in Orange) gezwungen und verliert:
+\\
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \Ecke;
+	\draw (2,1) \Ecke;
+	\draw (3,1) \Ecke;
+	\draw (4,1) \Ecke;
+	\draw (5,1) \Ecke;
+	\draw (6,1) \Ecke;
+	\draw (6,2) \Ecke;
+	\draw (6,3) \Ecke;
+	\draw (6,4) \Ecke;
+	\draw (6,5) \Ecke;
+	\draw (6,6) \Ecke;
+
+	\draw (5,6) \ErhardZug;
+	\draw (4,6) \RenateFeld;
+	\draw (3,6) \RenateFeld;
+	\draw (2,6) \ErhardFeld;
+	\draw (1,6) \RenateFeld;
+
+	\draw (1,5) \RenateFeld;
+	\draw (1,4) \ErhardFeld;
+	\draw (1,3) \ErhardFeld;
+	\draw (1,2) \RenateZug;
+
+	\draw [dashed] (7,0) -- (0,7);
+	\node[anchor=west] at (7,3.5) {oder};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \RenateZug;
+	\draw (2,1) \Ecke;
+	\draw (3,1) \Ecke;
+	\draw (4,1) \Ecke;
+	\draw (5,1) \Ecke;
+	\draw (6,1) \Ecke;
+	\draw (6,2) \Ecke;
+	\draw (6,3) \Ecke;
+	\draw (6,4) \Ecke;
+	\draw (6,5) \Ecke;
+	\draw (6,6) \ErhardZug;
+
+	\draw (5,6) \ErhardZug;
+	\draw (4,6) \RenateFeld;
+	\draw (3,6) \RenateFeld;
+	\draw (2,6) \ErhardFeld;
+	\draw (1,6) \RenateFeld;
+
+	\draw (1,5) \RenateFeld;
+	\draw (1,4) \ErhardFeld;
+	\draw (1,3) \ErhardFeld;
+	\draw (1,2) \RenateZug;
+
+	\draw [dashed] (7,0) -- (0,7);
+\end{tikzpicture}
+
+\begin{itemize}
+	\item[Fall 2:] $n\neq m$
+\end{itemize}
+
+Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. So bleibt als Spielfeld noch eine "Hufeisenform" übrig. In diesem Hufeisen ist eine Seite um mindestens 2 Felder länger als die andere. Nach dem Beweis oben verliert der Anfänger (nach Renates Strategie also Erhard) in diesem Hufeisen auch (wie bereits oben gezeigt), Renate hat also hier auch eine sichere Gewinnstrategie.
+\\[10pt]
+Renate hat also durch Fall 1 und 2 eine Gewinnstrategie für alle erlaubten Spielfeldgrößen, also für alle $n, m \geq 3$. \qed
+\end{document}
