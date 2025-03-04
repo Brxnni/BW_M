@@ -332,7 +332,103 @@ Egal wieviele Felder Erhard in seinem nächsten Zug ausmalt, wird er in eine $p\
 	\item[Fall 2:] $n\neq m$
 \end{itemize}
 
-Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. So bleibt als Spielfeld noch eine "Hufeisenform" übrig. In diesem Hufeisen ist eine Seite um mindestens 2 Felder länger als die andere. Nach dem Beweis oben verliert der Anfänger (nach Renates Strategie also Erhard) in diesem Hufeisen auch (wie bereits oben gezeigt), Renate hat also hier auch eine sichere Gewinnstrategie.
+Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. So bleibt als Spielfeld noch eine "Hufeisenform" übrig. In diesem Hufeisen ist eine Seite um mindestens 2 Felder länger als die andere. Nach dem Beweis oben verliert der Anfänger (nach Renates Strategie also Erhard) in diesem Hufeisen auch (wie bereits oben gezeigt), Renate hat also hier auch eine sichere Gewinnstrategie:
 \\[10pt]
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \Feld;
+	\draw (2,1) \Feld;
+	\draw (3,1) \Feld;
+	\draw (4,1) \Feld;
+	\draw (5,1) \Feld;
+	\draw (6,1) \Feld;
+	\draw (7,1) \Feld;
+	\draw (8,1) \Feld;
+
+	\draw (8,2) \Feld;
+	\draw (8,3) \Feld;
+	\draw (8,4) \Feld;
+	\draw (8,5) \Feld;
+
+	\draw (8,6) \RenateZug;
+	\draw (7,6) \RenateZug;
+	\draw (6,6) \RenateZug;
+	\draw (5,6) \RenateZug;
+	\draw (4,6) \RenateZug;
+	\draw (3,6) \RenateZug;
+	\draw (2,6) \RenateZug;
+	\draw (1,6) \RenateZug;
+
+	\draw (1,5) \Feld;
+	\draw (1,4) \Feld;
+	\draw (1,3) \Feld;
+	\draw (1,2) \Feld;
+
+	\draw [dashed] (4.5,0) -- (4.5,7);
+	\node[anchor=west] at (8.5,3.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \Feld;
+	\draw (2,1) \Feld;
+	\draw (3,1) \Feld;
+	\draw (4,1) \Feld;
+	\draw (5,1) \Feld;
+	\draw (6,1) \Feld;
+	\draw (7,1) \Feld;
+	\draw (8,1) \Feld;
+
+	\draw (8,2) \ErhardZug;
+	\draw (8,3) \ErhardZug;
+	\draw (8,4) \ErhardZug;
+	\draw (8,5) \ErhardZug;
+
+	\draw (8,6) \RenateFeld;
+	\draw (7,6) \RenateFeld;
+	\draw (6,6) \RenateFeld;
+	\draw (5,6) \RenateFeld;
+	\draw (4,6) \RenateFeld;
+	\draw (3,6) \RenateFeld;
+	\draw (2,6) \RenateFeld;
+	\draw (1,6) \RenateFeld;
+
+	\draw (1,5) \Feld;
+	\draw (1,4) \Feld;
+	\draw (1,3) \Feld;
+	\draw (1,2) \Feld;
+
+	\draw [dashed] (4.5,0) -- (4.5,7);
+	\node[anchor=west] at (8.5,3.5) {$\rightarrow$};
+\end{tikzpicture}
+\begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+	\draw (1,1) \Ecke;
+	\draw (2,1) \Ecke;
+	\draw (3,1) \Ecke;
+	\draw (4,1) \Ecke;
+	\draw (5,1) \Ecke;
+	\draw (6,1) \RenateZug;
+	\draw (7,1) \RenateZug;
+	\draw (8,1) \RenateZug;
+
+	\draw (8,2) \ErhardFeld;
+	\draw (8,3) \ErhardFeld;
+	\draw (8,4) \ErhardFeld;
+	\draw (8,5) \ErhardFeld;
+
+	\draw (8,6) \RenateFeld;
+	\draw (7,6) \RenateFeld;
+	\draw (6,6) \RenateFeld;
+	\draw (5,6) \RenateFeld;
+	\draw (4,6) \RenateFeld;
+	\draw (3,6) \RenateFeld;
+	\draw (2,6) \RenateFeld;
+	\draw (1,6) \RenateFeld;
+
+	\draw (1,5) \Ecke;
+	\draw (1,4) \Ecke;
+	\draw (1,3) \Ecke;
+	\draw (1,2) \Ecke;
+
+	\draw [dashed] (4.5,0) -- (4.5,7);
+\end{tikzpicture}
+
 Renate hat also durch Fall 1 und 2 eine Gewinnstrategie für alle erlaubten Spielfeldgrößen, also für alle $n, m \geq 3$. \qed
 \end{document}
