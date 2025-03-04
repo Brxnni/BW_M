@@ -9,6 +9,15 @@
 \newcommand{\ErhardZug}{ [pattern={Lines[angle=45,distance=2]}, pattern color=teal] \Feld }
 \newcommand{\ErhardFeld}{ [fill=teal] \Feld }
 
+% https://tex.stackexchange.com/a/98843
+\newenvironment{NMCenter}{
+	\vspace{\dimexpr-2\parsep-2\parskip\relax}
+	\begin{center}
+}{
+	\end{center}
+	\vspace{\dimexpr-2\parsep-2\parskip\relax}
+}
+
 In allen folgenden Diagrammen steht eine gestrichelte Linie für eine Symmetrieachse, magenta und türkis markierte Felder sind ausgemalt, wobei der Anfänger die Farbe magenta hat.
 \\[10pt]
 Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, der zuerst in dieses Feld malen muss: \\
@@ -333,7 +342,8 @@ Egal wieviele Felder Erhard in seinem nächsten Zug ausmalt, wird er in eine $p\
 \end{itemize}
 
 Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. So bleibt als Spielfeld noch eine "Hufeisenform" übrig. In diesem Hufeisen ist eine Seite um mindestens 2 Felder länger als die andere. Nach dem Beweis oben verliert der Anfänger (nach Renates Strategie also Erhard) in diesem Hufeisen auch (wie bereits oben gezeigt), Renate hat also hier auch eine sichere Gewinnstrategie:
-\\[10pt]
+\\
+\begin{NMCenter}
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\draw (1,1) \Feld;
 	\draw (2,1) \Feld;
@@ -429,6 +439,7 @@ Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. 
 
 	\draw [dashed] (4.5,0) -- (4.5,7);
 \end{tikzpicture}
+\end{NMCenter}
 
 Renate hat also durch Fall 1 und 2 eine Gewinnstrategie für alle erlaubten Spielfeldgrößen, also für alle $n, m \geq 3$. \qed
 \end{document}
