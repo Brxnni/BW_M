@@ -22,7 +22,8 @@
 
 In allen folgenden Diagrammen steht eine gestrichelte Linie für eine Symmetrieachse, magenta und türkis markierte Felder sind ausgemalt, wobei der Anfänger die Farbe magenta hat.
 \\[10pt]
-Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, der zuerst in dieses Feld malen muss: \\
+Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, der zuerst in dieses Feld malen muss:
+\begin{center}
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\draw (1,1) \Feld;
 	\draw (2,1) \Feld;
@@ -49,9 +50,9 @@ Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, 
 	\draw (10,5) \ErhardZug;
 	\node[anchor=west] at (11.5,4.5) {$\rightarrow$ Anfänger verliert};
 \end{tikzpicture}
-\\
+\end{center}
 Basierend darauf gilt dies auch für eine Ecke, die in beide Dimensionen beliebig viele Felder größer ist. Derjenige, der nicht anfängt, kopiert exakt die Menge an ausgemalten Feldern des Anfängers ($P$) auf der anderen Kante und zwingt den anfangenden Spieler in eine weitere kleinere $p\times p$-Ecke (dargestellt durch Orange):
-\\
+\begin{NMCenter}
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\draw (1,1) \RenateZug;
 	\draw (2,1) \RenateZug;
@@ -69,9 +70,8 @@ Basierend darauf gilt dies auch für eine Ecke, die in beide Dimensionen beliebi
 
 	\draw [decorate,decoration={brace,amplitude=5pt}] (6,0.55) -- (6,1.45) node[midway,xshift=1em]{p};
 	\draw [decorate,decoration={brace,amplitude=5pt}] (6,1.55) -- (6,5.45) node[midway,xshift=1em]{P};
-
 \end{tikzpicture}
-\\
+\end{NMCenter}
 Fährt Renate diese Strategie, kann sie Erhard irgendwann in eine $2\times2$-Ecke zwingen, in der er verliert, er hat also dann sicher verloren, wenn er in einer $p\times p$-Ecke beginnen muss (für ein beliebiges $p \geq 2$).
 \\[10pt]
 Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spieler, der zuerst innerhalb dieser Form dran ist:
@@ -192,7 +192,8 @@ Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spiele
 \end{tikzpicture}
 \\
 Erhard muss anfangen und Renate kopiert solange seine Spielzüge auf der jeweils anderen Seite der Spiegelachse, bis Erhard zum ersten mal ein Feld ausmalt, das die obere Kante berührt oder in dieser liegt. Dann kann Renate Erhard in eine $p\times p$-Ecke zwingen und Renate gewinnt (wie oben bewiesen).
-\\[10pt]
+\pagebreak
+
 Renate hat nun für zwei verschiedene Arten von Feldern Strategien:
 \begin{itemize}
 	\item[Fall 1:] $n=m$
@@ -201,7 +202,7 @@ Renate hat nun für zwei verschiedene Arten von Feldern Strategien:
 Hierfür beginnt Renate mit dem Ausmalen eines einzelnen Feldes E in einer Ecke. Erhard kann in seinem nächsten Zug nur bis zu $n-1$ Felder auf genau einer Kante ausmalen. Renate wird solange mit jedem ihrer Züge das Spielfeld symmetrisch zur Spiegelachse, die die Strecke zwischen E und der Ecke diagonal gegenüber von E ist (eingezeichnet als gestrichelte Linie), halten, bis sich Erhard als Anfänger in einer $p\times p$-Ecke findet und verliert.
 \\[10pt]
 Ab dem zweiten Diagramm macht pro Bild immer erst Erhard (türkis) einen Zug, dann Renate (magenta):
-\\[10pt]
+\begin{NMCenter}
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\draw (1,1) \Ecke;
 	\draw (2,1) \Ecke;
@@ -282,9 +283,10 @@ Ab dem zweiten Diagramm macht pro Bild immer erst Erhard (türkis) einen Zug, da
 
 	\draw [dashed] (7,0) -- (0,7);
 \end{tikzpicture}
-\\
+\end{NMCenter}
 Egal wieviele Felder Erhard in seinem nächsten Zug ausmalt, wird er in eine $p\times p$-Ecke (gezeichnet in Orange) gezwungen und verliert:
 \\
+\begin{NMCenter}
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\draw (1,1) \Ecke;
 	\draw (2,1) \Ecke;
@@ -338,6 +340,7 @@ Egal wieviele Felder Erhard in seinem nächsten Zug ausmalt, wird er in eine $p\
 
 	\draw [dashed] (7,0) -- (0,7);
 \end{tikzpicture}
+\end{NMCenter}
 
 \begin{itemize}
 	\item[Fall 2:] $n\neq m$
