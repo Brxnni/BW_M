@@ -2,7 +2,9 @@
 
 zusammen mit henry :3
 
-[Link zum PDF mit unseren Lösungen](final.pdf) (so wie es eingereicht wurde, wird nicht mehr neugeneriert, falls irgendwelche Änderungen an `bwm.tex` gemacht werden)
+[Link zu Aufgaben (https://www.mathe-wettbewerbe.de/)](https://www.mathe-wettbewerbe.de/fileadmin/Mathe-Wettbewerbe/Bundeswettbewerb_Mathematik/Dokumente/Aufgaben_und_Loesungen_BWM/2025/BWM_2025_Aufgabenblatt_SCREEN.pdf)
+
+[Link zum PDF mit unseren Lösungen](final.pdf) (Stand 03.03.2025, also so wie es eingereicht wurde) Wird nicht mehr neugeneriert, wenn Änderungen an `bwm.tex` gemacht werden, das neue PDF muss jeder selbst kompilieren
 
 ## Struktur
 
