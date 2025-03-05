@@ -196,7 +196,7 @@ Erhard muss anfangen und Renate kopiert solange seine Spielzüge auf der jeweils
 
 Renate hat nun für zwei verschiedene Arten von Feldern Strategien:
 \begin{itemize}
-	\item[Fall 1:] $n=m$
+	\item[Fall 1:] $m=n$
 \end{itemize}
 
 Hierfür beginnt Renate mit dem Ausmalen eines einzelnen Feldes E in einer Ecke. Erhard kann in seinem nächsten Zug nur bis zu $n-1$ Felder auf genau einer Kante ausmalen. Renate wird solange mit jedem ihrer Züge das Spielfeld symmetrisch zur Spiegelachse, die die Strecke zwischen E und der Ecke diagonal gegenüber von E ist (eingezeichnet als gestrichelte Linie), halten, bis sich Erhard als Anfänger in einer $p\times p$-Ecke findet und verliert.
@@ -343,7 +343,7 @@ Egal wieviele Felder Erhard in seinem nächsten Zug ausmalt, wird er in eine $p\
 \end{NMCenter}
 
 \begin{itemize}
-	\item[Fall 2:] $n\neq m$
+	\item[Fall 2:] $m\neq n$
 \end{itemize}
 
 Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. So bleibt als Spielfeld noch eine "Hufeisenform" übrig. In diesem Hufeisen ist eine Seite um mindestens 2 Felder länger als die andere. Nach dem Beweis oben verliert der Anfänger (nach Renates Strategie also Erhard) in diesem Hufeisen auch (wie bereits oben gezeigt), Renate hat also hier auch eine sichere Gewinnstrategie (grau steht hier für beliebige Züge beider Seiten):
@@ -446,5 +446,5 @@ Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. 
 \end{tikzpicture}
 \end{NMCenter}
 
-Renate hat also durch Fall 1 und 2 eine Gewinnstrategie für alle erlaubten Spielfeldgrößen, also für alle $n, m \geq 3$. \qed
+Renate hat also durch Fall 1 und 2 eine Gewinnstrategie für alle erlaubten Spielfeldgrößen, also für alle $m, n \geq 3$. \qed
 \end{document}
