@@ -8,6 +8,8 @@
 \newcommand{\RenateFeld}{ [fill=magenta] \Feld }
 \newcommand{\ErhardZug}{ [pattern={Lines[angle=45,distance=2]}, pattern color=teal] \Feld }
 \newcommand{\ErhardFeld}{ [fill=teal] \Feld }
+\newcommand{\UnbZug}{ [pattern={Lines[angle=45,distance=2]}, pattern color=gray] \Feld }
+\newcommand{\UnbFeld}{ [fill=gray] \Feld }
 
 % https://tex.stackexchange.com/a/98843
 \newenvironment{NMCenter}{
@@ -70,7 +72,7 @@ Basierend darauf gilt dies auch für eine Ecke, die in beide Dimensionen beliebi
 
 \end{tikzpicture}
 \\
-Fährt Renate diese Strategie, kann sie Erhard irgendwann in eine $2\times2$-Ecke zwingen, in der er verliert, er hat also dann sicher verloren, wenn er in einer $p\times p$-Ecke beginnen muss.
+Fährt Renate diese Strategie, kann sie Erhard irgendwann in eine $2\times2$-Ecke zwingen, in der er verliert, er hat also dann sicher verloren, wenn er in einer $p\times p$-Ecke beginnen muss (für ein beliebiges $p \geq 2$).
 \\[10pt]
 Läuft das Spiel auf eine "Hufeisenform" hinaus, verliert auch wieder der Spieler, der zuerst innerhalb dieser Form dran ist:
 \\
@@ -341,7 +343,7 @@ Egal wieviele Felder Erhard in seinem nächsten Zug ausmalt, wird er in eine $p\
 	\item[Fall 2:] $n\neq m$
 \end{itemize}
 
-Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. So bleibt als Spielfeld noch eine "Hufeisenform" übrig. In diesem Hufeisen ist eine Seite um mindestens 2 Felder länger als die andere. Nach dem Beweis oben verliert der Anfänger (nach Renates Strategie also Erhard) in diesem Hufeisen auch (wie bereits oben gezeigt), Renate hat also hier auch eine sichere Gewinnstrategie:
+Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. So bleibt als Spielfeld noch eine "Hufeisenform" übrig. In diesem Hufeisen ist eine Seite um mindestens 2 Felder länger als die andere. Nach dem Beweis oben verliert der Anfänger (nach Renates Strategie also Erhard) in diesem Hufeisen auch (wie bereits oben gezeigt), Renate hat also hier auch eine sichere Gewinnstrategie (grau entspricht hier beliebigen Zügen beider Seiten):
 \\
 \begin{NMCenter}
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
@@ -386,10 +388,10 @@ Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. 
 	\draw (7,1) \Feld;
 	\draw (8,1) \Feld;
 
-	\draw (8,2) \ErhardZug;
-	\draw (8,3) \ErhardZug;
-	\draw (8,4) \ErhardZug;
-	\draw (8,5) \ErhardZug;
+	\draw (8,2) \UnbZug;
+	\draw (8,3) \UnbZug;
+	\draw (8,4) \UnbZug;
+	\draw (8,5) \UnbZug;
 
 	\draw (8,6) \RenateFeld;
 	\draw (7,6) \RenateFeld;
@@ -400,7 +402,7 @@ Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. 
 	\draw (2,6) \RenateFeld;
 	\draw (1,6) \RenateFeld;
 
-	\draw (1,5) \Feld;
+	\draw (1,5) \UnbZug;
 	\draw (1,4) \Feld;
 	\draw (1,3) \Feld;
 	\draw (1,2) \Feld;
@@ -413,15 +415,15 @@ Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. 
 	\draw (2,1) \Ecke;
 	\draw (3,1) \Ecke;
 	\draw (4,1) \Ecke;
-	\draw (5,1) \Ecke;
+	\draw (5,1) \RenateZug;
 	\draw (6,1) \RenateZug;
 	\draw (7,1) \RenateZug;
 	\draw (8,1) \RenateZug;
 
-	\draw (8,2) \ErhardFeld;
-	\draw (8,3) \ErhardFeld;
-	\draw (8,4) \ErhardFeld;
-	\draw (8,5) \ErhardFeld;
+	\draw (8,2) \UnbFeld;
+	\draw (8,3) \UnbFeld;
+	\draw (8,4) \UnbFeld;
+	\draw (8,5) \UnbFeld;
 
 	\draw (8,6) \RenateFeld;
 	\draw (7,6) \RenateFeld;
@@ -432,7 +434,7 @@ Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. 
 	\draw (2,6) \RenateFeld;
 	\draw (1,6) \RenateFeld;
 
-	\draw (1,5) \Ecke;
+	\draw (1,5) \UnbFeld;
 	\draw (1,4) \Ecke;
 	\draw (1,3) \Ecke;
 	\draw (1,2) \Ecke;
