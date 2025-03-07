@@ -4,7 +4,18 @@ zusammen mit henry :3
 
 [Link zu Aufgaben (https://www.mathe-wettbewerbe.de/)](https://www.mathe-wettbewerbe.de/fileadmin/Mathe-Wettbewerbe/Bundeswettbewerb_Mathematik/Dokumente/Aufgaben_und_Loesungen_BWM/2025/BWM_2025_Aufgabenblatt_SCREEN.pdf)
 
-[Link zum PDF mit unseren Lösungen](final.pdf) (Stand 03.03.2025, also so wie es eingereicht wurde) Wird nicht mehr neugeneriert, wenn Änderungen an `bwm.tex` gemacht werden, das neue PDF muss jeder selbst kompilieren
+[Link zum PDF mit unseren Lösungen](final.pdf) (Stand 03.03.2025, also so wie es eingereicht wurde) Wird nicht mehr neugeneriert, wenn Änderungen an `bwm.tex` gemacht werden, die neue Version muss jeder selbst kompilieren
+
+## Potentielle Punktabzüge
+
+(In Bezug auf die [abgegebene Version](final.pdf), ich versuche momentan diese Fehler nachzuholen)
+
+|Aufgabe|Probleme|
+|-|-|
+|A1|- (ziemlich sicher)|
+|A2|unfertiges Ende, aus den beiden iterativen Mustern von 2^m und n!/(5m)! lässt dich theoretisch nicht zwingend folgern, dass die Reihe an LZ(n!) auch alle Ziffern unendlich oft hat|
+|A3|unerklärt, warum MC und ME die Winkelhalbierenden ihrer Halbkreissektoren sind|
+|A4|- (glaube ich, teste ich gerade programmatisch)|
 
 ## Struktur
 
