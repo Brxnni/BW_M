@@ -8,22 +8,27 @@ import time
 import numpy as np
 from typing import Self
 
+# "high intensity" ansi farben
 RED = "\033[91m"
+GREEN = "\033[92m"
 BLUE = "\033[94m"
 END = "\033[0m"
 
-# fuck you im doing oop now
+def clear() -> None: os.system("cls")
+
+# fick dich ich mach jetzt oop
 class Move:
 	def __init__(self, *args):
 		if len(args) == 2:
 			start, end = args
-			# automatic sorting, just in case
 			start, end = min([start, end]), max([start, end])
-			self.idxs = range(start, end+1)
+			self.idxs = list(range(start, end+1))
 			self.mode = "range"
 		elif len(args) == 1:
 			self.idxs = list(sorted(args[0]))
 			self.mode = "individual"
+		else:
+			raise ValueError()
 	def abs(self):
 		return len(self.idxs)
 	def __repr__(self) -> str:
@@ -31,69 +36,71 @@ class Move:
 			return f"<Move {self.idxs[0]}:{self.idxs[-1]}>"
 		else:
 			return f"<Move {' '.join([ str(i) for i in self.idxs])}>"
+	def __eq__(self, other: Self):
+		return self.idxs == other.idxs
 
 class Field:
 	def __init__(self, m, n):
-		# m = height, n = width in 2D representation
-		# if m < 3 or n < 3: raise ValueError("m,n !>= 3")
-		if m < 5 or n < 5: raise ValueError("m,n !>= 5 (buggy for 3 and 4 lmaoo)")
+		# m = höhe, n = breite (in 2d-zeichnung)
+		if m < 3 or n < 3: raise ValueError("m,n !>= 3")
 
 		self.m, self.n = m, n
+		self.l = 2*n+2*m-4
 
 		self.fields = [0 for _ in range(2*n+2*m-4)]
 		self.corners = [0, n-1, n+m-2, n+m+n-3] # nice
 
-		# pre-generate list of all possible moves
+		# liste an allen möglichen zügen vorrechnen
 		self.moves = []
-		# top left <-> top right
+		# einzelne felder
+		for i in range(len(self.fields)):
+			self.moves.append(Move(i, i))
+		# oben links <-> oben rechts
 		for i in range(self.corners[0], self.corners[1]+1):
 			for j in range(i+1, self.corners[1]+1):
 				self.moves.append(Move(i, j))
-		# bottom left <-> bottom right
+		# oben rechts <-> unten rechts
+		for i in range(self.corners[1], self.corners[2]+1):
+			for j in range(i+1, self.corners[2]+1):
+				self.moves.append(Move(i, j))
+		# unten links <-> unten rechts
 		for i in range(self.corners[2], self.corners[3]+1):
 			for j in range(i+1, self.corners[3]+1):
 				self.moves.append(Move(i, j))
-		# top left <-> bottom left
+		# oben links <-> unten links
 		for i in range(self.corners[3], len(self.fields)+1):
 			for j in range(i+1, len(self.fields)+1):
 				lst = list(range(i, j+1))
 				lst = [ idx if idx < len(self.fields) else 0 for idx in lst ]
 				self.moves.append(Move(lst))
-		# top right <-> bottom right
-		for i in range(self.corners[1], self.corners[2]+1):
-			for j in range(i+1, self.corners[2]+1):
-				self.moves.append(Move(i, j))
-		for i in range(len(self.fields)):
-			self.moves.append(Move(i, i))
 
-	def isempty(self) -> bool:
+	def is_empty(self) -> bool:
 		return all([ not f for f in self.fields ])
 
-	def isfull(self) -> bool:
+	def is_full(self) -> bool:
 		return all(self.fields)
 
 	def copy(self) -> Self:
 		return copy.deepcopy(self)
 
-	def render(self) -> None:
-		def rd(field): return {0:"[]", 1:f"{RED}[]{END}", 2:f"{BLUE}[]{END}"}[field]
+	def render(self, clear_term=False) -> None:
+		def rd(field): return {0:"[]", 1:f"{RED}[]{END}", 2:f"{BLUE}[]{END}", 3: f"{GREEN}[]{END}"}[field]
 
-		os.system("cls")
-		# first row
+		if clear_term: clear()
+		# obere reihe
 		print("".join([ rd(self.fields[i]) for i in range(self.corners[0], self.corners[1]+1) ]))
-		# middle rows
+		# kanten links und rechts
 		for r in range(self.m - 2):
 			print(rd(self.fields[-1-r]) + " "*(self.n-2)*2 + rd(self.fields[self.n+r]))
-		# last row
+		# untere reihe
 		print("".join([ rd(self.fields[i]) for i in range(self.corners[3], self.corners[2]-1, -1) ]))
-		time.sleep(1)
 
 	def get_valid_moves(self) -> list[Move]:
 		fields = [ bool(f) for f in self.fields ]
 
-		if self.isempty():
+		if self.is_empty():
 			return self.moves
-		if self.isfull():
+		if self.is_full():
 			return []
 
 		def is_range(nums: list[int]) -> bool:
@@ -131,7 +138,6 @@ class Field:
 			if not move_possible: continue
 
 			marked_idxs = [ i for i in range(len(fields)) if fields[i] or i in move.idxs ]
-			print(move, marked_idxs, idxs_adjacent(marked_idxs))
 			if not idxs_adjacent(marked_idxs):
 				continue
 
@@ -139,156 +145,148 @@ class Field:
 
 		return valid
 
-	def makeMove(self, move: Move, playerNum: int) -> None:
+	def make_move(self, move: Move, playerNum: int) -> None:
+		print(move, self.get_valid_moves())
+		if not move in self.get_valid_moves(): raise RuntimeError("Move not valid!")
 		for idx in move.idxs:
 			self.fields[idx] = playerNum
 
-def optimalRenateMove(f: Field) -> Move:
-	m, n = f.m, f.n
-	l = len(f.fields)
+# macht p*p-Ecken
+def pxp(f: Field, corner_idx: int) -> Move:
+	print("pxp", corner_idx)
+	m, n, l = f.m, f.n, f.l
+	corners = f.corners
 	fields = [ bool(fd) for fd in f.fields ]
 
-	# Starting move
-	if f.isempty():
-		# Corner
-		if n == m: return Move(0,0)
-		# Line
-		else: return Move(0, f.n-1)
-	else:
-		if n == m:
-			# Keep symmetry alive
-			if (not fields[f.corners[1]]) or (not fields[f.corners[3]]):
-				try: count_top = fields[f.corners[0]:f.corners[1]+1].index(False)
-				except: count_top = n
-				count_left = m - (fields[f.corners[3]:l] + [True]).index(True)
-				diff = abs(count_top - count_left)
+	if corner_idx == 2:
+		try: count_right = fields[corners[1]:corners[2]+1].index(False)
+		except: count_right = m
+		try: count_bottom = list(reversed(fields[corners[2]:corners[3]+1])).index(False)
+		except: count_bottom = n
 
-				if count_left > count_top: return Move(count_top, count_top+diff-1)
-				else: return Move(l-count_left-diff+1, l-count_left)
+		empty_bottom = n - count_bottom
+		empty_right = m - count_right
+
+		if empty_bottom >= 2 and empty_right >= 2:
+			req = abs(empty_bottom - empty_right)
+			if empty_bottom > empty_right:	return Move(corners[3]-count_bottom-req+1, corners[3]-count_bottom)
+			else:							return Move(corners[1]+count_right, corners[1]+count_right+req-1)
+		elif empty_right == 0:
+			return Move(corners[2]+1, corners[2]+empty_bottom-1)
+		elif empty_right == 1:
+			return Move(corners[2], corners[2]+empty_bottom-1)
+		elif empty_bottom == 0:
+			return Move(corners[2]-empty_right+1, corners[2]-1)
+		elif empty_bottom == 1:
+			return Move(corners[2]-empty_right+1, corners[2])
+
+	elif corner_idx == 3:
+		try: count_left = list(reversed(fields[corners[3]:] + [True])).index(False)
+		except: count_left = m
+		try: count_bottom = fields[corners[2]:corners[3]+1].index(False)
+		except: count_bottom = n
+
+		empty_bottom = n - count_bottom
+		empty_left = m - count_left
+
+		if empty_bottom >= 2 and empty_left >= 2:
+			req = abs(empty_bottom - empty_left)
+			if empty_bottom > empty_left:	return Move(corners[2]+count_bottom, corners[2]+count_bottom+req-1)
+			else:							return Move(l-count_left-req+1, l-count_left)
+		elif empty_left == 0:
+			return Move(corners[2]+count_bottom, corners[3]-1)
+		elif empty_left == 1:
+			return Move(corners[2]+count_bottom, corners[3])
+		elif empty_bottom == 0:
+			return Move(corners[3]+1, l-count_left)
+		elif empty_bottom == 1:
+			return Move(corners[3], l-count_left)
+
+	raise RuntimeError("Hilfe!!", fields)
+
+# funktioniert nur für situationen, in denen es selbst von anfang an gespielt hat
+def optimal_renate_move(f: Field) -> Move:
+	m, n, l = f.m, f.n, f.l
+	corners = f.corners
+	fields = [ bool(fd) for fd in f.fields ]
+
+	# erster zug
+	if f.is_empty():
+		# immer das feld mit index 0 bedecken, weil da die indexmathematik sonst zu aufwendig wäre xd
+		if m == n:
+			# ecke
+			return Move(0,0)
+		else:
+			# ganze kante
+			return Move(0, n-1)
+
+	covered_corners = [ fields[idx] for idx in corners ]
+
+	if n == m:
+		# symmetrie aufrecht erhalten -> irgendwann pxp ecke
+		# GUIDO BITTE MACH DASS ES ! UND && GIBT
+		if (not fields[corners[1]+1]) and (not fields[corners[3]-1]):
+			try: count_top = (fields[:corners[1]]).index(False)
+			except ValueError: count_top = n
+
+			try: count_left = m - list(reversed([True] + fields[corners[3]:])).index(True)
+			except ValueError: count_left = m
+
+			diff = abs(count_top - count_left)
+
+			# linke kante hat mehr, an der oberen kompensieren
+			if count_left > count_top:
+				return Move(count_top, count_top+diff-1)
 			else:
-				count_right = fields[f.corners[1]:f.corners[2]+1].index(False)
-				count_bottom = n - (fields[f.corners[2]:f.corners[3]+1] + [True]).index(True)
-				diff = abs(count_right - count_bottom)
+				... # TODO
+		# p*p-ecke
+		else:
+			return pxp(f, 2)
 
-				if n - count_right == 2 and n - count_bottom == 2:
-					raise SystemError("HELP")
-				elif n - count_bottom == 0:
-					return Move(f.corners[1]+count_right, f.corners[2]-1)
-				elif n - count_bottom == 1:
-					return Move(f.corners[1]+count_right, f.corners[2])
+	# gegner berührt noch nicht die andere kante? symmetrie aufrecht erhalten
+	if (not fields[corners[2]-1]) and (not fields[corners[2]]) and (not fields[corners[3]+1]) and (not fields[corners[3]]):
+		try: count_left = list(reversed(fields[corners[3]:])).index(False) + 1
+		except ValueError: count_left = m
 
-				if count_bottom > count_right: return Move(f.corners[1]+count_right-1, f.corners[1]+count_right+diff-1, )
-				else: return Move(f.corners[3]-count_bottom-diff+1, f.corners[3]-count_bottom)
-		if n != m:
-			count_left = m - (fields[f.corners[3]:l] + [True]).index(True)
-			try: count_right = fields[f.corners[1]:f.corners[2]+1].index(False)
-			except: count_right = m
+		count_right = fields[corners[1]:corners[2]+1].index(False)
 
-			# One entire side to do
-			if all([f.corners[1] <= idx <= f.corners[2] for idx in [ idx for idx, v in enumerate(fields) if not v ]]):
-				print("one entire side left")
-				from_top = fields[f.corners[1]:f.corners[2]+1].index(False)
-				from_bottom = list(reversed(fields[f.corners[1]:f.corners[2]+1])).index(False)
-				return Move(f.corners[1]+from_top, f.corners[2]-from_bottom)
-			# Behaviour for 2x2 corner
-			if m - count_right == 1:
-				print(1); time.sleep(1)
-				p = m - count_left
-				return Move(f.corners[2], f.corners[3]-p)
-			elif m - count_right == 0:
-				print(2); time.sleep(1)
-				p = m - count_left
-				return Move(f.corners[2]+1, f.corners[3]-p)
-			elif m - count_left == 1:
-				print(3); time.sleep(1)
-				p = m - count_right
-				return Move(f.corners[2]+p, f.corners[3])
-			elif m - count_left == 0:
-				print(4); time.sleep(1)
-				p = m - count_right
-				return Move(f.corners[2]+p, f.corners[3]-1)
-			# Keep symmetry
-			else:
-				print("calc diff")
-				diff = abs(count_left - count_right)
+		diff = abs(count_left - count_right)
+		if diff == 0: raise RuntimeError("Hilfe :(")
 
-				if count_left > count_right: return Move(f.corners[1]+count_right, f.corners[1]+count_right+diff-1)
-				else: return Move(l-count_left-diff+1, l-count_left)
+		if count_left > count_right:
+			return Move(corners[1]+count_right, corners[1]+count_right+diff-1)
+		else:
+			return Move(l-count_left-diff+1, l-count_left)
 
-F = Field(5, 12)
-F.makeMove(optimalRenateMove(F), 1)
-F.render()
+	# gegner hat kante berührt? p*p-ecke
+	elif fields[corners[3]+1] and fields[corners[3]] and fields[corners[3]-1]:
+		return pxp(f, 2)
+	elif fields[corners[2]-1] and fields[corners[2]] and fields[corners[2]+1]:
+		return pxp(f, 3)
+	elif fields[corners[2]-1]:
+		return pxp(f, 3)
+	elif fields[corners[3]+1]:
+		return pxp(f, 2)
+
+	raise ValueError("HILFE")
 
 def tryAllMoves(f: Field):
 	moves = f.get_valid_moves()
+	moves.sort(key=Move.abs)
 	if not moves:
 		print("renate won!")
-		time.sleep(0.5)
+		time.sleep(0.1)
 		return
 	for move in moves:
 		g = f.copy()
-		g.makeMove(move, 2)
-		g.render()
-		g.makeMove(optimalRenateMove(g), 1)
-		g.render()
+		g.make_move(move, 2)
+		g.render(True)
+		g.make_move(optimal_renate_move(g), 1)
+		g.render(True)
 		tryAllMoves(g)
 
+clear()
+F = Field(5, 12)
+F.make_move(optimal_renate_move(F), 1)
+F.render()
 tryAllMoves(F)
-
-# def tryall(field, turn):
-# 	# field.render()
-# 	moves = field.get_valid_moves()
-# 	moves = sorted(moves, key=Move.abs, reverse=True)
-
-# 	if moves:
-# 		for move in moves:
-# 			g = field.copy()
-# 			g.makeMove(move, turn)
-# 			tryall(g, {1:2,2:1}[turn])
-# 	else:
-# 		print("player", turn, "lost")
-
-# N != M
-# F = Field(5, 12)
-# F.makeMove(optimalRenateMove(F), 1)
-# F.render()
-
-# F.makeMove(Move(12,13), 2)
-# F.render()
-# F.makeMove(optimalRenateMove(F), 1)
-# F.render()
-
-# F.makeMove(Move(26,27), 2)
-# F.render()
-# F.makeMove(optimalRenateMove(F), 1)
-# F.render()
-
-# F.makeMove(Move(14,15), 2)
-# F.render()
-# F.makeMove(optimalRenateMove(F), 1)
-# F.render()
-
-# N == M
-# G = Field(6, 6)
-# G.makeMove(optimalRenateMove(G), 1)
-# G.render()
-
-# G.makeMove(Move(18,19), 2)
-# G.render()
-# G.makeMove(optimalRenateMove(G), 1)
-# G.render()
-
-# G.makeMove(Move(3,5), 2)
-# G.render()
-# G.makeMove(optimalRenateMove(G), 1)
-# G.render()
-
-# G.makeMove(Move(12,14), 2)
-# G.render()
-# G.makeMove(optimalRenateMove(G), 1)
-# G.render()
-
-# G.makeMove(Move(11,11), 2)
-# G.render()
-# G.makeMove(optimalRenateMove(G), 1)
-# G.render()
