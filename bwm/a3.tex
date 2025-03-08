@@ -262,24 +262,29 @@ Hierfür relevante Punkte und Strecken:
 		&= \frac{\sqrt{(R\sin\alpha)^2(1-(1-\sin\alpha)(1+\sin\alpha))}}{1+\sin\alpha} \\
 		&= R\sin\alpha \, \frac{\sqrt{1-(1-\sin\alpha)(1+\sin\alpha)}}{1+\sin\alpha} \\
 		&= R\sin\alpha \, \frac{\sqrt{1-(1-\sin^2\alpha)}}{1+\sin\alpha} \\
+		&= R\sin\alpha \, \frac{\sqrt{\sin^2\alpha}}{1+\sin\alpha}
+	\end{align*}
+	Da $\alpha$ definitiv zwischen $\ang{0}$ und $\ang{180}$ liegt, gilt $\left|\sin\alpha\right| = \sin\alpha$:
+	\begin{align*}
 		h &= R\sin\alpha \, \frac{\sin\alpha}{1+\sin\alpha} \tag{$3^\prime$}
 	\end{align*}
 \end{samepage}
-\begin{samepage}
-	Mit $(2)$, $(3^\prime)$ und $(4)$: \nopagebreak
-	\begin{align*}
-		m_{CD} &= \frac{h+r}{-x} \\
-		&= \frac{R\sin\alpha \frac{\sin\alpha}{1+\sin\alpha} + \frac{R\sin\alpha}{1+\sin\alpha}}{-R\sin\alpha\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}} \\
-		&= \frac{\frac{\sin\alpha+1}{1+\sin\alpha}}{-\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}} \\
-		&= \frac{1}{-\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}} \\
-		&= -\sqrt{\frac{1+\sin\alpha}{1-\sin\alpha}} \\
-		&= -\frac{\sqrt{1+\sin\alpha}}{\sqrt{1-\sin\alpha}} \\
-		&= -\frac{\sqrt{1+\sin\alpha}\sqrt{1+\sin\alpha}}{\sqrt{1-\sin\alpha}\sqrt{1+\sin\alpha}} \\
-		&= -\frac{1+\sin\alpha}{\sqrt{1 - \sin^2\alpha}} \\
-		&= -\frac{\sin\alpha+1}{\sqrt{\cos^2\alpha}} \\[15pt]
-		m_{CD} &= -\frac{\sin\alpha+1}{\cos\alpha}
-	\end{align*}
-\end{samepage}
+Mit $(2)$, $(3^\prime)$ und $(4)$: \nopagebreak
+\begin{align*}
+	m_{CD} &= \frac{h+r}{-x} \\
+	&= \frac{R\sin\alpha \frac{\sin\alpha}{1+\sin\alpha} + \frac{R\sin\alpha}{1+\sin\alpha}}{-R\sin\alpha\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}} \\
+	&= \frac{\frac{\sin\alpha+1}{1+\sin\alpha}}{-\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}} \\
+	&= \frac{1}{-\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}} \\
+	&= -\sqrt{\frac{1+\sin\alpha}{1-\sin\alpha}} \\
+	&= -\frac{\sqrt{1+\sin\alpha}}{\sqrt{1-\sin\alpha}} \\
+	&= -\frac{\sqrt{1+\sin\alpha}\sqrt{1+\sin\alpha}}{\sqrt{1-\sin\alpha}\sqrt{1+\sin\alpha}} \\
+	&= -\frac{1+\sin\alpha}{\sqrt{1 - \sin^2\alpha}} \\
+	&= -\frac{\sin\alpha+1}{\sqrt{\cos^2\alpha}}
+\end{align*}
+Da unser $\alpha < \ang{90}$ ist, gilt $\cos\alpha \geq 0$, also auch $\left|\cos\alpha\right| = \cos\alpha$:
+\begin{align*}
+	m_{CD} &= -\frac{\sin\alpha+1}{\cos\alpha}
+\end{align*}
 \goodbreak
 \begin{samepage}
 	Für die Winkel $\alpha$ und $\beta$ gilt:
