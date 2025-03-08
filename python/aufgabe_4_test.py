@@ -10,7 +10,6 @@ from typing import Self
 
 # "high intensity" ansi farben
 RED = "\033[91m"
-GREEN = "\033[92m"
 BLUE = "\033[94m"
 END = "\033[0m"
 
@@ -29,13 +28,16 @@ class Move:
 			self.mode = "individual"
 		else:
 			raise ValueError()
+
 	def abs(self):
 		return len(self.idxs)
+
 	def __repr__(self) -> str:
 		if self.mode == "range":
 			return f"<Move {self.idxs[0]}:{self.idxs[-1]}>"
 		else:
 			return f"<Move {' '.join([ str(i) for i in self.idxs])}>"
+
 	def __eq__(self, other: Self):
 		return self.idxs == other.idxs
 
@@ -50,7 +52,7 @@ class Field:
 		self.fields = [0 for _ in range(2*n+2*m-4)]
 		self.corners = [0, n-1, n+m-2, n+m+n-3] # nice
 
-		# liste an allen möglichen zügen vorrechnen
+		# liste an allen möglichen zügen im voraus berechnen
 		self.moves = []
 		# einzelne felder
 		for i in range(len(self.fields)):
@@ -83,8 +85,8 @@ class Field:
 	def copy(self) -> Self:
 		return copy.deepcopy(self)
 
-	def render(self, clear_term=False) -> None:
-		def rd(field): return {0:"[]", 1:f"{RED}[]{END}", 2:f"{BLUE}[]{END}", 3: f"{GREEN}[]{END}"}[field]
+	def render(self, clear_term=True) -> None:
+		def rd(field): return {0:"",1:RED,2:BLUE}[field] + "[]" + END
 
 		if clear_term: clear()
 		# obere reihe
@@ -125,35 +127,32 @@ class Field:
 
 			return False
 
-		valid = []
+		valid_moves = []
 		for move in self.moves:
-			move_possible = True
 
+			move_possible = True
 			# overlapping fields
 			for idx in move.idxs:
 				if fields[idx]:
 					move_possible = False
 					break
-
 			if not move_possible: continue
 
 			marked_idxs = [ i for i in range(len(fields)) if fields[i] or i in move.idxs ]
 			if not idxs_adjacent(marked_idxs):
 				continue
 
-			valid.append(move)
+			valid_moves.append(move)
 
-		return valid
+		return valid_moves
 
 	def make_move(self, move: Move, playerNum: int) -> None:
-		print(move, self.get_valid_moves())
 		if not move in self.get_valid_moves(): raise RuntimeError("Move not valid!")
 		for idx in move.idxs:
 			self.fields[idx] = playerNum
 
 # macht p*p-Ecken
 def pxp(f: Field, corner_idx: int) -> Move:
-	print("pxp", corner_idx)
 	m, n, l = f.m, f.n, f.l
 	corners = f.corners
 	fields = [ bool(fd) for fd in f.fields ]
@@ -220,53 +219,51 @@ def optimal_renate_move(f: Field) -> Move:
 			# ganze kante
 			return Move(0, n-1)
 
-	covered_corners = [ fields[idx] for idx in corners ]
-
 	if n == m:
-		# symmetrie aufrecht erhalten -> irgendwann pxp ecke
-		# GUIDO BITTE MACH DASS ES ! UND && GIBT
-		if (not fields[corners[1]+1]) and (not fields[corners[3]-1]):
-			try: count_top = (fields[:corners[1]]).index(False)
-			except ValueError: count_top = n
-
-			try: count_left = m - list(reversed([True] + fields[corners[3]:])).index(True)
-			except ValueError: count_left = m
-
-			diff = abs(count_top - count_left)
-
-			# linke kante hat mehr, an der oberen kompensieren
-			if count_left > count_top:
-				return Move(count_top, count_top+diff-1)
-			else:
-				... # TODO
 		# p*p-ecke
-		else:
+		if fields[corners[1]-1] and fields[corners[3]+1]:
 			return pxp(f, 2)
 
-	# gegner berührt noch nicht die andere kante? symmetrie aufrecht erhalten
-	if (not fields[corners[2]-1]) and (not fields[corners[2]]) and (not fields[corners[3]+1]) and (not fields[corners[3]]):
+		# symmetrie aufrecht erhalten -> irgendwann p*p ecke
+		try: count_top = (fields[:corners[1]+1]).index(False)
+		except ValueError: count_top = n
+
 		try: count_left = list(reversed(fields[corners[3]:])).index(False) + 1
 		except ValueError: count_left = m
 
-		count_right = fields[corners[1]:corners[2]+1].index(False)
+		diff = abs(count_top - count_left)
 
-		diff = abs(count_left - count_right)
-		if diff == 0: raise RuntimeError("Hilfe :(")
-
-		if count_left > count_right:
-			return Move(corners[1]+count_right, corners[1]+count_right+diff-1)
+		# linke kante hat mehr, an der oberen kompensieren
+		if count_left > count_top:
+			return Move(count_top, count_top+diff-1)
 		else:
 			return Move(l-count_left-diff+1, l-count_left)
 
-	# gegner hat kante berührt? p*p-ecke
-	elif fields[corners[3]+1] and fields[corners[3]] and fields[corners[3]-1]:
-		return pxp(f, 2)
-	elif fields[corners[2]-1] and fields[corners[2]] and fields[corners[2]+1]:
-		return pxp(f, 3)
-	elif fields[corners[2]-1]:
-		return pxp(f, 3)
-	elif fields[corners[3]+1]:
-		return pxp(f, 2)
+	elif n != m:
+		# gegner berührt noch nicht die andere kante? symmetrie aufrecht erhalten
+		if (not fields[corners[2]-1]) and (not fields[corners[2]]) and (not fields[corners[3]+1]) and (not fields[corners[3]]):
+			try: count_left = list(reversed(fields[corners[3]:])).index(False) + 1
+			except ValueError: count_left = m
+
+			count_right = fields[corners[1]:corners[2]+1].index(False)
+
+			diff = abs(count_left - count_right)
+			if diff == 0: raise RuntimeError("Hilfe :(")
+
+			if count_left > count_right:
+				return Move(corners[1]+count_right, corners[1]+count_right+diff-1)
+			else:
+				return Move(l-count_left-diff+1, l-count_left)
+
+		# gegner hat kante berührt? p*p-ecke
+		elif fields[corners[3]+1] and fields[corners[3]] and fields[corners[3]-1]:
+			return pxp(f, 2)
+		elif fields[corners[2]-1] and fields[corners[2]] and fields[corners[2]+1]:
+			return pxp(f, 3)
+		elif fields[corners[2]-1]:
+			return pxp(f, 3)
+		elif fields[corners[3]+1]:
+			return pxp(f, 2)
 
 	raise ValueError("HILFE")
 
@@ -275,18 +272,18 @@ def tryAllMoves(f: Field):
 	moves.sort(key=Move.abs)
 	if not moves:
 		print("renate won!")
-		time.sleep(0.1)
+		time.sleep(0.01)
 		return
 	for move in moves:
 		g = f.copy()
 		g.make_move(move, 2)
-		g.render(True)
+		g.render()
 		g.make_move(optimal_renate_move(g), 1)
-		g.render(True)
+		g.render()
 		tryAllMoves(g)
 
 clear()
-F = Field(5, 12)
+F = Field(12,12)
 F.make_move(optimal_renate_move(F), 1)
-F.render()
+F.render(False)
 tryAllMoves(F)
