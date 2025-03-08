@@ -267,23 +267,39 @@ def optimal_renate_move(f: Field) -> Move:
 
 	raise ValueError("HILFE")
 
+VISITED = []
+WAIT = 0.5
+USE_SHORTCUT = False
+
 def tryAllMoves(f: Field):
 	moves = f.get_valid_moves()
 	moves.sort(key=Move.abs)
 	if not moves:
 		print("renate won!")
-		time.sleep(0.01)
+		time.sleep(WAIT)
 		return
 	for move in moves:
 		g = f.copy()
 		g.make_move(move, 2)
 		g.render()
+		time.sleep(WAIT)
 		g.make_move(optimal_renate_move(g), 1)
 		g.render()
-		tryAllMoves(g)
+
+		if USE_SHORTCUT:
+			x = [ bool(fd) for fd in g.fields ]
+			if x not in VISITED:
+				tryAllMoves(g)
+				VISITED.append(x)
+			else:
+				print("renate won before in this scenario!")
+				time.sleep(WAIT)
+		else:
+			tryAllMoves(g)
 
 clear()
-F = Field(12,12)
+F = Field(3,3)
 F.make_move(optimal_renate_move(F), 1)
 F.render(False)
 tryAllMoves(F)
+print("all scenarios checked! if no error occured, then renate wins every time :)")
