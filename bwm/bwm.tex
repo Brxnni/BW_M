@@ -11,6 +11,12 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
+\usepackage[ngerman]{babel}
+\usepackage[
+    left = \glqq{},%
+    right = \grqq{}%
+]{dirtytalk}
+
 % Coole font
 \usepackage{palatino}
 
@@ -46,7 +52,8 @@
 	quotes,
 	positioning,
 	patterns.meta, % Linienmuster
-	decorations.pathreplacing % Geschweifte Klammern
+	decorations.pathreplacing, % Geschweifte Klammern
+	babel % Kompatibilität mit Babel (Anführungszeichen werden standardmäßig überschrieben)
 }
 
 % Mathezeug
