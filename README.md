@@ -22,7 +22,7 @@ zusammen mit henry :3
 - `./bwm`: `.tex`-Dateien und all die anderen auxfiles die im `.gitignore` stehen
 - `./henry`: Lösungen, die Henry mir geschickt hat
 - `./img`: Bilder für dieses README
-- `./python`: Python files (nur eine, hätten ja auch noch mehr werden können)
+- `./python`: Python scripts zum Überprüfen der Beweise unserer Lösungen
 
 ## Bilder
 
