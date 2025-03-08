@@ -12,7 +12,7 @@ zusammen mit henry :3
 
 |Aufgabe|Probleme|
 |-|-|
-|A1|- (ziemlich sicher)|
+|A1|-|
 |A2|unfertiges Ende, aus den beiden iterativen Mustern von 2^m und n!/(5m)! lässt dich theoretisch nicht zwingend folgern, dass die Reihe an LZ(n!) auch alle Ziffern unendlich oft hat|
 |A3|unerklärt, warum MC und ME die Winkelhalbierenden ihrer Halbkreissektoren sind|
 |A4|-|
