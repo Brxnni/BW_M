@@ -10,11 +10,13 @@ zusammen mit henry :3
 
 (In Bezug auf die [abgegebene Version](final.pdf), ich versuche momentan diese Fehler nachzuholen)
 
+✔️ = Problem (immerhin) nachbearbeitet, 〰️ = meh, ❌ = nicht
+
 |Aufgabe|Probleme|
 |-|-|
 |A1|-|
-|A2|unfertiges Ende, aus den beiden iterativen Mustern von 2^m und n!/(5m)! lässt dich theoretisch nicht zwingend folgern, dass die Reihe an LZ(n!) auch alle Ziffern unendlich oft hat|
-|A3|unerklärt, warum MC und ME die Winkelhalbierenden ihrer Halbkreissektoren sind|
+|A2|<ul><li>❌unfertiges Ende, aus den beiden iterativen Mustern von 2^m und n!/(5m)! lässt dich theoretisch nicht zwingend folgern, dass die Reihe an LZ(n!) auch alle Ziffern unendlich oft hat</li></ul>|
+|A3|<ul><li>〰️ unerklärt, warum MC und ME die Winkelhalbierenden ihrer Halbkreissektoren sind</li><li>✔️ keine Erklärung für sqrt(cos^2(a)) = cos(a)</li></ul>|
 |A4|-|
 
 ## Struktur
