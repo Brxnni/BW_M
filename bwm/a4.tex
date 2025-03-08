@@ -35,7 +35,7 @@ Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, 
 	\draw (6,1) \Feld;
 	\draw (6,2) \Feld;
 	\node at (7.5,1.5) {$\rightarrow$};
-	\draw (9,1) \RenateZug;
+	\draw (9,1) \RenateFeld;
 	\draw (10,1) \ErhardZug;
 	\draw (10,2) \ErhardZug;
 	\node[anchor=west] at (11.5,1.5) {$\rightarrow$ Anfänger verliert};
@@ -45,8 +45,8 @@ Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, 
 	\draw (6,4) \RenateZug;
 	\draw (6,5) \Feld;
 	\node at (7.5,4.5) {$\rightarrow$};
-	\draw (9,4) \RenateZug;
-	\draw (10,4) \RenateZug;
+	\draw (9,4) \RenateFeld;
+	\draw (10,4) \RenateFeld;
 	\draw (10,5) \ErhardZug;
 	\node[anchor=west] at (11.5,4.5) {$\rightarrow$ Anfänger verliert};
 \end{tikzpicture}
@@ -87,27 +87,8 @@ Läuft das Spiel auf eine \say{Hufeisenform} hinaus, verliert auch wieder der Sp
 	\draw (6,2) \Feld;
 	\draw (6,3) \Feld;
 
-	\draw (6,4) \Feld;
-	\draw (1,4) \RenateZug;
-
-	\draw (1,3) \Feld;
-	\draw (1,2) \Feld;
-
-	\draw [dashed] (3.5,0) -- (3.5,5);
-	\node[anchor=west] at (6.5,2.5) {$\rightarrow$};
-\end{tikzpicture}
-\begin{tikzpicture}[y=-0.45cm,x=0.45cm]
-	\draw (1,1) \Feld;
-	\draw (2,1) \Feld;
-	\draw (3,1) \Feld;
-	\draw (4,1) \Feld;
-	\draw (5,1) \Feld;
-	\draw (6,1) \Feld;
-	\draw (6,2) \Feld;
-	\draw (6,3) \Feld;
-
 	\draw (6,4) \ErhardZug;
-	\draw (1,4) \RenateFeld;
+	\draw (1,4) \RenateZug;
 
 	\draw (1,3) \Feld;
 	\draw (1,2) \Feld;
@@ -128,34 +109,12 @@ Läuft das Spiel auf eine \say{Hufeisenform} hinaus, verliert auch wieder der Sp
 	\draw (6,4) \ErhardFeld;
 	\draw (1,4) \RenateFeld;
 
-	\draw (1,3) \Feld;
+	\draw (1,3) \ErhardZug;
 	\draw (1,2) \Feld;
 
 	\draw [dashed] (3.5,0) -- (3.5,5);
 	\node[anchor=west] at (6.5,2.5) {$\rightarrow$};
 \end{tikzpicture}
-\begin{tikzpicture}[y=-0.45cm,x=0.45cm]
-	\draw (1,1) \Feld;
-	\draw (2,1) \Feld;
-	\draw (3,1) \Feld;
-	\draw (4,1) \Feld;
-	\draw (5,1) \Feld;
-	\draw (6,1) \Feld;
-	\draw (6,2) \Feld;
-	\draw (6,3) \RenateFeld;
-
-	\draw (6,4) \ErhardFeld;
-	\draw (1,4) \RenateFeld;
-
-	\draw (1,3) \ErhardZug;
-	\draw (1,2) \Feld;
-
-	\draw [dashed] (3.5,0) -- (3.5,5);
-	% \node[anchor=west] at (6.5,2.5) {$\rightarrow$};
-\end{tikzpicture}
-\\
-$\downarrow$
-\\
 \begin{tikzpicture}[y=-0.45cm,x=0.45cm]
 	\draw (1,1) \ErhardZug;
 	\draw (2,1) \ErhardZug;
@@ -173,7 +132,7 @@ $\downarrow$
 	\draw (1,2) \RenateZug;
 
 	\draw [dashed] (3.5,0) -- (3.5,5);
-	\node[anchor=west] at (6.5,2.5) {oder};
+	\node[anchor=west] at (6.5,2.5) {\,oder};
 \end{tikzpicture}
 \begin{tikzpicture}[y=-0.45cm,x=0.45cm]
 	\draw (1,1) \RenateZug;
@@ -450,4 +409,3 @@ Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. 
 \end{NMCenter}
 
 Renate hat also durch Fall 1 und 2 eine Gewinnstrategie für alle erlaubten Spielfeldgrößen, also für alle $m, n \geq 3$. \qed
-\end{document}
