@@ -53,13 +53,16 @@ class Move:
 class Field:
 	def __init__(self, m, n):
 		# m = höhe, n = breite (in 2d-zeichnung)
-		if m < 3 or n < 3: raise ValueError("m,n !>= 3")
+		# if m < 3 or n < 3: raise ValueError("m,n !>= 3")
+		if m < 4 or n < 4: raise ValueError("m,n !>= 4, weil buggy :(")
 
 		self.m, self.n = m, n
 		self.l = 2*n+2*m-4
 
 		self.fields = [0 for _ in range(2*n+2*m-4)]
 		self.corners = [0, n-1, n+m-2, n+m+n-3] # nice
+
+		self.made_moves = []
 
 		# liste an allen möglichen zügen im voraus berechnen
 		self.moves = []
@@ -158,6 +161,7 @@ class Field:
 
 	def make_move(self, move: Move, playerNum: int) -> None:
 		if not move in self.get_valid_moves(): raise RuntimeError("Zug nicht erlaubt!", self.fields, move)
+		self.made_moves.append(move)
 		for idx in move.idxs:
 			self.fields[idx] = playerNum
 
@@ -279,10 +283,9 @@ def optimal_renate_move(f: Field) -> Move:
 
 VISITED = []
 WAIT = 0
-F = Field(5, 5)
+F = Field(5,4)
 
-def tryAllMoves(f: Field, movelist: list[Move]):
-	movelist = copy.deepcopy(movelist)
+def tryAllMoves(f: Field):
 	moves = f.get_valid_moves()
 	moves.sort(key=Move.abs)
 
@@ -293,29 +296,24 @@ def tryAllMoves(f: Field, movelist: list[Move]):
 
 	for move in moves:
 		g = f.copy()
-		movelist.append(move)
-		print(movelist)
 		g.make_move(move, 2)
 		g.render(False)
+		print(g.made_moves)
 
 		time.sleep(WAIT)
 
 		rm = optimal_renate_move(g)
-		movelist.append(rm)
-		print(movelist)
 		g.make_move(rm, 1)
 		g.render(False)
+		print(g.made_moves)
 
-		tryAllMoves(g, copy.deepcopy(movelist))
+		tryAllMoves(g)
 
-# clear(True)
+		print("backtracking...")
+
+clear(True)
 m1 = optimal_renate_move(F)
 F.make_move(m1, 1)
 F.render(False)
-tryAllMoves(F, [m1])
+tryAllMoves(F)
 print(f"{BOLD}{YELLOW}Alle Zugkombinationen durchprobiert! Wenn keine Exception geworfen wurde, hat Renate eine sichere Gewinnstrategie :){END}")
-
-# F.fields = [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
-# F.render()
-# print(F.corners)
-# print(optimal_renate_move(F))
