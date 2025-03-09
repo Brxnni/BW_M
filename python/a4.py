@@ -11,11 +11,20 @@ from typing import Self
 # "high intensity" ansi farben
 RED = "\033[91m"
 BLUE = "\033[94m"
+YELLOW = "\033[93m"
+BOLD = "\033[1m"
 END = "\033[0m"
 
-def clear() -> None: os.system("cls")
+def clear(full=False) -> None:
+	if full:
+		os.system("cls")
+		return
 
-# fick dich ich mach jetzt oop
+	num_lines = os.get_terminal_size().lines
+	# cleart terminal ohne kurzes schwarzes blinken
+	print(f"\033[{num_lines+1}A\033[2K", end="")
+
+# oop :3
 class Move:
 	def __init__(self, *args):
 		if len(args) == 2:
@@ -86,7 +95,7 @@ class Field:
 		return copy.deepcopy(self)
 
 	def render(self, clear_term=True) -> None:
-		def rd(field): return {0:"",1:RED,2:BLUE}[field] + "[]" + END
+		def rd(field): return ["",RED+BOLD,BLUE+BOLD][field] + "[]" + END
 
 		if clear_term: clear()
 		# obere reihe
@@ -111,11 +120,11 @@ class Field:
 		def idxs_adjacent(idxs: list[int]) -> bool:
 			mn, mx = min(idxs), max(idxs)
 
-			# no wrapping
+			# normale range
 			if mx - mn + 1 == len(idxs):
 				return is_range(idxs)
 
-			# wrapping
+			# mit sprung von idx 0 zu -1
 			if 0 in idxs and len(self.fields) - 1 in idxs:
 				diffs = list(np.diff(idxs))
 				jump = next(idx for idx, d in enumerate(diffs) if d != 1)
@@ -131,13 +140,14 @@ class Field:
 		for move in self.moves:
 
 			move_possible = True
-			# overlapping fields
+			# was schon markiert ist, darf nicht nochmal markiert werden
 			for idx in move.idxs:
 				if fields[idx]:
 					move_possible = False
 					break
 			if not move_possible: continue
 
+			# alle markierten felder müssen zusammenhängen
 			marked_idxs = [ i for i in range(len(fields)) if fields[i] or i in move.idxs ]
 			if not idxs_adjacent(marked_idxs):
 				continue
@@ -147,11 +157,11 @@ class Field:
 		return valid_moves
 
 	def make_move(self, move: Move, playerNum: int) -> None:
-		if not move in self.get_valid_moves(): raise RuntimeError("Move not valid!")
+		if not move in self.get_valid_moves(): raise RuntimeError("Zug nicht erlaubt!", self.fields, move)
 		for idx in move.idxs:
 			self.fields[idx] = playerNum
 
-# macht p*p-Ecken
+# findet besten zug in p*p-Ecken
 def pxp(f: Field, corner_idx: int) -> Move:
 	m, n, l = f.m, f.n, f.l
 	corners = f.corners
@@ -265,41 +275,47 @@ def optimal_renate_move(f: Field) -> Move:
 		elif fields[corners[3]+1]:
 			return pxp(f, 2)
 
-	raise ValueError("HILFE")
+	raise RuntimeError("Hilfe!!", fields)
 
 VISITED = []
-WAIT = 0.5
-USE_SHORTCUT = False
+WAIT = 0
+F = Field(5, 5)
 
-def tryAllMoves(f: Field):
+def tryAllMoves(f: Field, movelist: list[Move]):
+	movelist = copy.deepcopy(movelist)
 	moves = f.get_valid_moves()
 	moves.sort(key=Move.abs)
+
 	if not moves:
-		print("renate won!")
+		print("Renate gewinnt!")
 		time.sleep(WAIT)
 		return
+
 	for move in moves:
 		g = f.copy()
+		movelist.append(move)
+		print(movelist)
 		g.make_move(move, 2)
-		g.render()
+		g.render(False)
+
 		time.sleep(WAIT)
-		g.make_move(optimal_renate_move(g), 1)
-		g.render()
 
-		if USE_SHORTCUT:
-			x = [ bool(fd) for fd in g.fields ]
-			if x not in VISITED:
-				tryAllMoves(g)
-				VISITED.append(x)
-			else:
-				print("renate won before in this scenario!")
-				time.sleep(WAIT)
-		else:
-			tryAllMoves(g)
+		rm = optimal_renate_move(g)
+		movelist.append(rm)
+		print(movelist)
+		g.make_move(rm, 1)
+		g.render(False)
 
-clear()
-F = Field(3,3)
-F.make_move(optimal_renate_move(F), 1)
+		tryAllMoves(g, copy.deepcopy(movelist))
+
+# clear(True)
+m1 = optimal_renate_move(F)
+F.make_move(m1, 1)
 F.render(False)
-tryAllMoves(F)
-print("all scenarios checked! if no error occured, then renate wins every time :)")
+tryAllMoves(F, [m1])
+print(f"{BOLD}{YELLOW}Alle Zugkombinationen durchprobiert! Wenn keine Exception geworfen wurde, hat Renate eine sichere Gewinnstrategie :){END}")
+
+# F.fields = [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+# F.render()
+# print(F.corners)
+# print(optimal_renate_move(F))
