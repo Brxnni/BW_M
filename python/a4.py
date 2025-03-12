@@ -261,6 +261,22 @@ def optimal_renate_move(f: Field) -> Move:
 
 			count_right = fields[corners[1]:corners[2]+1].index(False)
 
+			print(count_right)
+
+			empty_left = m - count_left
+			empty_right = m - count_right
+
+			print(empty_left, empty_right)
+
+			if empty_right == n - 1:
+				return Move(corners[3], l-count_left)
+			elif empty_right == n:
+				return Move(corners[3]+1, l-count_left)
+			elif empty_left == n - 1:
+				return Move(corners[1]+count_right, corners[2])
+			elif empty_left == n:
+				return Move(corners[1]+count_right, corners[2]-1)
+
 			diff = abs(count_left - count_right)
 			if diff == 0: raise RuntimeError("Hilfe :(")
 
@@ -280,10 +296,6 @@ def optimal_renate_move(f: Field) -> Move:
 			return pxp(f, 2)
 
 	raise RuntimeError("Hilfe!!", fields)
-
-VISITED = []
-WAIT = 0
-F = Field(5,4)
 
 def tryAllMoves(f: Field):
 	moves = f.get_valid_moves()
@@ -311,9 +323,25 @@ def tryAllMoves(f: Field):
 
 		print("backtracking...")
 
+VISITED = []
+WAIT = 0
+F = Field(5,4)
+
 clear(True)
-m1 = optimal_renate_move(F)
-F.make_move(m1, 1)
+F.make_move(Move(0,3), 1)
+F.make_move(Move(4,6), 2)
 F.render(False)
-tryAllMoves(F)
-print(f"{BOLD}{YELLOW}Alle Zugkombinationen durchprobiert! Wenn keine Exception geworfen wurde, hat Renate eine sichere Gewinnstrategie :){END}")
+
+F.make_move(optimal_renate_move(F), 1)
+F.render(False)
+
+# F.make_move(Move(7,7), 2)
+# F.make_move(optimal_renate_move(F), 1)
+# F.render(False)
+
+# F.make_move(Move(8,8), 2)
+# F.make_move(optimal_renate_move(F), 1)
+# F.render(False)
+
+# tryAllMoves(F)
+# print(f"{BOLD}{YELLOW}Alle Zugkombinationen durchprobiert! Wenn keine Exception geworfen wurde, hat Renate eine sichere Gewinnstrategie :){END}")
