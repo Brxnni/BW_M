@@ -328,8 +328,8 @@ WAIT = 0
 F = Field(5,4)
 
 clear(True)
-F.make_move(Move(0,3), 1)
-F.make_move(Move(4,6), 2)
+F.make_move(Move([10,11,12,13,0]), 1)
+# F.make_move(Move(4,6), 2)
 F.render(False)
 
 F.make_move(optimal_renate_move(F), 1)
