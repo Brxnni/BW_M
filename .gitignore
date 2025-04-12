@@ -1,3 +1,4 @@
+**/*.toc
 **/*.aux
 **/*.fls
 **/*.log
@@ -5,5 +6,4 @@
 **/*.synctex(busy)
 **/*.fdb_latexmk
 
-**/*.pdf
-!final.pdf
+bwm/bwm.pdf
