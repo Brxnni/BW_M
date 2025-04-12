@@ -1,6 +1,8 @@
 \setlength{\mathindent}{4cm}
 
 Um zu beweisen, dass $AE$ senkrecht zu $CD$ steht, werden die Steigungen beider Geraden in Abhängigkeit des Winkels $\beta$, der die Position von P auf dem Halbkreisbogen $AB$ bestimmt, berechnet.
+\\[10pt]
+(Für die gesamte Herleitung beziehen sich $\sin$ und $\cos$ immer nur auf die Variable unmittelbar danach, also nur $\alpha$ oder $\beta$.)
 
 \subsection[]{Herleitung von $m_{AE}$}
 Hierfür relevante Punkte und Strecken:
@@ -21,6 +23,11 @@ Hierfür relevante Punkte und Strecken:
 		\draw[black] (a) -- (b);
 	\end{scope}
 }
+
+\newcommand{\sina}{\sin\alpha}
+\newcommand{\cosa}{\cos\alpha}
+\newcommand{\sinb}{\sin\beta}
+\newcommand{\cosb}{\cos\beta}
 
 \begin{center}
 	\begin{tikzpicture}[scale=4]
@@ -63,12 +70,12 @@ Die Strecke $ME$ halbiert exakt den Kreissektor, weil der Mittelpunkt des Kreise
 \end{align*}
 
 \begin{align*}
-	\sin\beta &= \frac{\text{Gegenkathete}}{\text{Hypotenuse}} \\
-	\sin\beta &= \frac{r}{R-r} \\
-	r &= R \sin\beta - r \sin\beta \\
-	r + r \sin\beta &= R \sin\beta \\
-	r(1+\sin\beta) &= R \sin\beta \\
-	r &= \frac{R \sin\beta}{1 + \sin\beta} \tag{2}
+	\sinb &= \frac{\text{Gegenkathete}}{\text{Hypotenuse}} \\
+	\sinb &= \frac{r}{R-r} \\
+	r &= R \sinb - r \sinb \\
+	r + r \sinb &= R \sinb \\
+	r(1+\sinb) &= R \sinb \\
+	r &= \frac{R \sinb}{1 + \sinb} \tag{2}
 \end{align*}
 
 \pagebreak
@@ -113,20 +120,20 @@ Die Strecke $ME$ halbiert exakt den Kreissektor, weil der Mittelpunkt des Kreise
 	R_0 (r-h) &= -hb \\
 	R_0 &= \frac{-hb}{r-h}
 \end{align*}
-Mit $ \cos\beta = \frac{b}{r} \Leftrightarrow b = r \cos\beta $ und $(1)$:
+Mit $ \cosb = \frac{b}{r} \Leftrightarrow b = r \cosb $ und $(1)$:
 \begin{align*}
-	R_0 &= \frac{\frac{-Rr}{R-r}*r \cos\beta}{r-\frac{Rr}{R-r}} \\
-	&= \frac{\left(\frac{-Rr}{R-r}*r \cos\beta\right)}{\left(\frac{(R-r)r}{R-r}-\frac{Rr}{R-r}\right)} \\
-	&= \frac{\left(\frac{-Rr}{R-r}*r \cos\beta\right)}{\left(\frac{Rr-r^2-Rr}{R-r}\right)} \\
-	&= \frac{\left(\frac{-Rr^2 \cos\beta}{R-r}\right)}{\left(-\frac{r^2}{R-r}\right)} \\
-	&= \frac{-Rr^2 \cos\beta * (R-r)}{-(R-r)r^2} \\
-	R_0 &= R \cos\beta
+	R_0 &= \frac{\frac{-Rr}{R-r}*r \cosb}{r-\frac{Rr}{R-r}} \\
+	&= \frac{\left(\frac{-Rr}{R-r}*r \cosb\right)}{\left(\frac{(R-r)r}{R-r}-\frac{Rr}{R-r}\right)} \\
+	&= \frac{\left(\frac{-Rr}{R-r}*r \cosb\right)}{\left(\frac{Rr-r^2-Rr}{R-r}\right)} \\
+	&= \frac{\left(\frac{-Rr^2 \cosb}{R-r}\right)}{\left(-\frac{r^2}{R-r}\right)} \\
+	&= \frac{-Rr^2 \cosb * (R-r)}{-(R-r)r^2} \\
+	R_0 &= R \cosb
 \end{align*}
 
 \begin{align*}
 	R_0 + x &= R \\
 	x &= R - R_0 \\
-	&= R - R \cos\beta \tag{3}
+	&= R - R \cosb \tag{3}
 \end{align*}
 
 \begin{samepage}
@@ -135,23 +142,23 @@ Mit $ \cos\beta = \frac{b}{r} \Leftrightarrow b = r \cos\beta $ und $(1)$:
 	\end{align*}
 	Mit $(1)$ und $(3)$: \nopagebreak
 	\begin{align*}
-		m_{AE} &= \frac{\frac{Rr}{R-r}}{2R - (R-R \cos\beta)} \\
-		&= \frac{\frac{Rr}{R-r}}{R+R \cos\beta} \\
-		&= \frac{Rr}{(R-r)(R+R \cos\beta)} \\
-		&= \frac{r}{(R-r)(1+\cos\beta)}
+		m_{AE} &= \frac{\frac{Rr}{R-r}}{2R - (R-R \cosb)} \\
+		&= \frac{\frac{Rr}{R-r}}{R+R \cosb} \\
+		&= \frac{Rr}{(R-r)(R+R \cosb)} \\
+		&= \frac{r}{(R-r)(1+\cosb)}
 	\end{align*}
 	Mit $(2)$: \nopagebreak
 	\begin{align*}
-		m_{AE} &= \frac{\frac{R \sin\beta}{1+\sin\beta}}{(R-r)(1+\cos\beta)} \\
-		&= \frac{R \sin\beta}{(R-r)(1+\cos\beta)(1+\sin\beta)} \\
-		&= \frac{R \sin\beta}{(R-\frac{R \sin\beta}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
-		&= \frac{R \sin\beta}{(\frac{R(1+\sin\beta)}{1+\sin\beta}-\frac{R \sin\beta}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
-		&= \frac{R \sin\beta}{(\frac{R(1+\sin\beta) - R\sin\beta}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
-		&= \frac{R \sin\beta}{(\frac{R+R\sin\beta-R\sin\beta}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
-		&= \frac{R \sin\beta}{(\frac{R}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
-		&= \frac{\sin\beta}{(\frac{1}{1+\sin\beta})(1+\cos\beta)(1+\sin\beta)} \\
-		&= \frac{(\sin\beta)(1+\sin\beta)}{(1+\sin\beta)(1+\cos\beta)} \\[15pt]
-		m_{AE} &= \frac{\sin\beta}{1+\cos\beta}
+		m_{AE} &= \frac{\frac{R \sinb}{1+\sinb}}{(R-r)(1+\cosb)} \\
+		&= \frac{R \sinb}{(R-r)(1+\cosb)(1+\sinb)} \\
+		&= \frac{R \sinb}{(R-\frac{R \sinb}{1+\sinb})(1+\cosb)(1+\sinb)} \\
+		&= \frac{R \sinb}{(\frac{R(1+\sinb)}{1+\sinb}-\frac{R \sinb}{1+\sinb})(1+\cosb)(1+\sinb)} \\
+		&= \frac{R \sinb}{(\frac{R(1+\sinb) - R\sinb}{1+\sinb})(1+\cosb)(1+\sinb)} \\
+		&= \frac{R \sinb}{(\frac{R+R\sinb-R\sinb}{1+\sinb})(1+\cosb)(1+\sinb)} \\
+		&= \frac{R \sinb}{(\frac{R}{1+\sinb})(1+\cosb)(1+\sinb)} \\
+		&= \frac{\sinb}{(\frac{1}{1+\sinb})(1+\cosb)(1+\sinb)} \\
+		&= \frac{(\sinb)(1+\sinb)}{(1+\sinb)(1+\cosb)} \\[15pt]
+		m_{AE} &= \frac{\sinb}{1+\cosb}
 	\end{align*}
 \end{samepage}
 
@@ -209,11 +216,11 @@ Hierfür relevante Punkte und Strecken:
 \end{align*}
 
 \begin{align*}
-	\sin\alpha &= \frac{\text{Gegenkathete}}{\text{Hypotenuse}} \\
-	\sin\alpha &= \frac{ \textcolor{magenta}{r} }{ \textcolor{violet}{R-r} } \\
-	r &= R\sin\alpha - r\sin\alpha \\
-	r(1+\sin\alpha) &= R\sin\alpha \\
-	r &= \frac{R\sin\alpha}{1+\sin\alpha} \tag{2}
+	\sina &= \frac{\text{Gegenkathete}}{\text{Hypotenuse}} \\
+	\sina &= \frac{ \textcolor{magenta}{r} }{ \textcolor{violet}{R-r} } \\
+	r &= R\sina - r\sina \\
+	r(1+\sina) &= R\sina \\
+	r &= \frac{R\sina}{1+\sina} \tag{2}
 \end{align*}
 
 \begin{align*}
@@ -245,10 +252,12 @@ Hierfür relevante Punkte und Strecken:
 	\end{align*}
 	Mit $(2)$:
 	\begin{align*}
-		x &= \frac{\sqrt{R(R-2\frac{R\sin\alpha}{1+\sin\alpha})}\frac{R\sin\alpha}{1+\sin\alpha}}{R-\frac{R\sin\alpha}{1+\sin\alpha}} \\
-		&= \frac{\sqrt{R(R-2\frac{R\sin\alpha}{1+\sin\alpha})}\frac{R\sin\alpha}{1+\sin\alpha}}{\frac{R}{1+\sin\alpha}} \\
-		&= \frac{R\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}\frac{\sin\alpha}{1+\sin\alpha}}{\frac{1}{1+\sin\alpha}} \\
-		x &= R\sin\alpha\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}} \tag{4}
+		x &= \frac{\sqrt{R(R-2\frac{R\sina}{1+\sina})}\frac{R\sina}{1+\sina}}{R-\frac{R\sina}{1+\sina}} \\
+		&= \frac{\sqrt{R(R-2R\frac{\sina}{1+\sina})}\frac{R\sina}{1+\sina}}{\frac{R}{1+\sina}} \\
+		&= \sqrt{R\left(R-2R\frac{\sina}{1+\sina}\right)}\left(\frac{R\sina}{1+\sina}\right)\left(\frac{1+\sina}{R}\right) \\
+		&= R\sqrt{1-2\frac{\sina}{1+\sina}} \, (\sina) \\
+		&= R\sqrt{\frac{1+\sina}{1+\sina}-\frac{2\sina}{1+\sina}} \, (\sina) \\
+		x &= R \, \sina \, \sqrt{\frac{1-\sina}{1+\sina}} \tag{4}
 	\end{align*}
 \end{samepage}
 \goodbreak
@@ -256,34 +265,34 @@ Hierfür relevante Punkte und Strecken:
 	Weitergehend von $(3)$, mit $(2)$ und $(4)$: \nopagebreak
 	\begin{align*}
 		h &= \sqrt{r^2-x^2} \\
-		&= \sqrt{\left(\frac{R\sin\alpha}{1+\sin\alpha}\right)^2 - \left(R\sin\alpha\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}\right)^2} \\
-		&= \sqrt{\frac{(R\sin\alpha)^2}{(1+\sin\alpha)^2} - \frac{(R\sin\alpha)^2(1-\sin\alpha)}{1+\sin\alpha}} \\
-		&= \sqrt{\frac{(R\sin\alpha)^2}{(1+\sin\alpha)^2} - \frac{(R\sin\alpha)^2(1-\sin\alpha)(1+\sin\alpha)}{(1+\sin\alpha)^2}} \\
-		&= \frac{\sqrt{(R\sin\alpha)^2(1-(1-\sin\alpha)(1+\sin\alpha))}}{1+\sin\alpha} \\
-		&= R\sin\alpha \, \frac{\sqrt{1-(1-\sin\alpha)(1+\sin\alpha)}}{1+\sin\alpha} \\
-		&= R\sin\alpha \, \frac{\sqrt{1-(1-\sin^2\alpha)}}{1+\sin\alpha} \\
-		&= R\sin\alpha \, \frac{\sqrt{\sin^2\alpha}}{1+\sin\alpha}
+		&= \sqrt{\left(\frac{R\sina}{1+\sina}\right)^2 - \left(R\sina\sqrt{\frac{1-\sina}{1+\sina}}\right)^2} \\
+		&= \sqrt{\frac{(R\sina)^2}{(1+\sina)^2} - \frac{(R\sina)^2(1-\sina)}{1+\sina}} \\
+		&= \sqrt{\frac{(R\sina)^2}{(1+\sina)^2} - \frac{(R\sina)^2(1-\sina)(1+\sina)}{(1+\sina)^2}} \\
+		&= \frac{\sqrt{(R\sina)^2(1-(1-\sina)(1+\sina))}}{1+\sina} \\
+		&= R\sina \, \frac{\sqrt{1-(1-\sina)(1+\sina)}}{1+\sina} \\
+		&= R\sina \, \frac{\sqrt{1-(1-\sin^2\alpha)}}{1+\sina} \\
+		&= R\sina \, \frac{\sqrt{\sin^2\alpha}}{1+\sina}
 	\end{align*}
-	Da $\alpha$ definitiv zwischen $\ang{0}$ und $\ang{180}$ liegt, gilt $\left|\sin\alpha\right| = \sin\alpha$:
+	Da $\alpha$ definitiv zwischen $\ang{0}$ und $\ang{180}$ liegt, gilt $\left|\sina\right| = \sina$:
 	\begin{align*}
-		h &= R\sin\alpha \, \frac{\sin\alpha}{1+\sin\alpha} \tag{$3^\prime$}
+		h &= R\sina \, \frac{\sina}{1+\sina} \tag{$3^\prime$}
 	\end{align*}
 \end{samepage}
 Mit $(2)$, $(3^\prime)$ und $(4)$: \nopagebreak
 \begin{align*}
 	m_{CD} &= \frac{h+r}{-x} \\
-	&= \frac{R\sin\alpha \frac{\sin\alpha}{1+\sin\alpha} + \frac{R\sin\alpha}{1+\sin\alpha}}{-R\sin\alpha\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}} \\
-	&= \frac{\frac{\sin\alpha+1}{1+\sin\alpha}}{-\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}} \\
-	&= \frac{1}{-\sqrt{\frac{1-\sin\alpha}{1+\sin\alpha}}} \\
-	&= -\sqrt{\frac{1+\sin\alpha}{1-\sin\alpha}} \\
-	&= -\frac{\sqrt{1+\sin\alpha}}{\sqrt{1-\sin\alpha}} \\
-	&= -\frac{\sqrt{1+\sin\alpha}\sqrt{1+\sin\alpha}}{\sqrt{1-\sin\alpha}\sqrt{1+\sin\alpha}} \\
-	&= -\frac{1+\sin\alpha}{\sqrt{1 - \sin^2\alpha}} \\
-	&= -\frac{\sin\alpha+1}{\sqrt{\cos^2\alpha}}
+	&= \frac{R\sina \frac{\sina}{1+\sina} + \frac{R\sina}{1+\sina}}{-R\sina\sqrt{\frac{1-\sina}{1+\sina}}} \\
+	&= \frac{\frac{\sina}{1+\sina}+\frac{1}{1+\sina}}{-\sqrt{\frac{1-\sina}{1+\sina}}} \\
+	&= \frac{1}{-\sqrt{\frac{1-\sina}{1+\sina}}} \\
+	&= -\sqrt{\frac{1+\sina}{1-\sina}} \\
+	&= -\frac{\sqrt{1+\sina}}{\sqrt{1-\sina}} \\
+	&= -\frac{\sqrt{1+\sina}\sqrt{1+\sina}}{\sqrt{1-\sina}\sqrt{1+\sina}} \\
+	&= -\frac{1+\sina}{\sqrt{1 - \sin^2\alpha}} \\
+	&= -\frac{\sina+1}{\sqrt{\cos^2\alpha}}
 \end{align*}
-Da unser $\alpha < \ang{90}$ ist, gilt $\cos\alpha \geq 0$, also auch $\left|\cos\alpha\right| = \cos\alpha$:
+Da unser $\alpha < \ang{90}$ ist, gilt $\cosb \geq \ang{0}$, also auch $\left|\cosa\right| = \cosa$:
 \begin{align*}
-	m_{CD} &= -\frac{\sin\alpha+1}{\cos\alpha}
+	m_{CD} &= -\frac{\sina+1}{\cosa}
 \end{align*}
 \goodbreak
 \begin{samepage}
@@ -317,16 +326,16 @@ Da unser $\alpha < \ang{90}$ ist, gilt $\cos\alpha \geq 0$, also auch $\left|\co
 	\begin{align*}
 		2\beta + 2\alpha &= \ang{180} \\
 		\alpha &= \ang{90} - \beta \\
-		\sin\alpha &= \sin(\ang{90} - \beta) = \cos\beta \\
-		\cos\alpha &= \cos(\ang{90} - \beta) = \sin\beta \\
+		\sina &= \sin(\ang{90} - \beta) = \cosb \\
+		\cosb &= \cos(\ang{90} - \beta) = \sinb \\
 	\end{align*}
-
+	\\
 	So lässt sich $m_{CD}$ anders ausdrücken:
 	\begin{align*}
-		m_{CD} &= -\frac{\sin\alpha+1}{\cos\alpha} \\
-		&= -\frac{\cos\beta+1}{\sin\beta} \\[10pt]
-		m_{AE} &= \frac{\sin\beta}{\cos\beta+1}
+		m_{CD} &= -\frac{\sina+1}{\cosa} \\
+		&= -\frac{\cosb+1}{\sinb} \\[10pt]
+		m_{AE} &= \frac{\sinb}{\cosb+1}
 	\end{align*}
-
+	\\
 	Somit gilt $ m_{CD} = -\frac{1}{m_{AE}} $, und damit auch $CD \perp AE$. \qed
 \end{samepage}
