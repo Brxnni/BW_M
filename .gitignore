@@ -1,8 +1,9 @@
-*.aux
-*.fls
-*.log
-*.synctex.gz
-*.synctex(busy)
-*.fdb_latexmk
+**/*.aux
+**/*.fls
+**/*.log
+**/*.synctex.gz
+**/*.synctex(busy)
+**/*.fdb_latexmk
 
-bwm.pdf
+**/*.pdf
+!final.pdf
