@@ -1,12 +1,5 @@
 \setlength{\mathindent}{4cm}
 
-Um zu beweisen, dass $AE$ senkrecht zu $CD$ steht, werden die Steigungen beider Geraden in Abhängigkeit des Winkels $\beta$, der die Position von P auf dem Halbkreisbogen $AB$ bestimmt, berechnet.
-\\[10pt]
-(Für die gesamte Herleitung beziehen sich $\sin$ und $\cos$ immer nur auf die Variable unmittelbar danach, also nur $\alpha$ oder $\beta$.)
-
-\subsection[]{Herleitung von $m_{AE}$}
-Hierfür relevante Punkte und Strecken:
-
 % Was häufig benutzt wird
 \newcommand{\Koordinaten}{
 	\coordinate (m) at (0,0);
@@ -24,11 +17,19 @@ Hierfür relevante Punkte und Strecken:
 	\end{scope}
 }
 
+\newcommand{\Strecke}[1]{\overline{\mathit{#1}}}
+
 \newcommand{\sina}{\sin\alpha}
 \newcommand{\cosa}{\cos\alpha}
 \newcommand{\sinb}{\sin\beta}
 \newcommand{\cosb}{\cos\beta}
 
+Um zu beweisen, dass $AE$ senkrecht zu $CD$ steht, werden die Steigungen beider Geraden in Abhängigkeit des Winkels $\beta$, der die Position von P auf dem Halbkreisbogen $AB$ bestimmt, berechnet.
+\\[10pt]
+(Für die gesamte Herleitung beziehen sich, wenn nicht durch Klammern anders angegeben, $\sin$ und $\cos$ immer nur auf die Variable unmittelbar danach, also nur $\alpha$ oder $\beta$.)
+
+\subsection[]{Herleitung von $m_{AE}$}
+Hierfür relevante Punkte und Strecken:
 \begin{center}
 	\begin{tikzpicture}[scale=4]
 		% Koordinaten
@@ -63,7 +64,7 @@ Hierfür relevante Punkte und Strecken:
 	\end{tikzpicture}
 \end{center}
 % diese erklärung ist nicht gut das muss besser irgendwie besser gehen (auch egal weil es die beim bwm eh nicht zu sehen bekommen, gibt glaub ich auch punktabzug :c)
-Die Strecke $ME$ halbiert exakt den Kreissektor, weil der Mittelpunkt des Kreises $k_a$ exakt zwischen $M$ und $E$ liegt, also auf $ME$. Das liegt wiederum daran, dass $k_a$ maximal groß sein soll, aber $MB$ und $MP$ in genau einem Punkt berühren soll. Um maximal groß zu sein, \say{wächst} er also symmetrisch zu der Winkelhalbierenden in seinem Kreissektor, also symmetrisch zu der Strecke $ME$.
+Die Strecke $\Strecke{ME}$ halbiert exakt den Kreissektor, weil der Mittelpunkt des Kreises $k_a$ exakt zwischen $M$ und $E$ liegt, also auf $\Strecke{ME}$. Das liegt wiederum daran, dass $k_a$ maximal groß sein soll, aber $\Strecke{MB}$ und $\Strecke{MP}$ in genau einem Punkt berühren soll. Um maximal groß zu sein, \say{wächst} er also symmetrisch zu der Winkelhalbierenden in seinem Kreissektor, also symmetrisch zu der Strecke $\Strecke{ME}$.
 \begin{align*}
 	m_{AE} &= \frac{\Delta y}{\Delta x} = \frac{h}{2R-x} \\
 	\frac{h}{R} = \frac{r}{R-r} \leftrightarrow h &= \frac{Rr}{R-r} \tag{1}
@@ -290,7 +291,7 @@ Mit $(2)$, $(3^\prime)$ und $(4)$: \nopagebreak
 	&= -\frac{1+\sina}{\sqrt{1 - \sin^2\alpha}} \\
 	&= -\frac{\sina+1}{\sqrt{\cos^2\alpha}}
 \end{align*}
-Da unser $\alpha < \ang{90}$ ist, gilt $\cosb \geq \ang{0}$, also auch $\left|\cosa\right| = \cosa$:
+Da unser $\alpha \leq \ang{90}$ ist, gilt $\ang{90} \geq \cosa \geq \ang{0}$, also auch $\left|\cosa\right| = \cosa$:
 \begin{align*}
 	m_{CD} &= -\frac{\sina+1}{\cosa}
 \end{align*}
@@ -324,10 +325,10 @@ Da unser $\alpha < \ang{90}$ ist, gilt $\cosb \geq \ang{0}$, also auch $\left|\c
 		\end{tikzpicture}
 	\end{center}
 	\begin{align*}
-		2\beta + 2\alpha &= \ang{180} \\
+		2\alpha + 2\beta &= \ang{180} \\
 		\alpha &= \ang{90} - \beta \\
 		\sina &= \sin(\ang{90} - \beta) = \cosb \\
-		\cosb &= \cos(\ang{90} - \beta) = \sinb \\
+		\cosa &= \cos(\ang{90} - \beta) = \sinb \\
 	\end{align*}
 	\\
 	So lässt sich $m_{CD}$ anders ausdrücken:
