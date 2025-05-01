@@ -12,6 +12,7 @@
 \usepackage[T1]{fontenc}
 
 \usepackage[ngerman]{babel}
+% Für Sachen in Anführungszeichen
 \usepackage[
     left = \glqq{},%
     right = \grqq{}%
@@ -33,14 +34,8 @@
 \titleformat*{\section}{\LARGE\bfseries\color{burgundy}}
 \titleformat*{\subsection}{\Large\bfseries\color{darkburgundy}}
 
-% Für Unteraufgaben, auch in Burgund
-\usepackage{enumitem}
-\setlist[itemize]{
-	leftmargin=*,
-	noitemsep,
-	wide=0pt,
-	font=\bf\color{darkburgundy}
-}
+\DeclareTextFontCommand{\colorburg}{\bfseries\color{darkburgundy}}
+\newcommand{\Fburg}[1]{\colorburg{#1}\;}
 
 % Keine Absatzindentierung
 \setlength{\parindent}{0pt}
