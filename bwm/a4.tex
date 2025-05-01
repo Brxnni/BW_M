@@ -51,7 +51,7 @@ Läuft das Spiel zuletzt auf eine $2\times2$-Ecke hinaus, verliert der Spieler, 
 	\node[anchor=west] at (11.5,4.5) {$\rightarrow$ Anfänger verliert};
 \end{tikzpicture}
 \end{center}
-Basierend darauf gilt dies auch für eine Ecke, die in beide Dimensionen beliebig viele Felder größer ist. Derjenige, der nicht anfängt, kopiert exakt die Menge an ausgemalten Feldern des Anfängers ($P$) auf der anderen Kante und zwingt den anfangenden Spieler in eine weitere kleinere $p\times p$-Ecke (in Orange):
+Basierend darauf gilt dies auch für eine Ecke, die in beide Dimensionen beliebig viele Felder größer ist. Derjenige, der nicht anfängt, kopiert exakt die Menge an ausgemalten Feldern des Anfängers ($q$) auf der anderen Kante und zwingt den anfangenden Spieler in eine weitere kleinere $p\times p$-Ecke (in Orange):
 \begin{NMCenter}
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\draw (1,1) \RenateZug;
@@ -65,11 +65,11 @@ Basierend darauf gilt dies auch für eine Ecke, die in beide Dimensionen beliebi
 	\draw (5,5) \ErhardZug;
 	\draw [dashed] (6,0) -- (3,3);
 
-	\draw [decorate,decoration={brace,amplitude=5pt}] (0.55,0) -- (4.45,0) node[midway,yshift=1em]{P};
-	\draw [decorate,decoration={brace,amplitude=5pt}] (4.55,0) -- (5.45,0) node[midway,yshift=1em]{p};
+	\draw [decorate,decoration={brace,amplitude=5pt}] (0.55,0) -- (4.45,0) node[midway,yshift=1em]{$q$};
+	\draw [decorate,decoration={brace,amplitude=5pt}] (4.55,0) -- (5.45,0) node[midway,yshift=1em]{$p$};
 
-	\draw [decorate,decoration={brace,amplitude=5pt}] (6,0.55) -- (6,1.45) node[midway,xshift=1em]{p};
-	\draw [decorate,decoration={brace,amplitude=5pt}] (6,1.55) -- (6,5.45) node[midway,xshift=1em]{P};
+	\draw [decorate,decoration={brace,amplitude=5pt}] (6,0.55) -- (6,1.45) node[midway,xshift=1em]{$p$};
+	\draw [decorate,decoration={brace,amplitude=5pt}] (6,1.55) -- (6,5.45) node[midway,xshift=1em]{$q$};
 \end{tikzpicture}
 \end{NMCenter}
 Fährt Renate diese Strategie, kann sie Erhard irgendwann in eine $2\times2$-Ecke zwingen, in der er verliert, er hat also dann sicher verloren, wenn er in einer $p\times p$-Ecke beginnen muss (für ein beliebiges $p \geq 2$).
@@ -153,7 +153,7 @@ Läuft das Spiel auf eine \say{Hufeisenform} hinaus, verliert auch wieder der Sp
 	\draw [dashed] (3.5,0) -- (3.5,5);
 \end{tikzpicture}
 \end{NMCenter}
-Erhard (magenta) muss anfangen und Renate (türkis) kopiert solange seine Spielzüge auf der jeweils anderen Seite der Spiegelachse, bis Erhard zum ersten Mal ein Feld ausmalt, das die obere Kante berührt oder in dieser liegt. Dann kann Renate Erhard in eine $p\times p$-Ecke zwingen und Renate gewinnt (wie oben bewiesen).
+Erhard (magenta) muss anfangen und Renate (türkis) kopiert solange seine Spielzüge auf der jeweils anderen Seite der Spiegelachse (welche die längere Kante halbiert), bis Erhard zum ersten Mal ein Feld ausmalt, das die längere Kante berührt oder in dieser liegt. Dann kann Renate Erhard in eine $p\times p$-Ecke zwingen und Renate gewinnt (wie oben bewiesen).
 \pagebreak
 
 Renate hat nun für zwei verschiedene Arten von Feldern Strategien:
@@ -190,7 +190,7 @@ Ab dem zweiten Diagramm macht pro Bild immer erst Erhard (türkis) einen Zug, da
 	\draw (1,2) \Feld;
 
 	\draw [dashed] (7,0) -- (0,7);
-	\node[anchor=west] at (6.5,3.5) {$\rightarrow$};
+	\node[anchor=west] at (7.1,3.5) {$\rightarrow$};
 \end{tikzpicture}
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\draw (1,1) \Feld;
@@ -217,7 +217,7 @@ Ab dem zweiten Diagramm macht pro Bild immer erst Erhard (türkis) einen Zug, da
 	\draw (1,2) \Feld;
 
 	\draw [dashed] (7,0) -- (0,7);
-	\node[anchor=west] at (6.5,3.5) {$\rightarrow$};
+	\node[anchor=west] at (7.1,3.5) {$\rightarrow$};
 \end{tikzpicture}
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\draw (1,1) \Feld;
@@ -274,7 +274,7 @@ Egal wieviele Felder Erhard in seinem nächsten Zug ausmalt, wird er in eine $p\
 	\draw (1,2) \RenateZug;
 
 	\draw [dashed] (7,0) -- (0,7);
-	\node[anchor=west] at (7,3.5) {oder};
+	\node[anchor=west] at (7.1,3.5) {oder};
 \end{tikzpicture}
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\draw (1,1) \RenateZug;
@@ -308,7 +308,7 @@ Egal wieviele Felder Erhard in seinem nächsten Zug ausmalt, wird er in eine $p\
 	\item[Fall 2:] $m\neq n$
 \end{itemize}
 
-Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. So bleibt als Spielfeld noch eine \say{Hufeisenform} übrig. In diesem Hufeisen ist eine Seite um mindestens 2 Felder länger als die andere. Nach dem Beweis oben verliert der Anfänger (nach Renates Strategie also Erhard) in diesem Hufeisen auch (wie bereits oben gezeigt), Renate hat also hier auch eine sichere Gewinnstrategie (grau steht hier für beliebige Züge beider Seiten):
+Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. So bleibt als Spielfeld noch eine \say{Hufeisenform} übrig. Nach dem Beweis oben verliert der Anfänger (nach Renates Strategie also Erhard) in diesem Hufeisen auch (wie bereits oben gezeigt), Renate hat also hier auch eine sichere Gewinnstrategie (grau steht hier für beliebige Züge beider Seiten):
 \\
 \begin{NMCenter}
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
@@ -341,7 +341,7 @@ Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. 
 	\draw (1,2) \Feld;
 
 	\draw [dashed] (4.5,0) -- (4.5,7);
-	\node[anchor=west] at (8.5,3.5) {$\rightarrow$};
+	\node[anchor=west] at (8.7,3.5) {$\rightarrow$};
 \end{tikzpicture}
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\draw (1,1) \Feld;
@@ -373,7 +373,7 @@ Hierbei malt Renate in ihrem ersten Zug eine der längeren Kanten komplett aus. 
 	\draw (1,2) \Feld;
 
 	\draw [dashed] (4.5,0) -- (4.5,7);
-	\node[anchor=west] at (8.5,3.5) {$\rightarrow$};
+	\node[anchor=west] at (8.7,3.5) {$\rightarrow$};
 \end{tikzpicture}
 \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
 	\draw (1,1) \Ecke;
