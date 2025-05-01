@@ -17,7 +17,7 @@ zusammen mit henry :3
 |A1|-|
 |A2|<ul><li>❌ aus den beiden iterativen Mustern von 2^m und n!/(5m)! lässt sich nicht unbedingt folgern, dass die Reihe an LZ(n!) auch alle Ziffern unendlich oft hat</li></ul>|
 |A3|<ul><li>〰️ unerklärt, warum MC und ME die Winkelhalbierenden ihrer Halbkreissektoren sind</li><li>✔️ keine Erklärung für sqrt(cos^2(a)) = cos(a)</li></ul>|
-|A4|<ul><li>❌ "Hufeisen"strategie funktioniert nicht für n=3 oder m=3; Renate muss vorher aufhören, Erhard zu spiegeln</li></ul>|
+|A4|-|
 
 ## Struktur
 
