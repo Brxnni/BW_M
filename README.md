@@ -4,11 +4,11 @@ zusammen mit henry :3
 
 [Link zum PDF mit Aufgaben (https://www.mathe-wettbewerbe.de/)](https://www.mathe-wettbewerbe.de/fileadmin/Mathe-Wettbewerbe/Bundeswettbewerb_Mathematik/Dokumente/Aufgaben_und_Loesungen_BWM/2025/BWM_2025_Aufgabenblatt_SCREEN.pdf)
 
-[Link zum PDF mit unseren Lösungen](final.pdf) (Stand 03.03.2025, also so wie es eingereicht wurde) Wird nicht mehr neugeneriert, wenn Änderungen an `bwm.tex` gemacht werden, die neue Version muss jeder selbst kompilieren
+[Link zum PDF mit unseren Lösungen](final_submission.pdf) (Stand 03.03.2025, also so wie es eingereicht wurde) Wird nicht mehr neugeneriert, wenn Änderungen an `bwm.tex` gemacht werden, die neue Version muss jeder selbst kompilieren
 
 ## Potentielle Punktabzüge
 
-(In Bezug auf die [abgegebene Version](final.pdf), ich versuche momentan diese Fehler nachzuholen)
+(In Bezug auf die [abgegebene Version](final_submission.pdf), ich versuche momentan diese Fehler nachzuholen)
 
 ✔️ = Problem (immerhin) nachbearbeitet, 〰️ = meh, ❌ = nicht
 
