@@ -71,7 +71,12 @@
 \fancyhead[L]{\thepage}
 \fancyhead[R]{Henry Feuerlein, Arne Stein}
 \fancyfoot[]{}
+% Jahr, nur auf der ersten Seite
+\fancypagestyle{firstpage}{
+	\fancyhead[C]{BWM 2025}
+}
 
+\thispagestyle{firstpage}
 \section{Aufgabe 1}
 \input{a1}
 \pagebreak

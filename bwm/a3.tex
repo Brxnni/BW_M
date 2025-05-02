@@ -123,18 +123,18 @@ Die Strecke $\Strecke{ME}$ halbiert exakt den Kreissektor, weil der Mittelpunkt 
 \end{align*}
 Mit $ \cosb = \frac{b}{r} \Leftrightarrow b = r \cosb $ und $(1)$:
 \begin{align*}
-	R_0 &= \frac{\frac{-Rr}{R-r}*r \cosb}{r-\frac{Rr}{R-r}} \\
-	&= \frac{\left(\frac{-Rr}{R-r}*r \cosb\right)}{\left(\frac{(R-r)r}{R-r}-\frac{Rr}{R-r}\right)} \\
-	&= \frac{\left(\frac{-Rr}{R-r}*r \cosb\right)}{\left(\frac{Rr-r^2-Rr}{R-r}\right)} \\
-	&= \frac{\left(\frac{-Rr^2 \cosb}{R-r}\right)}{\left(-\frac{r^2}{R-r}\right)} \\
-	&= \frac{-Rr^2 \cosb * (R-r)}{-(R-r)r^2} \\
+	R_0 &= \frac{\left(\frac{-Rr}{R-r}r \cosb\right)}{\left(r-\frac{Rr}{R-r}\right)} \\[10pt]
+	&= \frac{\left(\frac{-Rr}{R-r}r \cosb\right)}{\left(\frac{(R-r)r}{R-r}-\frac{Rr}{R-r}\right)} \\[10pt]
+	&= \frac{\left(\frac{-Rr}{R-r}r \cosb\right)}{\left(\frac{Rr-r^2-Rr}{R-r}\right)} \\[10pt]
+	&= \frac{\left(\frac{-Rr^2 \cosb}{R-r}\right)}{\left(-\frac{r^2}{R-r}\right)} \\[10pt]
+	&= \frac{-Rr^2 \cosb}{-r^2} \\[10pt]
 	R_0 &= R \cosb
 \end{align*}
 
 \begin{align*}
 	R_0 + x &= R \\
 	x &= R - R_0 \\
-	&= R - R \cosb \tag{3}
+	x &= R - R \cosb \tag{3}
 \end{align*}
 
 \begin{samepage}
@@ -150,8 +150,7 @@ Mit $ \cosb = \frac{b}{r} \Leftrightarrow b = r \cosb $ und $(1)$:
 	\end{align*}
 	Mit $(2)$: \nopagebreak
 	\begin{align*}
-		m_{AE} &= \frac{\frac{R \sinb}{1+\sinb}}{(R-r)(1+\cosb)} \\
-		&= \frac{R \sinb}{(R-r)(1+\cosb)(1+\sinb)} \\
+		m_{AE} &= \frac{\frac{R \sinb}{1+\sinb}}{(R-\frac{R \sinb}{1+\sinb})(1+\cosb)} \\
 		&= \frac{R \sinb}{(R-\frac{R \sinb}{1+\sinb})(1+\cosb)(1+\sinb)} \\
 		&= \frac{R \sinb}{(\frac{R(1+\sinb)}{1+\sinb}-\frac{R \sinb}{1+\sinb})(1+\cosb)(1+\sinb)} \\
 		&= \frac{R \sinb}{(\frac{R(1+\sinb) - R\sinb}{1+\sinb})(1+\cosb)(1+\sinb)} \\
