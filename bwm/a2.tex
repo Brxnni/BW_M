@@ -112,18 +112,24 @@ Nun wird der Faktor $2^m$ genauer betrachtet:
 	\end{tabular}
 \end{table}
 
-$\frac{n!}{(m\cdot5)!}$ kann nur folgende Werte annehmen:
-\begin{equation*}
-	\begin{split}
-		\dots9 \cdot \dots8 \cdot \dots7 \cdot \dots6 &= 302\underline{4} \\
-		\dots8 \cdot \dots7 \cdot \dots6 &= 33\underline{6} \\
-		\dots7 \cdot \dots6 &= 4\underline{2} \\
-		\dots6 &= \underline{6} \\
-		\dots4 \cdot \dots3 \cdot \dots2 \cdot \dots1 &= 1\underline{2} \\
-		\dots3 \cdot \dots2 \cdot \dots1 &= \underline{6} \\
-		\dots2 \cdot \dots1 &= \underline{2} \\
-		\dots1  &= \underline{1}
-	\end{split}
-\end{equation*}
+$LZ\left(\frac{n!}{(m\cdot5)!}\right)$ nimmt für $k$ = $n \bmod 10$ den $k.$ Wert der folgenden Reihe an: $1;1;2;6;4; 1;6;2;6;4 $
+\\
+\begin{minipage}{0.5\linewidth}
+	\begin{alignat*}{3}
+		\frac{\dots9!}{\dots5!} &= \dots9 \cdot \dots8 \cdot \dots7 \cdot \dots6 &= 302\underline{4} \\[10pt]
+		\frac{\dots8!}{\dots5!} &= \dots8 \cdot \dots7 \cdot \dots6 &= 33\underline{6} \\[10pt]
+		\frac{\dots7!}{\dots5!} &= \dots7 \cdot \dots6 &= 4\underline{2} \\[10pt]
+		\frac{\dots6!}{\dots5!} &= \dots6 &= \underline{6} \\[10pt]
+		\frac{\dots5!}{\dots5!} & &= \underline{1}
+	\end{alignat*}
+\end{minipage}\begin{minipage}{0.5\linewidth}
+	\begin{alignat*}{3}
+		\frac{\dots4!}{\dots0!} &= \dots4 \cdot \dots3 \cdot \dots2 \cdot \dots1 &= 2\underline{4} \\[10pt]
+		\frac{\dots3!}{\dots0!} &= \dots3 \cdot \dots2 \cdot \dots1 &= \underline{6} \\[10pt]
+		\frac{\dots2!}{\dots0!} &= \dots2 \cdot \dots1 &= \underline{2} \\[10pt]
+		\frac{\dots1!}{\dots0!} &= \dots1 &= \underline{1} \\[10pt]
+		\frac{\dots0!}{\dots0!} &= \dots1 &= \underline{1}
+	\end{alignat*}
+\end{minipage}
 
 In diesen beiden Faktoren lässt sich für immer größer werdende $n$ und damit auch $m$ jeweils ein sich unendlich oft wiederholendes iteratives Muster erkennen. Folglich kommt in dem Gesamtprodukt jede der möglichen Ziffern $2$, $4$, $6$ und $8$ unendlich oft als letzte Nichtnull-Ziffer vor. \qed
